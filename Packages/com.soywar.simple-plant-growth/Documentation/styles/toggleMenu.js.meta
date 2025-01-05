@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 182e0d03ccef4be49bb1a14d60b1be4a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/styles/toggleMenu.js
+  uploadId: 629835

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df820905b07647b49d029d38d1135c37, type: 3}
+  m_Name: Database
+  m_EditorClassIdentifier: 
+  _grass:
+  - {fileID: 11400000, guid: 0abd6f3cac546584ca57c1d334ff494b, type: 2}
+  - {fileID: 11400000, guid: 58c8c43090fbd964188b1d67619e890e, type: 2}
+  - {fileID: 11400000, guid: d3666622398876143bd1d51d82d6053e, type: 2}
+  _trees: []

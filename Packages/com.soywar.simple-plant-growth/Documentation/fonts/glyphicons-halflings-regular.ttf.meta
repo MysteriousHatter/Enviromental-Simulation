@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: a6cd4bf07350dd64b96c84b2ffce1e84
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - GLYPHICONS Halflings
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 43e61b368118f2940b459487a001cb55, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/fonts/glyphicons-halflings-regular.ttf
+  uploadId: 629835

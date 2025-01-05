@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: fcb42145c0ed69f48abe41a628c8d9bd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Editor/Settings/ProjectSettings.cs
+  uploadId: 629835

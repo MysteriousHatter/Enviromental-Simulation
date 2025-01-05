@@ -1,0 +1,10 @@
+﻿fileFormatVersion: 2
+guid: 4cd5c1160aa74ebe8b2ac11a8f7fcb1f
+timeCreated: 1591374417
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Editor/TreeAssetEditor.cs
+  uploadId: 629835

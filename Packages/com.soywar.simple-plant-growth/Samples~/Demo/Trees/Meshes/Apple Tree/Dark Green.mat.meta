@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 67d64b0ad7fbd4a498f9995a53fe5ffe
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 
+  assetPath: Packages/com.soywar.simple-plant-growth/Samples~/Demo/Trees/Meshes/Apple
+    Tree/Dark Green.mat
+  uploadId: 0

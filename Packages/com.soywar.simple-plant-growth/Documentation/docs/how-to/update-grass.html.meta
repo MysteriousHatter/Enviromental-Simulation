@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 93ee8195497faa844b559888acf65a9b
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/docs/how-to/update-grass.html
+  uploadId: 629835

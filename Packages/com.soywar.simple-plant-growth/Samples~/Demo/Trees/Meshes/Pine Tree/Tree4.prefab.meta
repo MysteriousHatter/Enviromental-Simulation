@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e8bd5d4836366904fa876baa563e9ec6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 
+  assetPath: Packages/com.soywar.simple-plant-growth/Samples~/Demo/Trees/Meshes/Pine
+    Tree/Tree4.prefab
+  uploadId: 0

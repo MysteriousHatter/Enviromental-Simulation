@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d33ceb4fb6e45804797590d5bc51e05b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/styles/overlayscrollbars.min.css
+  uploadId: 629835

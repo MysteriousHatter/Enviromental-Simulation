@@ -1,0 +1,28 @@
+{
+  "name": "com.soywar.simple-plant-growth",
+  "version": "1.0.0",
+  "displayName": "Simple Plant Growth",
+  "unity": "2019.4",
+  "description": "Create plants that grow in several phases, giving them a dynamic appearance. You can modify the size, the duration between phases, the destruction of the plant at the end of a phase, and the transition to the next phase. You can also customize the texture, color, density, coverage and scale of plants, and choose between grass, billboarding or mesh rendering modes.",
+  "documentationUrl": "https://simpleplantgrowth.soywar.com/",
+  "changelogUrl": "https://simpleplantgrowth.soywar.com/changelog.html",
+  "keywords": [
+    "plant",
+    "tree",
+    "grass",
+    "growth",
+    "grow"
+  ],
+  "author": {
+    "name": "SoyWar",
+    "email": "support@soywar.com",
+    "url": "https://www.soywar.com"
+  },
+  "samples": [
+    {
+      "displayName": "Demo",
+      "description": "Example",
+      "path": "Samples~/Demo"
+    }
+  ]
+}

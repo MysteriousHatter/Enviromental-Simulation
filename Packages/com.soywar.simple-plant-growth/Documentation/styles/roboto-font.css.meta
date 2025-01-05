@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3379a4d8715c5c64eba84608bcc3c56a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/styles/roboto-font.css
+  uploadId: 629835

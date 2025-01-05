@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7f1f2e3eb80b2d04f876c041e6927747
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 
+  assetPath: Packages/com.soywar.simple-plant-growth/Samples~/Demo/Trees/Meshes/Apple
+    Tree/Tree3.prefab
+  uploadId: 0

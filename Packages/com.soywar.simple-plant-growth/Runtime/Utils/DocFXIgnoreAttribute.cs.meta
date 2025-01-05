@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 70c655a354137744bae5243fc93bf36d
+timeCreated: 1674902556
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Runtime/Utils/DocFXIgnoreAttribute.cs
+  uploadId: 629835

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4a8022ee6917a2246820f4af79fb1e35
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 15600000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 
+  assetPath: Packages/com.soywar.simple-plant-growth/Samples~/Demo/Terrains/Terrain.asset
+  uploadId: 0

@@ -1,0 +1,1244 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: SoyWar.SimplePlantGrowth
+  name: SoyWar.SimplePlantGrowth
+  href: api/SoyWar.SimplePlantGrowth.html
+  commentId: N:SoyWar.SimplePlantGrowth
+  fullName: SoyWar.SimplePlantGrowth
+  nameWithType: SoyWar.SimplePlantGrowth
+- uid: SoyWar.SimplePlantGrowth.DatabaseAsset
+  name: DatabaseAsset
+  href: api/SoyWar.SimplePlantGrowth.DatabaseAsset.html
+  commentId: T:SoyWar.SimplePlantGrowth.DatabaseAsset
+  fullName: SoyWar.SimplePlantGrowth.DatabaseAsset
+  nameWithType: DatabaseAsset
+- uid: SoyWar.SimplePlantGrowth.DatabaseAsset.Grass
+  name: Grass
+  href: api/SoyWar.SimplePlantGrowth.DatabaseAsset.html#SoyWar_SimplePlantGrowth_DatabaseAsset_Grass
+  commentId: P:SoyWar.SimplePlantGrowth.DatabaseAsset.Grass
+  fullName: SoyWar.SimplePlantGrowth.DatabaseAsset.Grass
+  nameWithType: DatabaseAsset.Grass
+- uid: SoyWar.SimplePlantGrowth.DatabaseAsset.Grass*
+  name: Grass
+  href: api/SoyWar.SimplePlantGrowth.DatabaseAsset.html#SoyWar_SimplePlantGrowth_DatabaseAsset_Grass_
+  commentId: Overload:SoyWar.SimplePlantGrowth.DatabaseAsset.Grass
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.DatabaseAsset.Grass
+  nameWithType: DatabaseAsset.Grass
+- uid: SoyWar.SimplePlantGrowth.DatabaseAsset.Trees
+  name: Trees
+  href: api/SoyWar.SimplePlantGrowth.DatabaseAsset.html#SoyWar_SimplePlantGrowth_DatabaseAsset_Trees
+  commentId: P:SoyWar.SimplePlantGrowth.DatabaseAsset.Trees
+  fullName: SoyWar.SimplePlantGrowth.DatabaseAsset.Trees
+  nameWithType: DatabaseAsset.Trees
+- uid: SoyWar.SimplePlantGrowth.DatabaseAsset.Trees*
+  name: Trees
+  href: api/SoyWar.SimplePlantGrowth.DatabaseAsset.html#SoyWar_SimplePlantGrowth_DatabaseAsset_Trees_
+  commentId: Overload:SoyWar.SimplePlantGrowth.DatabaseAsset.Trees
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.DatabaseAsset.Trees
+  nameWithType: DatabaseAsset.Trees
+- uid: SoyWar.SimplePlantGrowth.GrassAsset
+  name: GrassAsset
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html
+  commentId: T:SoyWar.SimplePlantGrowth.GrassAsset
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset
+  nameWithType: GrassAsset
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.AlignToGround
+  name: AlignToGround
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_AlignToGround
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.AlignToGround
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.AlignToGround
+  nameWithType: GrassAsset.AlignToGround
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.AlignToGround*
+  name: AlignToGround
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_AlignToGround_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.AlignToGround
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.AlignToGround
+  nameWithType: GrassAsset.AlignToGround
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.CopyFrom(SoyWar.SimplePlantGrowth.GrassAsset)
+  name: CopyFrom(GrassAsset)
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_CopyFrom_SoyWar_SimplePlantGrowth_GrassAsset_
+  commentId: M:SoyWar.SimplePlantGrowth.GrassAsset.CopyFrom(SoyWar.SimplePlantGrowth.GrassAsset)
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.CopyFrom(SoyWar.SimplePlantGrowth.GrassAsset)
+  nameWithType: GrassAsset.CopyFrom(GrassAsset)
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.CopyFrom*
+  name: CopyFrom
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_CopyFrom_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.CopyFrom
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.CopyFrom
+  nameWithType: GrassAsset.CopyFrom
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.DetailDensity
+  name: DetailDensity
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_DetailDensity
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.DetailDensity
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.DetailDensity
+  nameWithType: GrassAsset.DetailDensity
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.DetailDensity*
+  name: DetailDensity
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_DetailDensity_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.DetailDensity
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.DetailDensity
+  nameWithType: GrassAsset.DetailDensity
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.DryTint
+  name: DryTint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_DryTint
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.DryTint
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.DryTint
+  nameWithType: GrassAsset.DryTint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.DryTint*
+  name: DryTint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_DryTint_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.DryTint
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.DryTint
+  nameWithType: GrassAsset.DryTint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.HealthyTint
+  name: HealthyTint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_HealthyTint
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.HealthyTint
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.HealthyTint
+  nameWithType: GrassAsset.HealthyTint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.HealthyTint*
+  name: HealthyTint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_HealthyTint_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.HealthyTint
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.HealthyTint
+  nameWithType: GrassAsset.HealthyTint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.HoleEdgePadding
+  name: HoleEdgePadding
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_HoleEdgePadding
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.HoleEdgePadding
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.HoleEdgePadding
+  nameWithType: GrassAsset.HoleEdgePadding
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.HoleEdgePadding*
+  name: HoleEdgePadding
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_HoleEdgePadding_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.HoleEdgePadding
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.HoleEdgePadding
+  nameWithType: GrassAsset.HoleEdgePadding
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSeed
+  name: NoiseSeed
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_NoiseSeed
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.NoiseSeed
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSeed
+  nameWithType: GrassAsset.NoiseSeed
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSeed*
+  name: NoiseSeed
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_NoiseSeed_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.NoiseSeed
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSeed
+  nameWithType: GrassAsset.NoiseSeed
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSpread
+  name: NoiseSpread
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_NoiseSpread
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.NoiseSpread
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSpread
+  nameWithType: GrassAsset.NoiseSpread
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSpread*
+  name: NoiseSpread
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_NoiseSpread_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.NoiseSpread
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.NoiseSpread
+  nameWithType: GrassAsset.NoiseSpread
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.op_Implicit(SoyWar.SimplePlantGrowth.GrassAsset)~UnityEngine.DetailPrototype
+  name: Implicit(GrassAsset to DetailPrototype)
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_op_Implicit_SoyWar_SimplePlantGrowth_GrassAsset__UnityEngine_DetailPrototype
+  commentId: M:SoyWar.SimplePlantGrowth.GrassAsset.op_Implicit(SoyWar.SimplePlantGrowth.GrassAsset)~UnityEngine.DetailPrototype
+  name.vb: Widening(GrassAsset to DetailPrototype)
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.Implicit(SoyWar.SimplePlantGrowth.GrassAsset to UnityEngine.DetailPrototype)
+  fullName.vb: SoyWar.SimplePlantGrowth.GrassAsset.Widening(SoyWar.SimplePlantGrowth.GrassAsset to UnityEngine.DetailPrototype)
+  nameWithType: GrassAsset.Implicit(GrassAsset to DetailPrototype)
+  nameWithType.vb: GrassAsset.Widening(GrassAsset to DetailPrototype)
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.op_Implicit(UnityEngine.DetailPrototype)~SoyWar.SimplePlantGrowth.GrassAsset
+  name: Implicit(DetailPrototype to GrassAsset)
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_op_Implicit_UnityEngine_DetailPrototype__SoyWar_SimplePlantGrowth_GrassAsset
+  commentId: M:SoyWar.SimplePlantGrowth.GrassAsset.op_Implicit(UnityEngine.DetailPrototype)~SoyWar.SimplePlantGrowth.GrassAsset
+  name.vb: Widening(DetailPrototype to GrassAsset)
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.Implicit(UnityEngine.DetailPrototype to SoyWar.SimplePlantGrowth.GrassAsset)
+  fullName.vb: SoyWar.SimplePlantGrowth.GrassAsset.Widening(UnityEngine.DetailPrototype to SoyWar.SimplePlantGrowth.GrassAsset)
+  nameWithType: GrassAsset.Implicit(DetailPrototype to GrassAsset)
+  nameWithType.vb: GrassAsset.Widening(DetailPrototype to GrassAsset)
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.op_Implicit*
+  name: Implicit
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_op_Implicit_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.op_Implicit
+  isSpec: "True"
+  name.vb: Widening
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.Implicit
+  fullName.vb: SoyWar.SimplePlantGrowth.GrassAsset.Widening
+  nameWithType: GrassAsset.Implicit
+  nameWithType.vb: GrassAsset.Widening
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.PositionJitter
+  name: PositionJitter
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_PositionJitter
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.PositionJitter
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.PositionJitter
+  nameWithType: GrassAsset.PositionJitter
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.PositionJitter*
+  name: PositionJitter
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_PositionJitter_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.PositionJitter
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.PositionJitter
+  nameWithType: GrassAsset.PositionJitter
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.RandomTint
+  name: RandomTint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_RandomTint
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.RandomTint
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.RandomTint
+  nameWithType: GrassAsset.RandomTint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.RandomTint*
+  name: RandomTint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_RandomTint_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.RandomTint
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.RandomTint
+  nameWithType: GrassAsset.RandomTint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.RenderMode
+  name: RenderMode
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_RenderMode
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.RenderMode
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.RenderMode
+  nameWithType: GrassAsset.RenderMode
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.RenderMode*
+  name: RenderMode
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_RenderMode_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.RenderMode
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.RenderMode
+  nameWithType: GrassAsset.RenderMode
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.TargetCoverage
+  name: TargetCoverage
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_TargetCoverage
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.TargetCoverage
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.TargetCoverage
+  nameWithType: GrassAsset.TargetCoverage
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.TargetCoverage*
+  name: TargetCoverage
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_TargetCoverage_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.TargetCoverage
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.TargetCoverage
+  nameWithType: GrassAsset.TargetCoverage
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.Texture
+  name: Texture
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_Texture
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.Texture
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.Texture
+  nameWithType: GrassAsset.Texture
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.Texture*
+  name: Texture
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_Texture_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.Texture
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.Texture
+  nameWithType: GrassAsset.Texture
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.Tint
+  name: Tint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_Tint
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.Tint
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.Tint
+  nameWithType: GrassAsset.Tint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.Tint*
+  name: Tint
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_Tint_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.Tint
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.Tint
+  nameWithType: GrassAsset.Tint
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.UseDensityScaling
+  name: UseDensityScaling
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_UseDensityScaling
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.UseDensityScaling
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.UseDensityScaling
+  nameWithType: GrassAsset.UseDensityScaling
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.UseDensityScaling*
+  name: UseDensityScaling
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_UseDensityScaling_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.UseDensityScaling
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.UseDensityScaling
+  nameWithType: GrassAsset.UseDensityScaling
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.UseInstancing
+  name: UseInstancing
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_UseInstancing
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.UseInstancing
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.UseInstancing
+  nameWithType: GrassAsset.UseInstancing
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.UseInstancing*
+  name: UseInstancing
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_UseInstancing_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.UseInstancing
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.UseInstancing
+  nameWithType: GrassAsset.UseInstancing
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.UsePrototypeMesh
+  name: UsePrototypeMesh
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_UsePrototypeMesh
+  commentId: P:SoyWar.SimplePlantGrowth.GrassAsset.UsePrototypeMesh
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.UsePrototypeMesh
+  nameWithType: GrassAsset.UsePrototypeMesh
+- uid: SoyWar.SimplePlantGrowth.GrassAsset.UsePrototypeMesh*
+  name: UsePrototypeMesh
+  href: api/SoyWar.SimplePlantGrowth.GrassAsset.html#SoyWar_SimplePlantGrowth_GrassAsset_UsePrototypeMesh_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassAsset.UsePrototypeMesh
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassAsset.UsePrototypeMesh
+  nameWithType: GrassAsset.UsePrototypeMesh
+- uid: SoyWar.SimplePlantGrowth.GrassComponent
+  name: GrassComponent
+  href: api/SoyWar.SimplePlantGrowth.GrassComponent.html
+  commentId: T:SoyWar.SimplePlantGrowth.GrassComponent
+  fullName: SoyWar.SimplePlantGrowth.GrassComponent
+  nameWithType: GrassComponent
+- uid: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(SoyWar.SimplePlantGrowth.GrassAsset,UnityEngine.Vector2Int[])
+  name: AddInstances(GrassAsset, Vector2Int[])
+  href: api/SoyWar.SimplePlantGrowth.GrassComponent.html#SoyWar_SimplePlantGrowth_GrassComponent_AddInstances_SoyWar_SimplePlantGrowth_GrassAsset_UnityEngine_Vector2Int___
+  commentId: M:SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(SoyWar.SimplePlantGrowth.GrassAsset,UnityEngine.Vector2Int[])
+  name.vb: AddInstances(GrassAsset, Vector2Int())
+  fullName: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(SoyWar.SimplePlantGrowth.GrassAsset, UnityEngine.Vector2Int[])
+  fullName.vb: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(SoyWar.SimplePlantGrowth.GrassAsset, UnityEngine.Vector2Int())
+  nameWithType: GrassComponent.AddInstances(GrassAsset, Vector2Int[])
+  nameWithType.vb: GrassComponent.AddInstances(GrassAsset, Vector2Int())
+- uid: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(System.Int32,UnityEngine.Vector2Int[])
+  name: AddInstances(Int32, Vector2Int[])
+  href: api/SoyWar.SimplePlantGrowth.GrassComponent.html#SoyWar_SimplePlantGrowth_GrassComponent_AddInstances_System_Int32_UnityEngine_Vector2Int___
+  commentId: M:SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(System.Int32,UnityEngine.Vector2Int[])
+  name.vb: AddInstances(Int32, Vector2Int())
+  fullName: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(System.Int32, UnityEngine.Vector2Int[])
+  fullName.vb: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances(System.Int32, UnityEngine.Vector2Int())
+  nameWithType: GrassComponent.AddInstances(Int32, Vector2Int[])
+  nameWithType.vb: GrassComponent.AddInstances(Int32, Vector2Int())
+- uid: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances*
+  name: AddInstances
+  href: api/SoyWar.SimplePlantGrowth.GrassComponent.html#SoyWar_SimplePlantGrowth_GrassComponent_AddInstances_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassComponent.AddInstances
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassComponent.AddInstances
+  nameWithType: GrassComponent.AddInstances
+- uid: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(SoyWar.SimplePlantGrowth.GrassAsset,UnityEngine.Vector2Int[])
+  name: RemoveInstances(GrassAsset, Vector2Int[])
+  href: api/SoyWar.SimplePlantGrowth.GrassComponent.html#SoyWar_SimplePlantGrowth_GrassComponent_RemoveInstances_SoyWar_SimplePlantGrowth_GrassAsset_UnityEngine_Vector2Int___
+  commentId: M:SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(SoyWar.SimplePlantGrowth.GrassAsset,UnityEngine.Vector2Int[])
+  name.vb: RemoveInstances(GrassAsset, Vector2Int())
+  fullName: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(SoyWar.SimplePlantGrowth.GrassAsset, UnityEngine.Vector2Int[])
+  fullName.vb: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(SoyWar.SimplePlantGrowth.GrassAsset, UnityEngine.Vector2Int())
+  nameWithType: GrassComponent.RemoveInstances(GrassAsset, Vector2Int[])
+  nameWithType.vb: GrassComponent.RemoveInstances(GrassAsset, Vector2Int())
+- uid: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(System.Int32,UnityEngine.Vector2Int[])
+  name: RemoveInstances(Int32, Vector2Int[])
+  href: api/SoyWar.SimplePlantGrowth.GrassComponent.html#SoyWar_SimplePlantGrowth_GrassComponent_RemoveInstances_System_Int32_UnityEngine_Vector2Int___
+  commentId: M:SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(System.Int32,UnityEngine.Vector2Int[])
+  name.vb: RemoveInstances(Int32, Vector2Int())
+  fullName: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(System.Int32, UnityEngine.Vector2Int[])
+  fullName.vb: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances(System.Int32, UnityEngine.Vector2Int())
+  nameWithType: GrassComponent.RemoveInstances(Int32, Vector2Int[])
+  nameWithType.vb: GrassComponent.RemoveInstances(Int32, Vector2Int())
+- uid: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances*
+  name: RemoveInstances
+  href: api/SoyWar.SimplePlantGrowth.GrassComponent.html#SoyWar_SimplePlantGrowth_GrassComponent_RemoveInstances_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassComponent.RemoveInstances
+  nameWithType: GrassComponent.RemoveInstances
+- uid: SoyWar.SimplePlantGrowth.GrassData
+  name: GrassData
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html
+  commentId: T:SoyWar.SimplePlantGrowth.GrassData
+  fullName: SoyWar.SimplePlantGrowth.GrassData
+  nameWithType: GrassData
+- uid: SoyWar.SimplePlantGrowth.GrassData.#ctor(System.Single,System.Int32)
+  name: GrassData(Single, Int32)
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData__ctor_System_Single_System_Int32_
+  commentId: M:SoyWar.SimplePlantGrowth.GrassData.#ctor(System.Single,System.Int32)
+  fullName: SoyWar.SimplePlantGrowth.GrassData.GrassData(System.Single, System.Int32)
+  nameWithType: GrassData.GrassData(Single, Int32)
+- uid: SoyWar.SimplePlantGrowth.GrassData.#ctor*
+  name: GrassData
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData__ctor_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassData.#ctor
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassData.GrassData
+  nameWithType: GrassData.GrassData
+- uid: SoyWar.SimplePlantGrowth.GrassData.Amount
+  name: Amount
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_Amount
+  commentId: F:SoyWar.SimplePlantGrowth.GrassData.Amount
+  fullName: SoyWar.SimplePlantGrowth.GrassData.Amount
+  nameWithType: GrassData.Amount
+- uid: SoyWar.SimplePlantGrowth.GrassData.CompareTo(SoyWar.SimplePlantGrowth.GrassData)
+  name: CompareTo(GrassData)
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_CompareTo_SoyWar_SimplePlantGrowth_GrassData_
+  commentId: M:SoyWar.SimplePlantGrowth.GrassData.CompareTo(SoyWar.SimplePlantGrowth.GrassData)
+  fullName: SoyWar.SimplePlantGrowth.GrassData.CompareTo(SoyWar.SimplePlantGrowth.GrassData)
+  nameWithType: GrassData.CompareTo(GrassData)
+- uid: SoyWar.SimplePlantGrowth.GrassData.CompareTo*
+  name: CompareTo
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_CompareTo_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassData.CompareTo
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassData.CompareTo
+  nameWithType: GrassData.CompareTo
+- uid: SoyWar.SimplePlantGrowth.GrassData.Equals(SoyWar.SimplePlantGrowth.GrassData)
+  name: Equals(GrassData)
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_Equals_SoyWar_SimplePlantGrowth_GrassData_
+  commentId: M:SoyWar.SimplePlantGrowth.GrassData.Equals(SoyWar.SimplePlantGrowth.GrassData)
+  fullName: SoyWar.SimplePlantGrowth.GrassData.Equals(SoyWar.SimplePlantGrowth.GrassData)
+  nameWithType: GrassData.Equals(GrassData)
+- uid: SoyWar.SimplePlantGrowth.GrassData.Equals*
+  name: Equals
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_Equals_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassData.Equals
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassData.Equals
+  nameWithType: GrassData.Equals
+- uid: SoyWar.SimplePlantGrowth.GrassData.GetHashCode
+  name: GetHashCode()
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_GetHashCode
+  commentId: M:SoyWar.SimplePlantGrowth.GrassData.GetHashCode
+  fullName: SoyWar.SimplePlantGrowth.GrassData.GetHashCode()
+  nameWithType: GrassData.GetHashCode()
+- uid: SoyWar.SimplePlantGrowth.GrassData.GetHashCode*
+  name: GetHashCode
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_GetHashCode_
+  commentId: Overload:SoyWar.SimplePlantGrowth.GrassData.GetHashCode
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.GrassData.GetHashCode
+  nameWithType: GrassData.GetHashCode
+- uid: SoyWar.SimplePlantGrowth.GrassData.Time
+  name: Time
+  href: api/SoyWar.SimplePlantGrowth.GrassData.html#SoyWar_SimplePlantGrowth_GrassData_Time
+  commentId: F:SoyWar.SimplePlantGrowth.GrassData.Time
+  fullName: SoyWar.SimplePlantGrowth.GrassData.Time
+  nameWithType: GrassData.Time
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent
+  name: ManagerComponent
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html
+  commentId: T:SoyWar.SimplePlantGrowth.ManagerComponent
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent
+  nameWithType: ManagerComponent
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.Database
+  name: Database
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_Database
+  commentId: P:SoyWar.SimplePlantGrowth.ManagerComponent.Database
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.Database
+  nameWithType: ManagerComponent.Database
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.Database*
+  name: Database
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_Database_
+  commentId: Overload:SoyWar.SimplePlantGrowth.ManagerComponent.Database
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.Database
+  nameWithType: ManagerComponent.Database
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.Dynamic
+  name: Dynamic
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_Dynamic
+  commentId: P:SoyWar.SimplePlantGrowth.ManagerComponent.Dynamic
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.Dynamic
+  nameWithType: ManagerComponent.Dynamic
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.Dynamic*
+  name: Dynamic
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_Dynamic_
+  commentId: Overload:SoyWar.SimplePlantGrowth.ManagerComponent.Dynamic
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.Dynamic
+  nameWithType: ManagerComponent.Dynamic
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.InitAuto
+  name: InitAuto
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_InitAuto
+  commentId: P:SoyWar.SimplePlantGrowth.ManagerComponent.InitAuto
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.InitAuto
+  nameWithType: ManagerComponent.InitAuto
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.InitAuto*
+  name: InitAuto
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_InitAuto_
+  commentId: Overload:SoyWar.SimplePlantGrowth.ManagerComponent.InitAuto
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.InitAuto
+  nameWithType: ManagerComponent.InitAuto
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.Persistent
+  name: Persistent
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_Persistent
+  commentId: P:SoyWar.SimplePlantGrowth.ManagerComponent.Persistent
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.Persistent
+  nameWithType: ManagerComponent.Persistent
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.Persistent*
+  name: Persistent
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_Persistent_
+  commentId: Overload:SoyWar.SimplePlantGrowth.ManagerComponent.Persistent
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.Persistent
+  nameWithType: ManagerComponent.Persistent
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.SetTimer(System.Func{System.Single})
+  name: SetTimer(Func<Single>)
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_SetTimer_System_Func_System_Single__
+  commentId: M:SoyWar.SimplePlantGrowth.ManagerComponent.SetTimer(System.Func{System.Single})
+  name.vb: SetTimer(Func(Of Single))
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.SetTimer(System.Func<System.Single>)
+  fullName.vb: SoyWar.SimplePlantGrowth.ManagerComponent.SetTimer(System.Func(Of System.Single))
+  nameWithType: ManagerComponent.SetTimer(Func<Single>)
+  nameWithType.vb: ManagerComponent.SetTimer(Func(Of Single))
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.SetTimer*
+  name: SetTimer
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_SetTimer_
+  commentId: Overload:SoyWar.SimplePlantGrowth.ManagerComponent.SetTimer
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.SetTimer
+  nameWithType: ManagerComponent.SetTimer
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.TimeOffset
+  name: TimeOffset
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_TimeOffset
+  commentId: P:SoyWar.SimplePlantGrowth.ManagerComponent.TimeOffset
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.TimeOffset
+  nameWithType: ManagerComponent.TimeOffset
+- uid: SoyWar.SimplePlantGrowth.ManagerComponent.TimeOffset*
+  name: TimeOffset
+  href: api/SoyWar.SimplePlantGrowth.ManagerComponent.html#SoyWar_SimplePlantGrowth_ManagerComponent_TimeOffset_
+  commentId: Overload:SoyWar.SimplePlantGrowth.ManagerComponent.TimeOffset
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.ManagerComponent.TimeOffset
+  nameWithType: ManagerComponent.TimeOffset
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1
+  name: PlantAsset<T>
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html
+  commentId: T:SoyWar.SimplePlantGrowth.PlantAsset`1
+  name.vb: PlantAsset(Of T)
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T)
+  nameWithType: PlantAsset<T>
+  nameWithType.vb: PlantAsset(Of T)
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.CopyFrom(`0)
+  name: CopyFrom(T)
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_CopyFrom__0_
+  commentId: M:SoyWar.SimplePlantGrowth.PlantAsset`1.CopyFrom(`0)
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.CopyFrom(T)
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).CopyFrom(T)
+  nameWithType: PlantAsset<T>.CopyFrom(T)
+  nameWithType.vb: PlantAsset(Of T).CopyFrom(T)
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.CopyFrom*
+  name: CopyFrom
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_CopyFrom_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.CopyFrom
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.CopyFrom
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).CopyFrom
+  nameWithType: PlantAsset<T>.CopyFrom
+  nameWithType.vb: PlantAsset(Of T).CopyFrom
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Destroy
+  name: Destroy
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Destroy
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.Destroy
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Destroy
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Destroy
+  nameWithType: PlantAsset<T>.Destroy
+  nameWithType.vb: PlantAsset(Of T).Destroy
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Destroy*
+  name: Destroy
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Destroy_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Destroy
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Destroy
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Destroy
+  nameWithType: PlantAsset<T>.Destroy
+  nameWithType.vb: PlantAsset(Of T).Destroy
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Duplicate
+  name: Duplicate()
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Duplicate
+  commentId: M:SoyWar.SimplePlantGrowth.PlantAsset`1.Duplicate
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Duplicate()
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Duplicate()
+  nameWithType: PlantAsset<T>.Duplicate()
+  nameWithType.vb: PlantAsset(Of T).Duplicate()
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Duplicate*
+  name: Duplicate
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Duplicate_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Duplicate
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Duplicate
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Duplicate
+  nameWithType: PlantAsset<T>.Duplicate
+  nameWithType.vb: PlantAsset(Of T).Duplicate
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.GrowthTime
+  name: GrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_GrowthTime
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.GrowthTime
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.GrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).GrowthTime
+  nameWithType: PlantAsset<T>.GrowthTime
+  nameWithType.vb: PlantAsset(Of T).GrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.GrowthTime*
+  name: GrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_GrowthTime_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.GrowthTime
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.GrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).GrowthTime
+  nameWithType: PlantAsset<T>.GrowthTime
+  nameWithType.vb: PlantAsset(Of T).GrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.HasNextStep
+  name: HasNextStep
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_HasNextStep
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.HasNextStep
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.HasNextStep
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).HasNextStep
+  nameWithType: PlantAsset<T>.HasNextStep
+  nameWithType.vb: PlantAsset(Of T).HasNextStep
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.HasNextStep*
+  name: HasNextStep
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_HasNextStep_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.HasNextStep
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.HasNextStep
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).HasNextStep
+  nameWithType: PlantAsset<T>.HasNextStep
+  nameWithType.vb: PlantAsset(Of T).HasNextStep
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Height
+  name: Height
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Height
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.Height
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Height
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Height
+  nameWithType: PlantAsset<T>.Height
+  nameWithType.vb: PlantAsset(Of T).Height
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Height*
+  name: Height
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Height_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Height
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Height
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Height
+  nameWithType: PlantAsset<T>.Height
+  nameWithType.vb: PlantAsset(Of T).Height
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.LockWidthToHeight
+  name: LockWidthToHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_LockWidthToHeight
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.LockWidthToHeight
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.LockWidthToHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).LockWidthToHeight
+  nameWithType: PlantAsset<T>.LockWidthToHeight
+  nameWithType.vb: PlantAsset(Of T).LockWidthToHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.LockWidthToHeight*
+  name: LockWidthToHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_LockWidthToHeight_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.LockWidthToHeight
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.LockWidthToHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).LockWidthToHeight
+  nameWithType: PlantAsset<T>.LockWidthToHeight
+  nameWithType.vb: PlantAsset(Of T).LockWidthToHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MaxGrowthTime
+  name: MaxGrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MaxGrowthTime
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.MaxGrowthTime
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MaxGrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MaxGrowthTime
+  nameWithType: PlantAsset<T>.MaxGrowthTime
+  nameWithType.vb: PlantAsset(Of T).MaxGrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MaxGrowthTime*
+  name: MaxGrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MaxGrowthTime_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.MaxGrowthTime
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MaxGrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MaxGrowthTime
+  nameWithType: PlantAsset<T>.MaxGrowthTime
+  nameWithType.vb: PlantAsset(Of T).MaxGrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MaxHeight
+  name: MaxHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MaxHeight
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.MaxHeight
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MaxHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MaxHeight
+  nameWithType: PlantAsset<T>.MaxHeight
+  nameWithType.vb: PlantAsset(Of T).MaxHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MaxHeight*
+  name: MaxHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MaxHeight_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.MaxHeight
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MaxHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MaxHeight
+  nameWithType: PlantAsset<T>.MaxHeight
+  nameWithType.vb: PlantAsset(Of T).MaxHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MaxWidth
+  name: MaxWidth
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MaxWidth
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.MaxWidth
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MaxWidth
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MaxWidth
+  nameWithType: PlantAsset<T>.MaxWidth
+  nameWithType.vb: PlantAsset(Of T).MaxWidth
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MaxWidth*
+  name: MaxWidth
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MaxWidth_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.MaxWidth
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MaxWidth
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MaxWidth
+  nameWithType: PlantAsset<T>.MaxWidth
+  nameWithType.vb: PlantAsset(Of T).MaxWidth
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MinGrowthTime
+  name: MinGrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MinGrowthTime
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.MinGrowthTime
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MinGrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MinGrowthTime
+  nameWithType: PlantAsset<T>.MinGrowthTime
+  nameWithType.vb: PlantAsset(Of T).MinGrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MinGrowthTime*
+  name: MinGrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MinGrowthTime_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.MinGrowthTime
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MinGrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MinGrowthTime
+  nameWithType: PlantAsset<T>.MinGrowthTime
+  nameWithType.vb: PlantAsset(Of T).MinGrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MinHeight
+  name: MinHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MinHeight
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.MinHeight
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MinHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MinHeight
+  nameWithType: PlantAsset<T>.MinHeight
+  nameWithType.vb: PlantAsset(Of T).MinHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MinHeight*
+  name: MinHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MinHeight_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.MinHeight
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MinHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MinHeight
+  nameWithType: PlantAsset<T>.MinHeight
+  nameWithType.vb: PlantAsset(Of T).MinHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MinWidth
+  name: MinWidth
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MinWidth
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.MinWidth
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MinWidth
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MinWidth
+  nameWithType: PlantAsset<T>.MinWidth
+  nameWithType.vb: PlantAsset(Of T).MinWidth
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.MinWidth*
+  name: MinWidth
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_MinWidth_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.MinWidth
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.MinWidth
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).MinWidth
+  nameWithType: PlantAsset<T>.MinWidth
+  nameWithType.vb: PlantAsset(Of T).MinWidth
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Next
+  name: Next
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Next
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.Next
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Next
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Next
+  nameWithType: PlantAsset<T>.Next
+  nameWithType.vb: PlantAsset(Of T).Next
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Next*
+  name: Next
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Next_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Next
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Next
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Next
+  nameWithType: PlantAsset<T>.Next
+  nameWithType.vb: PlantAsset(Of T).Next
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Prototype
+  name: Prototype
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Prototype
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.Prototype
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Prototype
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Prototype
+  nameWithType: PlantAsset<T>.Prototype
+  nameWithType.vb: PlantAsset(Of T).Prototype
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Prototype*
+  name: Prototype
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Prototype_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Prototype
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Prototype
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Prototype
+  nameWithType: PlantAsset<T>.Prototype
+  nameWithType.vb: PlantAsset(Of T).Prototype
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.RandomGrowthTime
+  name: RandomGrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_RandomGrowthTime
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.RandomGrowthTime
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.RandomGrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).RandomGrowthTime
+  nameWithType: PlantAsset<T>.RandomGrowthTime
+  nameWithType.vb: PlantAsset(Of T).RandomGrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.RandomGrowthTime*
+  name: RandomGrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_RandomGrowthTime_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.RandomGrowthTime
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.RandomGrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).RandomGrowthTime
+  nameWithType: PlantAsset<T>.RandomGrowthTime
+  nameWithType.vb: PlantAsset(Of T).RandomGrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.RandomHeight
+  name: RandomHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_RandomHeight
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.RandomHeight
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.RandomHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).RandomHeight
+  nameWithType: PlantAsset<T>.RandomHeight
+  nameWithType.vb: PlantAsset(Of T).RandomHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.RandomHeight*
+  name: RandomHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_RandomHeight_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.RandomHeight
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.RandomHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).RandomHeight
+  nameWithType: PlantAsset<T>.RandomHeight
+  nameWithType.vb: PlantAsset(Of T).RandomHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.RandomWidth
+  name: RandomWidth
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_RandomWidth
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.RandomWidth
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.RandomWidth
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).RandomWidth
+  nameWithType: PlantAsset<T>.RandomWidth
+  nameWithType.vb: PlantAsset(Of T).RandomWidth
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.RandomWidth*
+  name: RandomWidth
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_RandomWidth_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.RandomWidth
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.RandomWidth
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).RandomWidth
+  nameWithType: PlantAsset<T>.RandomWidth
+  nameWithType.vb: PlantAsset(Of T).RandomWidth
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Ratio
+  name: Ratio
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Ratio
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.Ratio
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Ratio
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Ratio
+  nameWithType: PlantAsset<T>.Ratio
+  nameWithType.vb: PlantAsset(Of T).Ratio
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Ratio*
+  name: Ratio
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Ratio_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Ratio
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Ratio
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Ratio
+  nameWithType: PlantAsset<T>.Ratio
+  nameWithType.vb: PlantAsset(Of T).Ratio
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxGrowthTime(System.Single,System.Single)
+  name: SetMinMaxGrowthTime(Single, Single)
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_SetMinMaxGrowthTime_System_Single_System_Single_
+  commentId: M:SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxGrowthTime(System.Single,System.Single)
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.SetMinMaxGrowthTime(System.Single, System.Single)
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).SetMinMaxGrowthTime(System.Single, System.Single)
+  nameWithType: PlantAsset<T>.SetMinMaxGrowthTime(Single, Single)
+  nameWithType.vb: PlantAsset(Of T).SetMinMaxGrowthTime(Single, Single)
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxGrowthTime*
+  name: SetMinMaxGrowthTime
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_SetMinMaxGrowthTime_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxGrowthTime
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.SetMinMaxGrowthTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).SetMinMaxGrowthTime
+  nameWithType: PlantAsset<T>.SetMinMaxGrowthTime
+  nameWithType.vb: PlantAsset(Of T).SetMinMaxGrowthTime
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxHeight(System.Single,System.Single)
+  name: SetMinMaxHeight(Single, Single)
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_SetMinMaxHeight_System_Single_System_Single_
+  commentId: M:SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxHeight(System.Single,System.Single)
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.SetMinMaxHeight(System.Single, System.Single)
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).SetMinMaxHeight(System.Single, System.Single)
+  nameWithType: PlantAsset<T>.SetMinMaxHeight(Single, Single)
+  nameWithType.vb: PlantAsset(Of T).SetMinMaxHeight(Single, Single)
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxHeight*
+  name: SetMinMaxHeight
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_SetMinMaxHeight_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxHeight
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.SetMinMaxHeight
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).SetMinMaxHeight
+  nameWithType: PlantAsset<T>.SetMinMaxHeight
+  nameWithType.vb: PlantAsset(Of T).SetMinMaxHeight
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxWidth(System.Single,System.Single)
+  name: SetMinMaxWidth(Single, Single)
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_SetMinMaxWidth_System_Single_System_Single_
+  commentId: M:SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxWidth(System.Single,System.Single)
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.SetMinMaxWidth(System.Single, System.Single)
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).SetMinMaxWidth(System.Single, System.Single)
+  nameWithType: PlantAsset<T>.SetMinMaxWidth(Single, Single)
+  nameWithType.vb: PlantAsset(Of T).SetMinMaxWidth(Single, Single)
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxWidth*
+  name: SetMinMaxWidth
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_SetMinMaxWidth_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.SetMinMaxWidth
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.SetMinMaxWidth
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).SetMinMaxWidth
+  nameWithType: PlantAsset<T>.SetMinMaxWidth
+  nameWithType.vb: PlantAsset(Of T).SetMinMaxWidth
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Validate
+  name: Validate()
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Validate
+  commentId: M:SoyWar.SimplePlantGrowth.PlantAsset`1.Validate
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Validate()
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Validate()
+  nameWithType: PlantAsset<T>.Validate()
+  nameWithType.vb: PlantAsset(Of T).Validate()
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Validate(System.String@)
+  name: Validate(out String)
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Validate_System_String__
+  commentId: M:SoyWar.SimplePlantGrowth.PlantAsset`1.Validate(System.String@)
+  name.vb: Validate(ByRef String)
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Validate(out System.String)
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Validate(ByRef System.String)
+  nameWithType: PlantAsset<T>.Validate(out String)
+  nameWithType.vb: PlantAsset(Of T).Validate(ByRef String)
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Validate*
+  name: Validate
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Validate_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Validate
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Validate
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Validate
+  nameWithType: PlantAsset<T>.Validate
+  nameWithType.vb: PlantAsset(Of T).Validate
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Width
+  name: Width
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Width
+  commentId: P:SoyWar.SimplePlantGrowth.PlantAsset`1.Width
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Width
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Width
+  nameWithType: PlantAsset<T>.Width
+  nameWithType.vb: PlantAsset(Of T).Width
+- uid: SoyWar.SimplePlantGrowth.PlantAsset`1.Width*
+  name: Width
+  href: api/SoyWar.SimplePlantGrowth.PlantAsset-1.html#SoyWar_SimplePlantGrowth_PlantAsset_1_Width_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantAsset`1.Width
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantAsset<T>.Width
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantAsset(Of T).Width
+  nameWithType: PlantAsset<T>.Width
+  nameWithType.vb: PlantAsset(Of T).Width
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3
+  name: PlantComponent<T1, T2, T3>
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html
+  commentId: T:SoyWar.SimplePlantGrowth.PlantComponent`3
+  name.vb: PlantComponent(Of T1, T2, T3)
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3)
+  nameWithType: PlantComponent<T1, T2, T3>
+  nameWithType.vb: PlantComponent(Of T1, T2, T3)
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.AddAssets(`0[])
+  name: AddAssets(T1[])
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_AddAssets__0___
+  commentId: M:SoyWar.SimplePlantGrowth.PlantComponent`3.AddAssets(`0[])
+  name.vb: AddAssets(T1())
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.AddAssets(T1[])
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).AddAssets(T1())
+  nameWithType: PlantComponent<T1, T2, T3>.AddAssets(T1[])
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).AddAssets(T1())
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.AddAssets*
+  name: AddAssets
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_AddAssets_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.AddAssets
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.AddAssets
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).AddAssets
+  nameWithType: PlantComponent<T1, T2, T3>.AddAssets
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).AddAssets
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.AssetsTimeout
+  name: AssetsTimeout
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_AssetsTimeout
+  commentId: P:SoyWar.SimplePlantGrowth.PlantComponent`3.AssetsTimeout
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.AssetsTimeout
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).AssetsTimeout
+  nameWithType: PlantComponent<T1, T2, T3>.AssetsTimeout
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).AssetsTimeout
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.AssetsTimeout*
+  name: AssetsTimeout
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_AssetsTimeout_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.AssetsTimeout
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.AssetsTimeout
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).AssetsTimeout
+  nameWithType: PlantComponent<T1, T2, T3>.AssetsTimeout
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).AssetsTimeout
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Awake
+  name: Awake()
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Awake
+  commentId: M:SoyWar.SimplePlantGrowth.PlantComponent`3.Awake
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Awake()
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Awake()
+  nameWithType: PlantComponent<T1, T2, T3>.Awake()
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Awake()
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Awake*
+  name: Awake
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Awake_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.Awake
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Awake
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Awake
+  nameWithType: PlantComponent<T1, T2, T3>.Awake
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Awake
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Data
+  name: Data
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Data
+  commentId: P:SoyWar.SimplePlantGrowth.PlantComponent`3.Data
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Data
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Data
+  nameWithType: PlantComponent<T1, T2, T3>.Data
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Data
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Data*
+  name: Data
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Data_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.Data
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Data
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Data
+  nameWithType: PlantComponent<T1, T2, T3>.Data
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Data
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Dynamic
+  name: Dynamic
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Dynamic
+  commentId: P:SoyWar.SimplePlantGrowth.PlantComponent`3.Dynamic
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Dynamic
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Dynamic
+  nameWithType: PlantComponent<T1, T2, T3>.Dynamic
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Dynamic
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Dynamic*
+  name: Dynamic
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Dynamic_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.Dynamic
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Dynamic
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Dynamic
+  nameWithType: PlantComponent<T1, T2, T3>.Dynamic
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Dynamic
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.GetTime
+  name: GetTime()
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_GetTime
+  commentId: M:SoyWar.SimplePlantGrowth.PlantComponent`3.GetTime
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.GetTime()
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).GetTime()
+  nameWithType: PlantComponent<T1, T2, T3>.GetTime()
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).GetTime()
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.GetTime*
+  name: GetTime
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_GetTime_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.GetTime
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.GetTime
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).GetTime
+  nameWithType: PlantComponent<T1, T2, T3>.GetTime
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).GetTime
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.GrownEvent
+  name: GrownEvent
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_GrownEvent
+  commentId: P:SoyWar.SimplePlantGrowth.PlantComponent`3.GrownEvent
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.GrownEvent
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).GrownEvent
+  nameWithType: PlantComponent<T1, T2, T3>.GrownEvent
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).GrownEvent
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.GrownEvent*
+  name: GrownEvent
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_GrownEvent_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.GrownEvent
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.GrownEvent
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).GrownEvent
+  nameWithType: PlantComponent<T1, T2, T3>.GrownEvent
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).GrownEvent
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.InitAuto
+  name: InitAuto
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_InitAuto
+  commentId: P:SoyWar.SimplePlantGrowth.PlantComponent`3.InitAuto
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.InitAuto
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).InitAuto
+  nameWithType: PlantComponent<T1, T2, T3>.InitAuto
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).InitAuto
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.InitAuto*
+  name: InitAuto
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_InitAuto_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.InitAuto
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.InitAuto
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).InitAuto
+  nameWithType: PlantComponent<T1, T2, T3>.InitAuto
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).InitAuto
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Override
+  name: Override
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Override
+  commentId: P:SoyWar.SimplePlantGrowth.PlantComponent`3.Override
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Override
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Override
+  nameWithType: PlantComponent<T1, T2, T3>.Override
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Override
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Override*
+  name: Override
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Override_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.Override
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Override
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Override
+  nameWithType: PlantComponent<T1, T2, T3>.Override
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Override
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.RemoveAssets(`0[])
+  name: RemoveAssets(T1[])
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_RemoveAssets__0___
+  commentId: M:SoyWar.SimplePlantGrowth.PlantComponent`3.RemoveAssets(`0[])
+  name.vb: RemoveAssets(T1())
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.RemoveAssets(T1[])
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).RemoveAssets(T1())
+  nameWithType: PlantComponent<T1, T2, T3>.RemoveAssets(T1[])
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).RemoveAssets(T1())
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.RemoveAssets*
+  name: RemoveAssets
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_RemoveAssets_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.RemoveAssets
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.RemoveAssets
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).RemoveAssets
+  nameWithType: PlantComponent<T1, T2, T3>.RemoveAssets
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).RemoveAssets
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Terrain
+  name: Terrain
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Terrain
+  commentId: P:SoyWar.SimplePlantGrowth.PlantComponent`3.Terrain
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Terrain
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Terrain
+  nameWithType: PlantComponent<T1, T2, T3>.Terrain
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Terrain
+- uid: SoyWar.SimplePlantGrowth.PlantComponent`3.Terrain*
+  name: Terrain
+  href: api/SoyWar.SimplePlantGrowth.PlantComponent-3.html#SoyWar_SimplePlantGrowth_PlantComponent_3_Terrain_
+  commentId: Overload:SoyWar.SimplePlantGrowth.PlantComponent`3.Terrain
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.PlantComponent<T1, T2, T3>.Terrain
+  fullName.vb: SoyWar.SimplePlantGrowth.PlantComponent(Of T1, T2, T3).Terrain
+  nameWithType: PlantComponent<T1, T2, T3>.Terrain
+  nameWithType.vb: PlantComponent(Of T1, T2, T3).Terrain
+- uid: SoyWar.SimplePlantGrowth.TreeAsset
+  name: TreeAsset
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html
+  commentId: T:SoyWar.SimplePlantGrowth.TreeAsset
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset
+  nameWithType: TreeAsset
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.BendFactor
+  name: BendFactor
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_BendFactor
+  commentId: P:SoyWar.SimplePlantGrowth.TreeAsset.BendFactor
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.BendFactor
+  nameWithType: TreeAsset.BendFactor
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.BendFactor*
+  name: BendFactor
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_BendFactor_
+  commentId: Overload:SoyWar.SimplePlantGrowth.TreeAsset.BendFactor
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.BendFactor
+  nameWithType: TreeAsset.BendFactor
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.CopyFrom(SoyWar.SimplePlantGrowth.TreeAsset)
+  name: CopyFrom(TreeAsset)
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_CopyFrom_SoyWar_SimplePlantGrowth_TreeAsset_
+  commentId: M:SoyWar.SimplePlantGrowth.TreeAsset.CopyFrom(SoyWar.SimplePlantGrowth.TreeAsset)
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.CopyFrom(SoyWar.SimplePlantGrowth.TreeAsset)
+  nameWithType: TreeAsset.CopyFrom(TreeAsset)
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.CopyFrom*
+  name: CopyFrom
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_CopyFrom_
+  commentId: Overload:SoyWar.SimplePlantGrowth.TreeAsset.CopyFrom
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.CopyFrom
+  nameWithType: TreeAsset.CopyFrom
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.NavMeshLod
+  name: NavMeshLod
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_NavMeshLod
+  commentId: P:SoyWar.SimplePlantGrowth.TreeAsset.NavMeshLod
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.NavMeshLod
+  nameWithType: TreeAsset.NavMeshLod
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.NavMeshLod*
+  name: NavMeshLod
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_NavMeshLod_
+  commentId: Overload:SoyWar.SimplePlantGrowth.TreeAsset.NavMeshLod
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.NavMeshLod
+  nameWithType: TreeAsset.NavMeshLod
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.op_Implicit(SoyWar.SimplePlantGrowth.TreeAsset)~UnityEngine.TreePrototype
+  name: Implicit(TreeAsset to TreePrototype)
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_op_Implicit_SoyWar_SimplePlantGrowth_TreeAsset__UnityEngine_TreePrototype
+  commentId: M:SoyWar.SimplePlantGrowth.TreeAsset.op_Implicit(SoyWar.SimplePlantGrowth.TreeAsset)~UnityEngine.TreePrototype
+  name.vb: Widening(TreeAsset to TreePrototype)
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.Implicit(SoyWar.SimplePlantGrowth.TreeAsset to UnityEngine.TreePrototype)
+  fullName.vb: SoyWar.SimplePlantGrowth.TreeAsset.Widening(SoyWar.SimplePlantGrowth.TreeAsset to UnityEngine.TreePrototype)
+  nameWithType: TreeAsset.Implicit(TreeAsset to TreePrototype)
+  nameWithType.vb: TreeAsset.Widening(TreeAsset to TreePrototype)
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.op_Implicit(UnityEngine.TreePrototype)~SoyWar.SimplePlantGrowth.TreeAsset
+  name: Implicit(TreePrototype to TreeAsset)
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_op_Implicit_UnityEngine_TreePrototype__SoyWar_SimplePlantGrowth_TreeAsset
+  commentId: M:SoyWar.SimplePlantGrowth.TreeAsset.op_Implicit(UnityEngine.TreePrototype)~SoyWar.SimplePlantGrowth.TreeAsset
+  name.vb: Widening(TreePrototype to TreeAsset)
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.Implicit(UnityEngine.TreePrototype to SoyWar.SimplePlantGrowth.TreeAsset)
+  fullName.vb: SoyWar.SimplePlantGrowth.TreeAsset.Widening(UnityEngine.TreePrototype to SoyWar.SimplePlantGrowth.TreeAsset)
+  nameWithType: TreeAsset.Implicit(TreePrototype to TreeAsset)
+  nameWithType.vb: TreeAsset.Widening(TreePrototype to TreeAsset)
+- uid: SoyWar.SimplePlantGrowth.TreeAsset.op_Implicit*
+  name: Implicit
+  href: api/SoyWar.SimplePlantGrowth.TreeAsset.html#SoyWar_SimplePlantGrowth_TreeAsset_op_Implicit_
+  commentId: Overload:SoyWar.SimplePlantGrowth.TreeAsset.op_Implicit
+  isSpec: "True"
+  name.vb: Widening
+  fullName: SoyWar.SimplePlantGrowth.TreeAsset.Implicit
+  fullName.vb: SoyWar.SimplePlantGrowth.TreeAsset.Widening
+  nameWithType: TreeAsset.Implicit
+  nameWithType.vb: TreeAsset.Widening
+- uid: SoyWar.SimplePlantGrowth.TreeComponent
+  name: TreeComponent
+  href: api/SoyWar.SimplePlantGrowth.TreeComponent.html
+  commentId: T:SoyWar.SimplePlantGrowth.TreeComponent
+  fullName: SoyWar.SimplePlantGrowth.TreeComponent
+  nameWithType: TreeComponent
+- uid: SoyWar.SimplePlantGrowth.TreeComponent.AddInstances(System.Int32[])
+  name: AddInstances(Int32[])
+  href: api/SoyWar.SimplePlantGrowth.TreeComponent.html#SoyWar_SimplePlantGrowth_TreeComponent_AddInstances_System_Int32___
+  commentId: M:SoyWar.SimplePlantGrowth.TreeComponent.AddInstances(System.Int32[])
+  name.vb: AddInstances(Int32())
+  fullName: SoyWar.SimplePlantGrowth.TreeComponent.AddInstances(System.Int32[])
+  fullName.vb: SoyWar.SimplePlantGrowth.TreeComponent.AddInstances(System.Int32())
+  nameWithType: TreeComponent.AddInstances(Int32[])
+  nameWithType.vb: TreeComponent.AddInstances(Int32())
+- uid: SoyWar.SimplePlantGrowth.TreeComponent.AddInstances*
+  name: AddInstances
+  href: api/SoyWar.SimplePlantGrowth.TreeComponent.html#SoyWar_SimplePlantGrowth_TreeComponent_AddInstances_
+  commentId: Overload:SoyWar.SimplePlantGrowth.TreeComponent.AddInstances
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.TreeComponent.AddInstances
+  nameWithType: TreeComponent.AddInstances
+- uid: SoyWar.SimplePlantGrowth.TreeComponent.RemoveInstances(System.Int32[])
+  name: RemoveInstances(Int32[])
+  href: api/SoyWar.SimplePlantGrowth.TreeComponent.html#SoyWar_SimplePlantGrowth_TreeComponent_RemoveInstances_System_Int32___
+  commentId: M:SoyWar.SimplePlantGrowth.TreeComponent.RemoveInstances(System.Int32[])
+  name.vb: RemoveInstances(Int32())
+  fullName: SoyWar.SimplePlantGrowth.TreeComponent.RemoveInstances(System.Int32[])
+  fullName.vb: SoyWar.SimplePlantGrowth.TreeComponent.RemoveInstances(System.Int32())
+  nameWithType: TreeComponent.RemoveInstances(Int32[])
+  nameWithType.vb: TreeComponent.RemoveInstances(Int32())
+- uid: SoyWar.SimplePlantGrowth.TreeComponent.RemoveInstances*
+  name: RemoveInstances
+  href: api/SoyWar.SimplePlantGrowth.TreeComponent.html#SoyWar_SimplePlantGrowth_TreeComponent_RemoveInstances_
+  commentId: Overload:SoyWar.SimplePlantGrowth.TreeComponent.RemoveInstances
+  isSpec: "True"
+  fullName: SoyWar.SimplePlantGrowth.TreeComponent.RemoveInstances
+  nameWithType: TreeComponent.RemoveInstances

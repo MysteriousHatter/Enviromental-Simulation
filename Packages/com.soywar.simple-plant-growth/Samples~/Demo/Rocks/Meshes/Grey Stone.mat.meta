@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3c263af69bbff5a498c694b92e4e40dc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 
+  assetPath: Packages/com.soywar.simple-plant-growth/Samples~/Demo/Rocks/Meshes/Grey
+    Stone.mat
+  uploadId: 0

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8b60b5b30370c144bab2115b3a6a3daf
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 
+  assetPath: Packages/com.soywar.simple-plant-growth/Samples~/Demo/Trees/Phases/Apple
+    Tree/Tree Growth Phase 1.asset
+  uploadId: 0

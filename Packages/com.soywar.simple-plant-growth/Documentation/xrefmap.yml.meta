@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 28e1e6fabd258b344af91303c55c62b9
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/xrefmap.yml
+  uploadId: 629835

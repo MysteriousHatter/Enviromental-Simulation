@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b9065374a5191fa43b043167a086ec85
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/api/SoyWar.SimplePlantGrowth.html
+  uploadId: 629835

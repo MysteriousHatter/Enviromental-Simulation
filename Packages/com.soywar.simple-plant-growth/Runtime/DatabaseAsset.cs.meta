@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: df820905b07647b49d029d38d1135c37
+timeCreated: 1669565787
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Runtime/DatabaseAsset.cs
+  uploadId: 629835

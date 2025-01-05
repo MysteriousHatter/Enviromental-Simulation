@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7f8ed8a9749a7ba4c908b82deda726f2
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/favicon.ico
+  uploadId: 629835

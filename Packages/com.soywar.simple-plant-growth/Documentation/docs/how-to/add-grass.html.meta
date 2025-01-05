@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ffb02fb9d0cbe34479e65f4af1b22d56
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/docs/how-to/add-grass.html
+  uploadId: 629835

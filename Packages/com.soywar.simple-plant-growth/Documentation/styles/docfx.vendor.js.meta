@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dffd7af342c696944bd9dbd841f11842
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Documentation/styles/docfx.vendor.js
+  uploadId: 629835

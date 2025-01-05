@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 2e68f7fe028941d9aaa54012f7395e59
+timeCreated: 1669820198
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Runtime/GrassData.cs
+  uploadId: 629835

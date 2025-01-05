@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6036a1ce9bc69dc47a612d39efa4cdaf
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 
+  assetPath: Packages/com.soywar.simple-plant-growth/Samples~/Demo/Grasses/Phases/Grass
+    Growth Phase 3.asset
+  uploadId: 0

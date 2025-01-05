@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d21c737ed4944a3a9f6962e054b084c, type: 3}
+  m_Name: Tree Growth Phase 1
+  m_EditorClassIdentifier: 
+  _enableRatio: 1
+  _ratio: 1
+  _next: {fileID: 11400000, guid: f303e074a37bab24ab2f78a65194e5e7, type: 2}
+  _destroy: 0
+  _prototype: {fileID: 995767474649570987, guid: 1f143d46b737b6e4c9ec2c11fea1810e,
+    type: 3}
+  _minWidth: 1
+  _maxWidth: 1.1
+  _minHeight: 1
+  _maxHeight: 1.1
+  _minTimeout: 20
+  _maxTimeout: 40
+  _randomTimeout: 1
+  _randomWidth: 1
+  _randomHeight: 1
+  _bendFactor: 0
+  _navMeshLod: 2147483647

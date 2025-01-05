@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4d598a6926172c13bb17c7ccfc8b8ef6
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 250373
+  packageName: Simple Plant Growth
+  packageVersion: 1.0.0
+  assetPath: Packages/com.soywar.simple-plant-growth/Plugins/Microsoft.Bcl.HashCode.1.1.1/LICENSE.TXT
+  uploadId: 629835

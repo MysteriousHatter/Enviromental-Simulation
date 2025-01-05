@@ -1,0 +1,15 @@
+{
+    "name": "SoyWar.SimplePlantGrowth.Editor",
+    "references": [
+        "SoyWar.SimplePlantGrowth"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
