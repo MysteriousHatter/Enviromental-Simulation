@@ -3,47 +3,27 @@ using UnityEngine;
 
 public class PlanetManagerScript : MonoBehaviour
 {
-    [Header("Grass Component Settings")]
-    [Tooltip("The GrassComponent that will receive the collectible.")]
-    public GrassComponent grassComponent;
+    private Inventory playerInventory;
 
-    [Tooltip("The specific GrassAsset associated with this collectible.")]
-    public GrassAsset grassAsset;
-
-    [Header("Interaction Settings")]
-    [Tooltip("The tag of the object this collectible should interact with.")]
-    public string targetTag = "GrassZone";
-
-
-
-    void Update()
+    void Start()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        // Assuming the player has a tag "Player" and the Inventory component
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            grassComponent.UpdateGrass(1);
-            // Log the collectible interaction
-            Debug.Log($"CollectibleItem: Collectible added to GrassAsset '{grassAsset.name}'. Destroying self.");
+            playerInventory = player.GetComponent<Inventory>();
         }
     }
-    private void OnTriggerEnter(Collider other)
+
+    void OnTriggerEnter(Collider other)
     {
-        // Check if the collided object has the correct tag
-        if (other.CompareTag(targetTag))
+        if (other.CompareTag("Recyclable"))
         {
-            if (grassAsset.Equals(null))
+            RecyclableItem item = other.GetComponent<RecyclableItemComponent>().recyclableItem;
+            if (item != null && playerInventory != null)
             {
-                // Add the collectible to the grass component
-                grassAsset.AddCollectible();
-
-                // Log the collectible interaction
-                Debug.Log($"CollectibleItem: Collectible added to GrassAsset '{grassAsset.name}'. Destroying self.");
-
-                // Destroy this collectible object
-                Destroy(gameObject);
-            }
-            else
-            {
-                Debug.LogWarning("CollectibleItem: GrassComponent or GrassAsset is not assigned.");
+                playerInventory.AddRecyclable(item.type, 1);
+                Destroy(other.gameObject); // Remove the item from the scene
             }
         }
     }
