@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: aa9d9d946e1bd4347b3a2120a08b26df
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 190601
+  packageName: Stylized Trees and Foliage
+  packageVersion: 2.1.2
+  assetPath: Assets/Aquarius_Stylized_Trees/FBX/Materials/Terrain, Shaders/Forest_Cobble_A.terrainlayer
+  uploadId: 567360
