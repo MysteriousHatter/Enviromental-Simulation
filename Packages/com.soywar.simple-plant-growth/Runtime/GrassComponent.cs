@@ -109,10 +109,10 @@ namespace SoyWar.SimplePlantGrowth
 
         private void Update()
         {
-           //UpdateGrass();
+           UpdateGrass();
         }
 
-        public void UpdateGrass(int point)
+        public void UpdateGrass()
         {
             if (ManagerComponent.Instance.TerrainSelected != Terrain) return;
 
@@ -211,11 +211,11 @@ namespace SoyWar.SimplePlantGrowth
                     }
                 }
 
-                grassAsset.CurrentCollectibles += point;
+                //grassAsset.CurrentCollectibles += point;
                 //Debug.Log($"GrassComponent: Added collectible. Current count: {grassAsset.CurrentCollectibles}");
 
-                if (grassAsset.CanGrow())
-                {
+               //* if (grassAsset.CanGrow()) *//
+               // {
                     while (assetTimeout.Value.Count > 0 && currentTime >= assetTimeout.Value.Peek().Item2.Time)
                     {
                         (Vector2Int grassPosition, GrassData value) = assetTimeout.Value.Dequeue();
@@ -253,7 +253,7 @@ namespace SoyWar.SimplePlantGrowth
                                 Mathf.Max(detailLayer[grassPosition.y, grassPosition.x] - value.Amount, 0);
                         }
                     }
-                }
+                //}
 
                 terrainData.SetDetailLayer(0, 0, indexPrototype, detailLayer);
 
