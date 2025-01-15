@@ -151,7 +151,7 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
-        raycaster.blockingMask = 1 << 5;
+       raycaster.blockingMask = 1 << 5;
     }
 
     public void HideDialog()
@@ -167,8 +167,8 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
-        //raycaster.blockingMask = 0;
-        //raycaster.blockingMask = 1;
+        raycaster.blockingMask = 0;
+        raycaster.blockingMask = 1;
     }
 
     /// <summary>
@@ -228,6 +228,7 @@ public class DialogBoxController : MonoBehaviour
         RecycleShopCanvas.gameObject.SetActive(false);
         isRecycleShopOpen = false;
         isDialogVisible = true;
+        ShowDialog();
         Debug.Log("Ready to Recycle UI Opened");
     }
 
@@ -238,6 +239,7 @@ public class DialogBoxController : MonoBehaviour
     {
         ReadyToRecycle.gameObject.SetActive(false);
         isDialogVisible = false;
+        HideDialog();
         Debug.Log("Ready to Recycle UI Closed");
     }
 
@@ -251,6 +253,7 @@ public class DialogBoxController : MonoBehaviour
             if (inventory.useRecycable(type))
             {
                 GameManager.Instance.currentScore++;
+                GameManager.Instance.CheckProgress();
                 Debug.Log($"Correct Item: {type}. Score Updated!");
             }
             else

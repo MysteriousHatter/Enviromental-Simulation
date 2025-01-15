@@ -8,77 +8,64 @@ using UnityEngine;
 
 public class SkyboxManager : MonoBehaviour
 {
-    [SerializeField] private Cubemap cubemapDeforested; // Initial deforested state
-    [SerializeField] private Cubemap cubemapForested; // Final forested state
-    [SerializeField] private Gradient environmentGradient; // Gradient for light and fog changes
-    [SerializeField] private Light globalLight; // Directional light for the scene
-    [SerializeField] private Terrain terrain; // Terrain to transition
+    [SerializeField] private Cubemap cubemapDeforested;
+    [SerializeField] private Cubemap cubemapForested;
+    [SerializeField] private Gradient environmentGradient; // Gradient for light and fog
+    [SerializeField] private Light globalLight;
+    [SerializeField] private Terrain terrain;
 
-    private float transitionDuration = 90f; // Total duration for the environment transition
-    private float elapsedTransitionTime = 0f;
-    private bool transitioning = false;
+    private float currentProgress = 0f; // The current interpolated progress (0 to 1)
+    private float targetProgress = 0f; // The target progress to reach (0 to 1)
+    [SerializeField] private float transitionSpeed = 0.1f; // Speed of progress interpolation
 
     public void Start()
     {
-        // Initialize the skybox and fog for the deforested state
+        // Initialize the environment for the deforested state
         RenderSettings.skybox.SetTexture("_Cubemap1", cubemapDeforested);
         RenderSettings.skybox.SetTexture("_Cubemap2", cubemapForested);
-        RenderSettings.skybox.SetFloat("_Blend", 0f); // Start fully deforested
-        RenderSettings.fogDensity = 0.05f; // High fog density to represent pollution
+        RenderSettings.skybox.SetFloat("_Blend", 0f);
+        RenderSettings.fogDensity = 0.05f;
         RenderSettings.fogColor = environmentGradient.Evaluate(0f);
-
         InitializeTerrain();
     }
 
     public void Update()
     {
-        // Trigger the environment transition for testing
-        if (!transitioning && Input.GetKeyDown(KeyCode.T)) // Example: press 'T' to start
-        {
-            StartCoroutine(TransitionEnvironment());
-        }
+        // Gradually move current progress toward the target progress
+        currentProgress = Mathf.MoveTowards(currentProgress, targetProgress, transitionSpeed * Time.deltaTime);
+
+        // Update environment based on the interpolated progress
+        UpdateEnvironment(currentProgress);
+    }
+
+    public void SetProgress(float progress)
+    {
+        // Update the target progress (e.g., called by GameManager)
+        targetProgress = Mathf.Clamp01(progress);
+    }
+
+    private void UpdateEnvironment(float progress)
+    {
+        // Update skybox blending
+        RenderSettings.skybox.SetFloat("_Blend", progress);
+
+        // Update fog density and color
+        RenderSettings.fogDensity = Mathf.Lerp(0.05f, 0.01f, progress);
+        RenderSettings.fogColor = environmentGradient.Evaluate(progress);
+
+        // Update global light color
+        globalLight.color = environmentGradient.Evaluate(progress);
+
+        // Update terrain textures
+        UpdateTerrainTextures(progress);
     }
 
     private void InitializeTerrain()
     {
-        // Ensure the terrain has at least two textures
         if (terrain.terrainData.alphamapLayers < 2)
         {
             Debug.LogError("Terrain must have at least two textures for blending.");
         }
-    }
-    private IEnumerator TransitionEnvironment()
-    {
-        transitioning = true;
-
-        while (elapsedTransitionTime < transitionDuration)
-        {
-            float progress = elapsedTransitionTime / transitionDuration;
-
-            // Skybox transition
-            RenderSettings.skybox.SetFloat("_Blend", progress);
-
-            // Fog and lighting
-            RenderSettings.fogDensity = Mathf.Lerp(0.05f, 0.01f, progress);
-            RenderSettings.fogColor = environmentGradient.Evaluate(progress);
-            globalLight.color = environmentGradient.Evaluate(progress);
-
-            // Terrain texture blending
-            UpdateTerrainTextures(progress);
-
-            elapsedTransitionTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Final state
-        RenderSettings.skybox.SetFloat("_Blend", 1f);
-        RenderSettings.skybox.SetTexture("_Cubemap1", cubemapForested); // Set forested cubemap
-        RenderSettings.fogDensity = 0.01f;
-        RenderSettings.fogColor = environmentGradient.Evaluate(1f);
-        globalLight.color = environmentGradient.Evaluate(1f);
-        FinalizeTerrainTextures();
-
-        transitioning = false;
     }
 
     private void UpdateTerrainTextures(float progress)
@@ -101,27 +88,6 @@ public class SkyboxManager : MonoBehaviour
         }
 
         // Apply the updated splatmap
-        terrainData.SetAlphamaps(0, 0, splatmap);
-    }
-
-    private void FinalizeTerrainTextures()
-    {
-        TerrainData terrainData = terrain.terrainData;
-        int width = terrainData.alphamapWidth;
-        int height = terrainData.alphamapHeight;
-
-        // Ensure the final terrain state is set
-        float[,,] splatmap = terrainData.GetAlphamaps(0, 0, width, height);
-
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                splatmap[y, x, 0] = 0f; // Fully forested
-                splatmap[y, x, 1] = 1f;
-            }
-        }
-
         terrainData.SetAlphamaps(0, 0, splatmap);
     }
 

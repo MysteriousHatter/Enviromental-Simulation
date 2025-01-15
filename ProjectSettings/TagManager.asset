@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - GrassZone
-  - Recyclable
+  - Recycable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Recycable
   - Water
   - UI
   - 

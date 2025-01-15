@@ -19,6 +19,9 @@ namespace SoyWar.SimplePlantGrowth
         private bool _currentDynamic;
         private static int? _maxGrassSize;
 
+        private int currentMilestone = 0; // Last processed milestone
+        private int updatedMilestone = 0; // Newly calculated milestone
+
         private int GetMaxGrassSize(TerrainData terrainData)
         {
 #if UNITY_2022_2_OR_NEWER
@@ -109,10 +112,10 @@ namespace SoyWar.SimplePlantGrowth
 
         private void Update()
         {
-           UpdateGrass();
+           //UpdateGrass();
         }
 
-        public void UpdateGrass()
+        public void UpdateGrass(float progress)
         {
             if (ManagerComponent.Instance.TerrainSelected != Terrain) return;
 
@@ -130,6 +133,7 @@ namespace SoyWar.SimplePlantGrowth
             else if (_currentDynamic)
             {
                 UpdateDetailLayers();
+                
             }
 
             _currentDynamic = Dynamic;
@@ -213,9 +217,11 @@ namespace SoyWar.SimplePlantGrowth
 
                 //grassAsset.CurrentCollectibles += point;
                 //Debug.Log($"GrassComponent: Added collectible. Current count: {grassAsset.CurrentCollectibles}");
+                updatedMilestone = Mathf.FloorToInt(progress * 100 / 20) * 20;
 
-               //* if (grassAsset.CanGrow()) *//
-               // {
+                    if (updatedMilestone <= currentMilestone) { return; }
+                    currentMilestone = updatedMilestone; // Update the current mileston
+
                     while (assetTimeout.Value.Count > 0 && currentTime >= assetTimeout.Value.Peek().Item2.Time)
                     {
                         (Vector2Int grassPosition, GrassData value) = assetTimeout.Value.Dequeue();
@@ -253,7 +259,7 @@ namespace SoyWar.SimplePlantGrowth
                                 Mathf.Max(detailLayer[grassPosition.y, grassPosition.x] - value.Amount, 0);
                         }
                     }
-                //}
+                   
 
                 terrainData.SetDetailLayer(0, 0, indexPrototype, detailLayer);
 

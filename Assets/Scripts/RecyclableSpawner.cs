@@ -9,9 +9,11 @@ public class RecyclableSpawner : MonoBehaviour
 
     public Transform dropOffPoint; // Assign this in the Unity Inspector
     public float safeDistance = 5.0f; // Minimum distance from the drop-off point
-    private int totalRecycableCount;
+    private static int totalRecycableCount; // value that does not get modified
+    protected static int maxRecycableCount; // Value that does
 
-    void Start()
+
+    void Awake()
     {
         SpawnRecyclables();
     }
@@ -20,6 +22,7 @@ public class RecyclableSpawner : MonoBehaviour
     {
         for (int i = 0; i < recyclableItems.Length; i++)
         {
+            
             int spawnedCount = 0;
             while (spawnedCount < itemCounts[i])
             {
@@ -29,12 +32,14 @@ public class RecyclableSpawner : MonoBehaviour
                     Random.Range(spawnAreaMin.z, spawnAreaMax.z)
                 );
 
+                Debug.Log("Total COunt" + totalRecycableCount);
+                spawnedCount++;
+                maxRecycableCount++;
+                setRecycableCount(spawnedCount);
                 // Check if the spawn position is at a safe distance from the drop-off point
                 if (Vector3.Distance(spawnPosition, dropOffPoint.position) >= safeDistance)
                 {
                     Instantiate(recyclableItems[i].prefab, spawnPosition, Quaternion.identity, this.transform);
-                    spawnedCount++;
-                    totalRecycableCount++;
                 }
                 // Optional: Add a safety mechanism to prevent infinite loops
                 // if a valid spawn position cannot be found after a certain number of attempts
@@ -44,7 +49,8 @@ public class RecyclableSpawner : MonoBehaviour
 
     public int getRecycableCount()
     {
-        return totalRecycableCount;
+        Debug.Log("" + maxRecycableCount);
+        return maxRecycableCount;
     }
 
     public void setRecycableCount(int count)

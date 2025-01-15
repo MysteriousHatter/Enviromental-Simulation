@@ -997,15 +997,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""OpenInventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""4e12996a-8d80-40bb-a81c-c9404874e210"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1144,7 +1135,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""b34c79c1-ab5e-4851-87ac-abc43705eae0"",
-                    ""path"": ""<XRController>{LeftHand}/{TriggerButton}"",
+                    ""path"": ""<XRController>{LeftHand}/{PrimaryButton}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1294,17 +1285,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""action"": ""Translate Manipulation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4931d847-9094-41e1-baa7-31ff744f950f"",
-                    ""path"": ""<XRController>{LeftHand}/{SecondaryButton}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""OpenInventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1325,7 +1305,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""name"": ""Teleport Mode Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""89ce8348-6001-41a3-85b9-f8f2e2dcad7c"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -2226,7 +2206,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""92bb5b8f-bf48-4dab-af05-50a865773895"",
-                    ""path"": ""<XRController>{RightHand}/{TriggerButton}"",
+                    ""path"": ""<XRController>{RightHand}/{PrimaryButton}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -2579,6 +2559,15 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""type"": ""PassThrough"",
                     ""id"": ""533aeb95-18b2-4a83-a69d-f6e0be72ff8a"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""291526ba-98e1-4fd7-b051-d2cd09628c20"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -2936,6 +2925,17 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2d5746d-5edc-46ae-837f-8f945867dc16"",
+                    ""path"": ""*/{SecondaryButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -3399,7 +3399,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         m_XRILeftInteraction_DirectionalManipulation = m_XRILeftInteraction.FindAction("Directional Manipulation", throwIfNotFound: true);
         m_XRILeftInteraction_ScaleToggle = m_XRILeftInteraction.FindAction("Scale Toggle", throwIfNotFound: true);
         m_XRILeftInteraction_ScaleOverTime = m_XRILeftInteraction.FindAction("Scale Over Time", throwIfNotFound: true);
-        m_XRILeftInteraction_OpenInventory = m_XRILeftInteraction.FindAction("OpenInventory", throwIfNotFound: true);
         // XRI Left Locomotion
         m_XRILeftLocomotion = asset.FindActionMap("XRI Left Locomotion", throwIfNotFound: true);
         m_XRILeftLocomotion_TeleportMode = m_XRILeftLocomotion.FindAction("Teleport Mode", throwIfNotFound: true);
@@ -3456,6 +3455,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         m_XRIUI_ScrollWheel = m_XRIUI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_XRIUI_MiddleClick = m_XRIUI.FindAction("MiddleClick", throwIfNotFound: true);
         m_XRIUI_RightClick = m_XRIUI.FindAction("RightClick", throwIfNotFound: true);
+        m_XRIUI_OpenInventory = m_XRIUI.FindAction("OpenInventory", throwIfNotFound: true);
         // Touchscreen Gestures
         m_TouchscreenGestures = asset.FindActionMap("Touchscreen Gestures", throwIfNotFound: true);
         m_TouchscreenGestures_TapStartPosition = m_TouchscreenGestures.FindAction("Tap Start Position", throwIfNotFound: true);
@@ -3806,7 +3806,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
     private readonly InputAction m_XRILeftInteraction_DirectionalManipulation;
     private readonly InputAction m_XRILeftInteraction_ScaleToggle;
     private readonly InputAction m_XRILeftInteraction_ScaleOverTime;
-    private readonly InputAction m_XRILeftInteraction_OpenInventory;
     public struct XRILeftInteractionActions
     {
         private @XRIDefaultInputActions m_Wrapper;
@@ -3823,7 +3822,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         public InputAction @DirectionalManipulation => m_Wrapper.m_XRILeftInteraction_DirectionalManipulation;
         public InputAction @ScaleToggle => m_Wrapper.m_XRILeftInteraction_ScaleToggle;
         public InputAction @ScaleOverTime => m_Wrapper.m_XRILeftInteraction_ScaleOverTime;
-        public InputAction @OpenInventory => m_Wrapper.m_XRILeftInteraction_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_XRILeftInteraction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -3869,9 +3867,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @ScaleOverTime.started += instance.OnScaleOverTime;
             @ScaleOverTime.performed += instance.OnScaleOverTime;
             @ScaleOverTime.canceled += instance.OnScaleOverTime;
-            @OpenInventory.started += instance.OnOpenInventory;
-            @OpenInventory.performed += instance.OnOpenInventory;
-            @OpenInventory.canceled += instance.OnOpenInventory;
         }
 
         private void UnregisterCallbacks(IXRILeftInteractionActions instance)
@@ -3912,9 +3907,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @ScaleOverTime.started -= instance.OnScaleOverTime;
             @ScaleOverTime.performed -= instance.OnScaleOverTime;
             @ScaleOverTime.canceled -= instance.OnScaleOverTime;
-            @OpenInventory.started -= instance.OnOpenInventory;
-            @OpenInventory.performed -= instance.OnOpenInventory;
-            @OpenInventory.canceled -= instance.OnOpenInventory;
         }
 
         public void RemoveCallbacks(IXRILeftInteractionActions instance)
@@ -4400,6 +4392,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
     private readonly InputAction m_XRIUI_ScrollWheel;
     private readonly InputAction m_XRIUI_MiddleClick;
     private readonly InputAction m_XRIUI_RightClick;
+    private readonly InputAction m_XRIUI_OpenInventory;
     public struct XRIUIActions
     {
         private @XRIDefaultInputActions m_Wrapper;
@@ -4412,6 +4405,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         public InputAction @ScrollWheel => m_Wrapper.m_XRIUI_ScrollWheel;
         public InputAction @MiddleClick => m_Wrapper.m_XRIUI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_XRIUI_RightClick;
+        public InputAction @OpenInventory => m_Wrapper.m_XRIUI_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_XRIUI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -4445,6 +4439,9 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @RightClick.started += instance.OnRightClick;
             @RightClick.performed += instance.OnRightClick;
             @RightClick.canceled += instance.OnRightClick;
+            @OpenInventory.started += instance.OnOpenInventory;
+            @OpenInventory.performed += instance.OnOpenInventory;
+            @OpenInventory.canceled += instance.OnOpenInventory;
         }
 
         private void UnregisterCallbacks(IXRIUIActions instance)
@@ -4473,6 +4470,9 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
             @RightClick.started -= instance.OnRightClick;
             @RightClick.performed -= instance.OnRightClick;
             @RightClick.canceled -= instance.OnRightClick;
+            @OpenInventory.started -= instance.OnOpenInventory;
+            @OpenInventory.performed -= instance.OnOpenInventory;
+            @OpenInventory.canceled -= instance.OnOpenInventory;
         }
 
         public void RemoveCallbacks(IXRIUIActions instance)
@@ -4650,7 +4650,6 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         void OnDirectionalManipulation(InputAction.CallbackContext context);
         void OnScaleToggle(InputAction.CallbackContext context);
         void OnScaleOverTime(InputAction.CallbackContext context);
-        void OnOpenInventory(InputAction.CallbackContext context);
     }
     public interface IXRILeftLocomotionActions
     {
@@ -4712,6 +4711,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
     public interface ITouchscreenGesturesActions
     {

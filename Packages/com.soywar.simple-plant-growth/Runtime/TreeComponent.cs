@@ -12,7 +12,10 @@ namespace SoyWar.SimplePlantGrowth
     {
         private TreePrototype[] _treePrototypes;
         private TreeInstance[] _treeInstances;
-        
+
+        private int currentMilestone = 0; // Last processed milestone
+        private int updatedMilestone = 0; // Newly calculated milestone
+
         [DocFXIgnore]
         protected override void Awake()
         {
@@ -57,13 +60,18 @@ namespace SoyWar.SimplePlantGrowth
         }
 
         private void Update()
-        {  
+        {
+            //UpdateTrees();
+        }
+
+        public void UpdateTrees(float progress)
+        {
             if (ManagerComponent.Instance.TerrainSelected != Terrain) return;
-            
+
             TerrainData terrainData = Terrain.terrainData;
-            
+
             if (!terrainData) return;
-            
+
             bool updated = false;
             float currentTime = GetTime();
 
@@ -72,7 +80,7 @@ namespace SoyWar.SimplePlantGrowth
                 _treePrototypes = terrainData.treePrototypes;
                 _treeInstances = terrainData.treeInstances;
             }
-            
+
             foreach (KeyValuePair<TreeAsset, Queue<(int, float)>> assetTimeout in AssetsTimeout)
             {
                 if (!assetTimeout.Key.HasNextStep || assetTimeout.Value.Count == 0 || currentTime < assetTimeout.Value.Peek().Item2) continue;
@@ -88,11 +96,11 @@ namespace SoyWar.SimplePlantGrowth
                 {
                     treeNextAsset = treeAsset.Next;
                 }
-                
+
                 TreePrototype treeNextPrototype = treeNextAsset;
 
                 indexNextPrototype = Array.IndexOf(_treePrototypes, treeNextPrototype);
-                
+
                 updated = true;
 
                 if (indexNextPrototype == -1)
@@ -104,17 +112,20 @@ namespace SoyWar.SimplePlantGrowth
                     _treePrototypes[indexNextPrototype] = treeNextPrototype;
                     terrainData.treePrototypes = _treePrototypes;
                 }
-                
+
+                updatedMilestone = Mathf.FloorToInt(progress * 100 / 20) * 20;
+                if (updatedMilestone <= currentMilestone) { return; }
+                currentMilestone = updatedMilestone; // Update the current mileston
                 while (assetTimeout.Value.Count > 0 && currentTime >= assetTimeout.Value.Peek().Item2)
                 {
                     (int indexInstance, float timeInstance) = assetTimeout.Value.Dequeue();
 
                     GrownEvent?.Invoke(treeAsset, treeAsset.Destroy ? null : treeNextAsset, indexInstance);
-                    
+
                     float deltaTime = currentTime - timeInstance;
                     float treeHeight = Random.Range(treeNextAsset.MinHeight, treeNextAsset.MaxHeight);
                     float treeWidth = treeNextAsset.LockWidthToHeight ? treeHeight * treeNextAsset.Ratio : Random.Range(treeNextAsset.MinWidth, treeNextAsset.MaxWidth);
-                        
+
                     if (treeNextAsset.HasNextStep)
                     {
                         AssetsTimeout[treeNextAsset]
@@ -132,6 +143,7 @@ namespace SoyWar.SimplePlantGrowth
                         rotation = _treeInstances[indexInstance].rotation
                     };
                 }
+                    
             }
 
             if (updated)
