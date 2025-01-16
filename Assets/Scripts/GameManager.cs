@@ -1,4 +1,3 @@
-using SoyWar.SimplePlantGrowth;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,8 +8,10 @@ public class GameManager : MonoBehaviour
     public int currentScore { get; set; }
     private int goalScore = 10;
     private SkyboxManager enviroment => FindAnyObjectByType<SkyboxManager>();
-    private GrassComponent grass => FindAnyObjectByType<GrassComponent>();
-    private TreeComponent tree => FindAnyObjectByType<TreeComponent>();
+    //private GrassComponent grass => FindAnyObjectByType<GrassComponent>();
+    private GrassGrowthManager grass => FindAnyObjectByType<GrassGrowthManager>();
+    private TreeManager tree => FindAnyObjectByType<TreeManager>();
+    private WaterManager water => FindAnyObjectByType<WaterManager>();
 
     [SerializeField] RecyclableSpawner spawner;
     void Awake()
@@ -33,11 +34,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space)) // Simulate count increase
-        //{
-        //    currentScore += 1; // Increase count
-        //    CheckProgress();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space)) // Simulate count increase
+        {
+            currentScore += 1; // Increase count
+            CheckProgress();
+        }
     }
     public void CompleteGame()
     {
@@ -63,7 +64,8 @@ public class GameManager : MonoBehaviour
 
         // Update Terrain and Skybox based on progress
         enviroment.SetProgress(percentage / 100f); // Normalize percentage (0-1 range)
-        grass.UpdateGrass(percentage / 100f); // Updates grass growth
-        tree.UpdateTrees(percentage / 100f);
+        grass.SetProgress(percentage / 100f); // Updates grass growth
+        tree.SetProgress(percentage / 100f);
+        water.SetProgress(percentage / 100f);
     }
 }

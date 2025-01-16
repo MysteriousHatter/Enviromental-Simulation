@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c61194769c49566439e564fcdf2deff8
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Treegen Resourses/Treegen
+    Shaders/TREEGEN_Trunk.shader
+  uploadId: 596128

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 95a842c00bba86f45b920f745e07c1ee
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Plugins/TREEGEN Internal
+    mechanisms/TreegenSimpleGenerator.cs
+  uploadId: 596128

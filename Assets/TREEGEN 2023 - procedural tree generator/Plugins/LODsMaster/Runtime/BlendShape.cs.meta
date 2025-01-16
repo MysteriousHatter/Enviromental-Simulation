@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 59db104ea487ad241a67f97b9b1772b0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Plugins/LODsMaster/Runtime/BlendShape.cs
+  uploadId: 596128

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e1e4852719b1b9f45bf5a05a03f8397f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2655988077585873504
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Treegen Resourses/Treegen
+    Presets/TREEGEN (ash).preset
+  uploadId: 596128

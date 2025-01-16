@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6884fd175567fad489311c60347a455a
+timeCreated: 1505045004
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Plugins/TREEGENMeshEditor/Shaders/NoiseColor.shader
+  uploadId: 596128

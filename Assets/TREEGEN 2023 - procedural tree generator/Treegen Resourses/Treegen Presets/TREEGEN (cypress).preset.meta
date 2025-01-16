@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4389dbe435292364d866104c9f7b74e8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2655988077585873504
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Treegen Resourses/Treegen
+    Presets/TREEGEN (cypress).preset
+  uploadId: 596128

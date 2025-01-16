@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aef8c54a73493b242a086e851903dcb9
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Demo Scenes/TreegenTreesExamples.unity
+  uploadId: 596128

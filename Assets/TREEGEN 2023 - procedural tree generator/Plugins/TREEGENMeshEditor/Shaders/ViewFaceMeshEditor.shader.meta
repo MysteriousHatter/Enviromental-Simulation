@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1cf9affad7c13ce4ea3a95510c740a62
+timeCreated: 1509218536
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Plugins/TREEGENMeshEditor/Shaders/ViewFaceMeshEditor.shader
+  uploadId: 596128

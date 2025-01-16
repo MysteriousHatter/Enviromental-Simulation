@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ca34dc807a5d2f440b436aee2a708607
+timeCreated: 1495123011
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Plugins/TREEGENMeshEditor/Shaders/no_uv.shader
+  uploadId: 596128

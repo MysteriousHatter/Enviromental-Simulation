@@ -6,6 +6,9 @@ TagManager:
   tags:
   - GrassZone
   - Recycable
+  - Bushes
+  - Trees
+  - Water
   layers:
   - Default
   - TransparentFX

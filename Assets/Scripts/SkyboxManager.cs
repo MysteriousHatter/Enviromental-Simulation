@@ -21,6 +21,15 @@ public class SkyboxManager : MonoBehaviour
     public void Start()
     {
         // Initialize the environment for the deforested state
+
+        if (terrain == null)
+        {
+            terrain = Terrain.activeTerrain;
+            if (terrain == null)
+            {
+                Debug.LogError("Terrain is not assigned and no active terrain found.");
+            }
+        }
         RenderSettings.skybox.SetTexture("_Cubemap1", cubemapDeforested);
         RenderSettings.skybox.SetTexture("_Cubemap2", cubemapForested);
         RenderSettings.skybox.SetFloat("_Blend", 0f);

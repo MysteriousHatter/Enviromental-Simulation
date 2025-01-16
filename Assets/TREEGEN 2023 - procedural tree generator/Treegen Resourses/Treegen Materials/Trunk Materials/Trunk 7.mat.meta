@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 29d05fb94b45d5e4ba94d6b1b9623126
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Treegen Resourses/Treegen
+    Materials/Trunk Materials/Trunk 7.mat
+  uploadId: 596128

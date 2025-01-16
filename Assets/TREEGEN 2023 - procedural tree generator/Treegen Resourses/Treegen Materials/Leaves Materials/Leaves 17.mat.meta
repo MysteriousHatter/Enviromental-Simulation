@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c1d49c7b22fa9ed428254554b7926fd3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Treegen Resourses/Treegen
+    Materials/Leaves Materials/Leaves 17.mat
+  uploadId: 596128

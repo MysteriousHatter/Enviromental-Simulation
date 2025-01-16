@@ -1,4 +1,4 @@
-using SoyWar.SimplePlantGrowth;
+
 using UnityEngine;
 
 public class PlanetManagerScript : MonoBehaviour

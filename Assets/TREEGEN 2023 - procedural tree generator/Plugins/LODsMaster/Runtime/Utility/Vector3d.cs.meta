@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 557f5a3aa4427134caff2edf24df9e39
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 244180
+  packageName: TREEGEN 2023 - procedural tree generator
+  packageVersion: 1.1.1
+  assetPath: Assets/TREEGEN 2023 - procedural tree generator/Plugins/LODsMaster/Runtime/Utility/Vector3d.cs
+  uploadId: 596128

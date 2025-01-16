@@ -12,13 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2686e09ec7aef44bad2843e4416f057, type: 3}
   m_Name: Grass Profile
   m_EditorClassIdentifier: 
-  m_Version: 1
   profile:
-    scatteringDistance: {r: 0.8929625, g: 1, b: 0.7216981, a: 1}
-    transmissionTint: {r: 1, g: 1, b: 1, a: 1}
+    scatteringDistance:
+      r: 0.6688465
+      g: 0.7490196
+      b: 0.5405661
+      a: 1
+    scatteringDistanceMultiplier: 1.3350785
+    transmissionTint:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
     texturingMode: 0
+    smoothnessMultipliers: {x: 1, y: 1}
+    lobeMix: 0.5
+    diffuseShadingPower: 1
     transmissionMode: 1
     thicknessRemap: {x: 0, y: 0.279501}
     worldScale: 1
     ior: 1.347
+    <shapeParam>k__BackingField: {x: 1.1198678, y: 1, z: 1.3856208}
+    <filterRadius>k__BackingField: 16.564377
+    <maxScatteringDistance>k__BackingField: 1
     hash: 1080570976
+  m_Version: 2
+  profiles: []
