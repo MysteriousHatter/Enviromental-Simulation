@@ -1,0 +1,2 @@
+Assets/Scenes/Main.unity filter=lfs diff=lfs merge=lfs -text
+Assets/Materials/WoodLog/Materials/Wood_Log_normal.png filter=lfs diff=lfs merge=lfs -text
