@@ -2,54 +2,47 @@ using UnityEngine;
 
 public class RecyclableSpawner : MonoBehaviour
 {
-    public RecyclableItem[] recyclableItems; // Array to hold different recyclable prefabs
-    public int[] itemCounts; // Corresponding array to specify the number of each recyclable to spawn
-    public Vector3 spawnAreaMin; // Minimum coordinates of the spawn area
-    public Vector3 spawnAreaMax; // Maximum coordinates of the spawn area
-
+    public string recyclableTag = "Recyclable"; // Tag used to identify recyclable items
     public Transform dropOffPoint; // Assign this in the Unity Inspector
     public float safeDistance = 5.0f; // Minimum distance from the drop-off point
-    private static int totalRecycableCount; // value that does not get modified
+    private static int totalRecycableCount; // Value that does not get modified
     protected static int maxRecycableCount; // Value that does
-
 
     void Awake()
     {
-        SpawnRecyclables();
+        FindRecyclables();
     }
 
-    void SpawnRecyclables()
+    void FindRecyclables()
     {
-        for (int i = 0; i < recyclableItems.Length; i++)
-        {
-            
-            int spawnedCount = 0;
-            while (spawnedCount < itemCounts[i])
-            {
-                Vector3 spawnPosition = new Vector3(
-                    Random.Range(spawnAreaMin.x, spawnAreaMax.x),
-                    Random.Range(spawnAreaMin.y, spawnAreaMax.y),
-                    Random.Range(spawnAreaMin.z, spawnAreaMax.z)
-                );
+        // Find all GameObjects with the specified recyclable tag
+        GameObject[] recyclableItems = GameObject.FindGameObjectsWithTag(recyclableTag);
+        int foundCount = 0;
 
-                Debug.Log("Total COunt" + totalRecycableCount);
-                spawnedCount++;
+        foreach (GameObject item in recyclableItems)
+        {
+            Vector3 itemPosition = item.transform.position;
+
+            // Check if the item's position is at a safe distance from the drop-off point
+            if (Vector3.Distance(itemPosition, dropOffPoint.position) >= safeDistance)
+            {
+                Debug.Log($"Found recyclable: {item.name} at position {itemPosition}");
+                foundCount++;
                 maxRecycableCount++;
-                setRecycableCount(spawnedCount);
-                // Check if the spawn position is at a safe distance from the drop-off point
-                if (Vector3.Distance(spawnPosition, dropOffPoint.position) >= safeDistance)
-                {
-                    Instantiate(recyclableItems[i].prefab, spawnPosition, Quaternion.identity, this.transform);
-                }
-                // Optional: Add a safety mechanism to prevent infinite loops
-                // if a valid spawn position cannot be found after a certain number of attempts
+                setRecycableCount(1);
+            }
+            else
+            {
+                Debug.Log($"Recyclable {item.name} is too close to the drop-off point and won't be counted.");
             }
         }
+
+        Debug.Log($"Total recyclables found: {foundCount}");
     }
 
     public int getRecycableCount()
     {
-        Debug.Log("" + maxRecycableCount);
+        Debug.Log($"Total recyclable count: {maxRecycableCount}");
         return maxRecycableCount;
     }
 

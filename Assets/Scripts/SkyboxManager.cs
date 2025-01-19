@@ -18,10 +18,12 @@ public class SkyboxManager : MonoBehaviour
     private float targetProgress = 0f; // The target progress to reach (0 to 1)
     [SerializeField] private float transitionSpeed = 0.1f; // Speed of progress interpolation
 
-    public void Start()
+    [SerializeField] private float minFogDensity = 0.002f; // Minimum fog density for visibility
+    [SerializeField] private float maxFogDensity = 0.01f;  // Maximum fog density for effect
+
+    private void Start()
     {
         // Initialize the environment for the deforested state
-
         if (terrain == null)
         {
             terrain = Terrain.activeTerrain;
@@ -30,10 +32,12 @@ public class SkyboxManager : MonoBehaviour
                 Debug.LogError("Terrain is not assigned and no active terrain found.");
             }
         }
+
         RenderSettings.skybox.SetTexture("_Cubemap1", cubemapDeforested);
         RenderSettings.skybox.SetTexture("_Cubemap2", cubemapForested);
         RenderSettings.skybox.SetFloat("_Blend", 0f);
-        RenderSettings.fogDensity = 0.05f;
+        RenderSettings.fog = true; // Enable fog at the start
+        RenderSettings.fogDensity = maxFogDensity; // Start with the maximum fog density
         RenderSettings.fogColor = environmentGradient.Evaluate(0f);
         InitializeTerrain();
     }
@@ -58,9 +62,17 @@ public class SkyboxManager : MonoBehaviour
         // Update skybox blending
         RenderSettings.skybox.SetFloat("_Blend", progress);
 
-        // Update fog density and color
-        RenderSettings.fogDensity = Mathf.Lerp(0.05f, 0.01f, progress);
-        RenderSettings.fogColor = environmentGradient.Evaluate(progress);
+        // Dynamically adjust fog based on progress
+        if (progress > 0f && progress < 1f)
+        {
+            RenderSettings.fog = true; // Enable fog if within the progress range
+            RenderSettings.fogDensity = Mathf.Lerp(maxFogDensity, minFogDensity, progress);
+            RenderSettings.fogColor = environmentGradient.Evaluate(progress);
+        }
+        else
+        {
+            RenderSettings.fog = false; // Disable fog at the start or end of progress
+        }
 
         // Update global light color
         globalLight.color = environmentGradient.Evaluate(progress);
@@ -99,6 +111,7 @@ public class SkyboxManager : MonoBehaviour
         // Apply the updated splatmap
         terrainData.SetAlphamaps(0, 0, splatmap);
     }
+
 
 }
 

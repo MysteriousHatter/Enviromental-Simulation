@@ -9,6 +9,7 @@ TagManager:
   - Bushes
   - Trees
   - Water
+  - Yellow
   layers:
   - Default
   - TransparentFX

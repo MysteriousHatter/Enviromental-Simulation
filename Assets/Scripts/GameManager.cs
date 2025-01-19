@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public int currentScore { get; set; }
-    private int goalScore = 10;
+    public int goalScore = 10;
     private SkyboxManager enviroment => FindAnyObjectByType<SkyboxManager>();
     //private GrassComponent grass => FindAnyObjectByType<GrassComponent>();
     private GrassGrowthManager grass => FindAnyObjectByType<GrassGrowthManager>();
@@ -64,8 +64,8 @@ public class GameManager : MonoBehaviour
 
         // Update Terrain and Skybox based on progress
         enviroment.SetProgress(percentage / 100f); // Normalize percentage (0-1 range)
-        grass.SetProgress(percentage / 100f); // Updates grass growth
+        grass.AddProgress(); // Updates grass growth
         tree.SetProgress(percentage / 100f);
-        water.SetProgress(percentage / 100f);
+        water.SetProgress();
     }
 }

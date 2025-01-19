@@ -22,7 +22,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Leaves
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: 6df997579f2098e42a83b9b7255946c8, type: 2}
+  m_Parent: {fileID: 2100000, guid: db5bfd56bb260124481045adfea03627, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -41,7 +41,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _BaseColor: {r: 0.13902307, g: 1, b: 0, a: 1}
-    - _Color: {r: 0.13902304, g: 1, b: 0, a: 1}
+    - _BaseColor: {r: 0.04970159, g: 0.49056602, b: 0, a: 1}
+    - _Color: {r: 0.04970157, g: 0.49056596, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

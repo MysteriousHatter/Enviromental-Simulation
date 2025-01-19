@@ -5,87 +5,86 @@ using Treegen;
 public class TreeManager : MonoBehaviour
 {
     [SerializeField] private List<TreegenTreeGenerator> _treeList = new List<TreegenTreeGenerator>();
-    [SerializeField] private float growthDuration = 10f; // Duration for full growth
+    [SerializeField] private Vector3 initialLeafScale = new Vector3(0.5f, 0.5f, 0.5f); // Initial leaf scale
     [SerializeField] private Vector3 maxLeafScale = new Vector3(2f, 2f, 2f); // Maximum leaf scale
 
-    private Dictionary<TreegenTreeGenerator, float> _treeGrowthProgress = new Dictionary<TreegenTreeGenerator, float>();
+    private Dictionary<TreegenTreeGenerator, bool> _treeFullyGrown = new Dictionary<TreegenTreeGenerator, bool>();
+    private bool goalReached = false;
 
     void Start()
     {
-        // Retrieve all root GameObjects in the scene
+        InitializeTrees();
+    }
+
+    private void InitializeTrees()
+    {
+        // Retrieve all root GameObjects in the scene and find trees
         GameObject[] rootGameObjects = gameObject.scene.GetRootGameObjects();
 
-        // Iterate through each root GameObject
         foreach (GameObject root in rootGameObjects)
         {
-            // Recursively check each GameObject and its children
-            CheckForTreeComponent(root);
+            FindTreeComponents(root);
         }
 
-        // Initialize growth progress for each tree
+        // Mark all trees as not fully grown and set the initial scale
         foreach (TreegenTreeGenerator tree in _treeList)
         {
-            _treeGrowthProgress[tree] = 0f; // Start with no growth
+            _treeFullyGrown[tree] = false;
+            tree.LeavesScale = initialLeafScale; // Set initial scale for the tree
         }
     }
 
-    void CheckForTreeComponent(GameObject obj)
+    private void FindTreeComponents(GameObject obj)
     {
-        // Check if the GameObject has a TreegenTreeGenerator component
         if (obj.TryGetComponent<TreegenTreeGenerator>(out TreegenTreeGenerator treeComponent))
         {
             _treeList.Add(treeComponent);
-            Debug.Log($"Found GameObject with TreegenTreeGenerator component: {obj.name}");
         }
 
-        // Recursively check children
         foreach (Transform child in obj.transform)
         {
-            CheckForTreeComponent(child.gameObject);
+            FindTreeComponents(child.gameObject);
         }
     }
 
     public void SetProgress(float progress)
     {
-        foreach (TreegenTreeGenerator tree in _treeList)
+        if (!goalReached)
         {
-            // Clamp progress between 0 and 1
-            float clampedProgress = Mathf.Clamp01(progress);
-
-            // Update growth progress for the tree
-            _treeGrowthProgress[tree] = clampedProgress;
-
-            // Calculate the current leaf scale
-            Vector3 currentLeafScale = Vector3.Lerp(Vector3.zero, maxLeafScale, clampedProgress);
-
-            // Update the LeavesScale property of the tree
-            tree.LeavesScale = currentLeafScale;
-
-            // Ensure the trunk and branches are regenerated
-            tree.NewGen(); // Use a hypothetical method that regenerates the entire tree (trunk, branches, and leaves)
-
-            Debug.Log($"Manually set leaf scale to: {currentLeafScale} for progress: {clampedProgress}");
+            // Check if the goal score is reached in the GameManager
+            if (GameManager.Instance.currentScore >= GameManager.Instance.goalScore)
+            {
+                goalReached = true;
+                FullyGrowAllTrees();
+            }
+            else
+            {
+                IncrementallyGrowTrees(progress);
+            }
         }
     }
 
-    void Update()
+    private void IncrementallyGrowTrees(float progress)
     {
         foreach (TreegenTreeGenerator tree in _treeList)
         {
-            // Increment growth progress
-            if (_treeGrowthProgress[tree] < 1f)
+            if (!_treeFullyGrown[tree])
             {
-                _treeGrowthProgress[tree] += Time.deltaTime / growthDuration;
-                Vector3 currentLeafScale = Vector3.Lerp(Vector3.zero, maxLeafScale, _treeGrowthProgress[tree]);
-
-                // Update the LeavesScale property of the tree
+                // Scale between initialLeafScale and maxLeafScale based on progress
+                Vector3 currentLeafScale = Vector3.Lerp(initialLeafScale, maxLeafScale, progress);
                 tree.LeavesScale = currentLeafScale;
-
-                // Ensure the trunk and branches are regenerated
-                tree.NewGen(); // Use a hypothetical method that regenerates the entire tree (trunk, branches, and leaves)
-
-                Debug.Log($"Updated leaf scale to: {currentLeafScale}");
             }
+        }
+    }
+
+    private void FullyGrowAllTrees()
+    {
+        foreach (TreegenTreeGenerator tree in _treeList)
+        {
+            tree.LeavesScale = maxLeafScale; // Set to maximum scale
+            tree.NewGen(); // Fully regenerate the tree (leaves, branches, etc.)
+            _treeFullyGrown[tree] = true;
+            Debug.Log($"Tree {tree.name} is now fully grown.");
         }
     }
 }

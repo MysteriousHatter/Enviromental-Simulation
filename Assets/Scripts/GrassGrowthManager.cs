@@ -1,69 +1,145 @@
 using UnityEngine;
 
+using UnityEngine;
+using System.Collections;
+
+using UnityEngine;
+using System.Collections;
+
 public class GrassGrowthManager : MonoBehaviour
 {
     [SerializeField] private Terrain terrain;
     [SerializeField] private Color dryGrassColor = new Color(0.5f, 0.35f, 0.1f); // Dry, brownish color
     [SerializeField] private Color healthyGrassColor = new Color(0.1f, 0.6f, 0.2f); // Healthy, green color
-    [SerializeField] private float transitionSpeed = 0.1f;
-    [SerializeField] private Texture2D[] grassTextures; // Array of different grass textures
-    [SerializeField] private float minHeightGrowth = 0.05f;
-    [SerializeField] private float maxHeightGrowth = 1.34f;
+    [SerializeField] private float minHeightGrowth = 0.05f; // Minimum grass height
+    [SerializeField] private float maxHeightGrowth = 1.34f; // Maximum grass height
+    [SerializeField] private float minWidthGrowth = 0.05f; // Minimum grass width
+    [SerializeField] private float maxWidthGrowth = 1.34f; // Maximum grass width
+    [SerializeField] private int totalStages = 10; // Total number of growth stages
+    [SerializeField] private float growthDuration = 1.0f; // Time it takes to complete one growth stage
 
-    private float currentProgress = 0f;
-    private float targetProgress = 0f;
+    private int currentStage = 0; // Current growth stage
+    private float heightPerStage; // Height increment per stage
+    private float widthPerStage; // Width increment per stage
+    private Coroutine growthCoroutine; // Reference to the current growth coroutine
 
     private void Start()
     {
         InitializeGrassProperties();
+
+        // Calculate the height and width increments per stage
+        heightPerStage = (maxHeightGrowth - minHeightGrowth) / totalStages;
+        widthPerStage = (maxWidthGrowth - minWidthGrowth) / totalStages;
+
+        // Initialize grass appearance
+        UpdateGrassAppearance(minHeightGrowth, minWidthGrowth, dryGrassColor);
     }
 
-    private void Update()
+    /// <summary>
+    /// Adds progress when an item is dropped, growing the grass incrementally and smoothly.
+    /// </summary>
+    public void AddProgress()
     {
-        // Gradually interpolate current progress toward the target progress
-        currentProgress = Mathf.MoveTowards(currentProgress, targetProgress, transitionSpeed * Time.deltaTime);
-        UpdateGrassAppearance(currentProgress);
+        if (currentStage < totalStages)
+        {
+            currentStage++;
+            if (growthCoroutine != null) StopCoroutine(growthCoroutine);
+            growthCoroutine = StartCoroutine(GrowGrass());
+        }
+        else
+        {
+            Debug.LogWarning("Grass is already fully grown.");
+        }
     }
 
-    public void SetProgress(float progress)
+    /// <summary>
+    /// Smoothly grows the grass over time using a coroutine.
+    /// </summary>
+    private IEnumerator GrowGrass()
     {
-        // Clamp and set the target progress
-        targetProgress = Mathf.Clamp01(progress);
+        float initialHeight = minHeightGrowth + (heightPerStage * (currentStage - 1));
+        float initialWidth = minWidthGrowth + (widthPerStage * (currentStage - 1));
+        float targetHeight = minHeightGrowth + (heightPerStage * currentStage);
+        float targetWidth = minWidthGrowth + (widthPerStage * currentStage);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < growthDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / growthDuration;
+
+            // Interpolate between the current and target values
+            float currentHeight = Mathf.Lerp(initialHeight, targetHeight, t);
+            float currentWidth = Mathf.Lerp(initialWidth, targetWidth, t);
+            Color currentColor = Color.Lerp(dryGrassColor, healthyGrassColor, (float)currentStage / totalStages);
+
+            UpdateGrassAppearance(currentHeight, currentWidth, currentColor);
+
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure the final values are set
+        UpdateGrassAppearance(targetHeight, targetWidth, healthyGrassColor);
     }
 
+    /// <summary>
+    /// Initializes the grass properties for the terrain.
+    /// </summary>
     private void InitializeGrassProperties()
     {
-        if (terrain == null || terrain.terrainData.detailPrototypes.Length == 0)
+        if (terrain == null || terrain.terrainData == null)
         {
-            Debug.LogError("No grass details found or terrain is missing.");
+            Debug.LogError("Terrain is not assigned or missing terrain data.");
             return;
         }
 
-        // Initialize properties without reassigning textures
         var detailPrototypes = terrain.terrainData.detailPrototypes;
+
+        if (detailPrototypes.Length == 0)
+        {
+            Debug.LogError("No grass details found on the terrain.");
+            return;
+        }
+
+        // Set the initial colors and sizes without affecting density
         foreach (var detail in detailPrototypes)
         {
             detail.dryColor = dryGrassColor;
             detail.healthyColor = dryGrassColor; // Start with dry grass
-            detail.minHeight = minHeightGrowth; // Initial height
-            detail.maxHeight = minHeightGrowth; // Initial height
+            detail.minHeight = minHeightGrowth; // Start at the minimum height
+            detail.maxHeight = minHeightGrowth; // Start at the minimum height
+            detail.minWidth = minWidthGrowth; // Start at the minimum width
+            detail.maxWidth = minWidthGrowth; // Start at the minimum width
         }
-        terrain.terrainData.detailPrototypes = detailPrototypes;
     }
 
-    private void UpdateGrassAppearance(float progress)
+    /// <summary>
+    /// Updates the grass appearance for the terrain.
+    /// </summary>
+    /// <param name="height">The current grass height.</param>
+    /// <param name="width">The current grass width.</param>
+    /// <param name="color">The current grass color.</param>
+    private void UpdateGrassAppearance(float height, float width, Color color)
     {
-        TerrainData terrainData = terrain.terrainData;
-
-        // Interpolate grass color and height for each detail layer
-        var detailPrototypes = terrainData.detailPrototypes;
-        foreach (var detail in detailPrototypes)
+        if (terrain == null || terrain.terrainData == null)
         {
-            detail.healthyColor = Color.Lerp(dryGrassColor, healthyGrassColor, progress);
-            detail.minHeight = Mathf.Lerp(minHeightGrowth, maxHeightGrowth, progress);
-            detail.maxHeight = Mathf.Lerp(minHeightGrowth, maxHeightGrowth, progress);
+            Debug.LogError("Terrain is not assigned or missing terrain data.");
+            return;
         }
 
-        terrainData.detailPrototypes = detailPrototypes;
+        var detailPrototypes = terrain.terrainData.detailPrototypes;
+
+        // Update grass appearance based on the current height, width, and color
+        foreach (var detail in detailPrototypes)
+        {
+            detail.healthyColor = color;
+            detail.minHeight = height;
+            detail.maxHeight = height;
+            detail.minWidth = width;
+            detail.maxWidth = width;
+        }
+
+        terrain.terrainData.detailPrototypes = detailPrototypes;
     }
 }
