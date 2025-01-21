@@ -18,9 +18,10 @@ public class RockManager : MonoBehaviour
             // Store the initial position and rotation
             initialPosition = rockPrefab.transform.position;
             initialRotation = rockPrefab.transform.rotation;
+            currentRock = rockPrefab;
 
             // Instantiate the initial rock
-            currentRock = Instantiate(rockPrefab, initialPosition, initialRotation);
+            //currentRock = Instantiate(rockPrefab, initialPosition, initialRotation);
         }
         else
         {

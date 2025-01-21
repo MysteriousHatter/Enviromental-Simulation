@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 3
   tags:
   - GrassZone
-  - Recycable
   - Bushes
   - Trees
   - Water
   - Yellow
+  - Red
+  - Blue
+  - Recyclable
+  - Recycable
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - Recycable
   - Water
   - UI
-  - 
+  - Weather
   - 
   - 
   - 

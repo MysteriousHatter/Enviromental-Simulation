@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager Instance { get; private set; }
+    public static GameManager Instance { get; set; }
 
     public int currentScore { get; set; }
     public int goalScore = 10;
@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     private GrassGrowthManager grass => FindAnyObjectByType<GrassGrowthManager>();
     private TreeManager tree => FindAnyObjectByType<TreeManager>();
     private WaterManager water => FindAnyObjectByType<WaterManager>();
+
+    private MusicManager music => FindAnyObjectByType<MusicManager>();
+    public bool gameIsWon { get;  set; }
 
     [SerializeField] RecyclableSpawner spawner;
     void Awake()
@@ -28,31 +31,53 @@ public class GameManager : MonoBehaviour
         }
 
         currentScore = 0;
-        goalScore = spawner.getRecycableCount();
+        gameIsWon = false;
+      
 
+    }
+
+    private void Start()
+    {
+        goalScore = spawner.getRecycableCount();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) // Simulate count increase
+        //if (Input.GetKeyDown(KeyCode.Space)) // Simulate count increase
+        //{
+        //    currentScore += 1; // Increase count
+        //    spawner.placeholderRecyacableCount--;
+        //    CheckProgress();
+        //}
+
+        if (currentScore == 6)
         {
-            currentScore += 1; // Increase count
-            CheckProgress();
+            DetachChild detachChild = FindAnyObjectByType<DetachChild>();
+            if (detachChild != null)
+            {
+                detachChild.DropItem();
+            }
         }
+        if(currentScore == 7) { RenderSettings.fog = false; }
     }
-    public void CompleteGame()
+    public bool CompleteGame()
     {
-        if(spawner.getRecycableCount() <= 0)
+        if(spawner.getCurrentRecycableCount() <= 0)
         {
+            gameIsWon = true;
             if (currentScore >= goalScore)
             {
                 Debug.Log("We Won");
+                return true;
             }
             else if (currentScore < goalScore)
             {
                 Debug.Log("We lost");
+                return false;
             }
         }
+
+        return false;
     }
 
     public void CheckProgress()
@@ -64,8 +89,8 @@ public class GameManager : MonoBehaviour
 
         // Update Terrain and Skybox based on progress
         enviroment.SetProgress(percentage / 100f); // Normalize percentage (0-1 range)
+        music.SetProgress(percentage / 100f);
         grass.AddProgress(); // Updates grass growth
-        tree.SetProgress(percentage / 100f);
         water.SetProgress();
     }
 }

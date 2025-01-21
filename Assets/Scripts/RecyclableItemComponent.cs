@@ -5,7 +5,6 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class RecyclableItemComponent : MonoBehaviour
 {
     public RecyclableItem recyclableItem;
-    [SerializeField] private float detectionRadius = 15f;
     [SerializeField] private AudioClip[] proximitySounds = new AudioClip[3]; // 0: Green, 1: Yellow, 2: Red
     [SerializeField] private float greenThreshold = 10f;
     [SerializeField] private float yellowThreshold = 5f;

@@ -33,8 +33,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Blend: 1
-    - _Exposure1: 1.88
+    - _Blend: 0
+    - _Exposure1: 2.4
     - _Exposure2: 1.69
     - _Rotation1: 0
     - _Rotation2: 0

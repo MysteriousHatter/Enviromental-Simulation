@@ -1,0 +1,12 @@
+# Blender MTL File: 'battery.blend'
+# Material Count: 1
+
+newmtl battery_0
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.576605 0.358580 0.728036
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd Image_2D_0002_0018.png

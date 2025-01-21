@@ -29,7 +29,7 @@ public class RockBehavior : MonoBehaviour
         grabInteractable.selectExited.AddListener(OnRelease);
 
         // Find the RockManager in the scene
-        rockManager = FindObjectOfType<RockManager>();
+        rockManager = FindAnyObjectByType<RockManager>();
         if (rockManager == null)
         {
             Debug.LogError("RockManager not found in the scene.");
@@ -64,6 +64,7 @@ public class RockBehavior : MonoBehaviour
                     rockManager.StartRespawnCoroutine();
                 }
 
+                fadeTimer = 0f;
                 // Deactivate this rock instance
                 gameObject.SetActive(false);
             }

@@ -4,24 +4,33 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.UI;
+using UnityEngine.SceneManagement;
 using static RecyclableItem;
 
 public class DialogBoxController : MonoBehaviour
 {
     [SerializeField] private GameObject ReadyToRecycle; // Assign your World Space Canvas here
     [SerializeField] private GameObject RecycleShopCanvas;
+    [SerializeField] private GameObject timer;
     [SerializeField] private float distanceFromCamera = 2.0f; // Distance in meters
     [SerializeField] private float horizontalSpacing = 1.5f; // Space between canvases
     [SerializeField] private InputActionReference InventoryButton;
     [SerializeField] private InputActionManager inputActionManager; // Drag your Input Action Manager here
     [SerializeField] private GameObject leftController;
     [SerializeField] private GameObject rightController;
-
+    [SerializeField] private GameObject WinUI;
+    [SerializeField] private GameObject LoseUI;
+    [SerializeField] private RecyclableSpawner RecyclableSpawner;
 
     private Transform cameraTransform;
     private string defaultLayerMask = "Default";
     private string UILayerMask = "UI";
-    
+    private RecyclableType type;
+
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform recycleShop; // Assign the item's Transform
+    [SerializeField] private float proximityThreshold = 3.0f; // Distance threshold for being "near
+
     TrackedDeviceGraphicRaycaster raycaster => GetComponentInChildren<TrackedDeviceGraphicRaycaster>();
     private bool isDialogVisible = true;
     private bool isRecycleShopOpen = false; // Tracks if Recycle Shop UI is active
@@ -49,6 +58,8 @@ public class DialogBoxController : MonoBehaviour
         // Initially hide the dialog
         ReadyToRecycle.gameObject.SetActive(false);
         RecycleShopCanvas.gameObject.SetActive(false);
+        WinUI.gameObject.SetActive(false);
+        LoseUI.gameObject.SetActive(false);
         isDialogVisible = false;
 
         InventoryButton.action.performed += OnToggleAction;
@@ -67,7 +78,7 @@ public class DialogBoxController : MonoBehaviour
 
         if (isDialogVisible)
         {
-            
+
             DisableAllExceptAllowed();
         }
         else
@@ -88,6 +99,21 @@ public class DialogBoxController : MonoBehaviour
         // Position Recycle Shop
         RecycleShopCanvas.transform.position = basePosition + cameraTransform.right * horizontalSpacing;
         RecycleShopCanvas.transform.rotation = Quaternion.LookRotation(RecycleShopCanvas.transform.position - cameraTransform.position);
+
+        WinUI.transform.position = basePosition;
+        WinUI.transform.rotation = Quaternion.LookRotation(WinUI.transform.position - cameraTransform.position);
+
+        LoseUI.transform.position = basePosition;
+        LoseUI.transform.rotation = Quaternion.LookRotation(LoseUI.transform.position - cameraTransform.position);
+
+        timer.transform.position = basePosition;
+        timer.transform.rotation = Quaternion.LookRotation(timer.transform.position - cameraTransform.position);
+    }
+
+    public bool IsPlayerNear()
+    {
+        float distance = Vector3.Distance(player.position, recycleShop.position);
+        return distance <= proximityThreshold;
     }
 
     public void DisableAllExceptAllowed()
@@ -151,7 +177,7 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
-       raycaster.blockingMask = 1 << 5;
+        raycaster.blockingMask = 1 << 5;
     }
 
     public void HideDialog()
@@ -186,7 +212,7 @@ public class DialogBoxController : MonoBehaviour
             // If Ready to Recycle is open, close it
             CloseReadyToRecycle();
         }
-        else
+        else if (!GameManager.Instance.gameIsWon)
         {
             // If no menus are open, open Ready to Recycle
             OpenReadyToRecycle();
@@ -198,13 +224,59 @@ public class DialogBoxController : MonoBehaviour
     /// <summary>
     /// Open the Recycle Shop UI and disable the Ready to Recycle UI
     /// </summary>
-    public void OpenRecycleShop()
+    public void OpenRecycleShop(string material)
     {
-        ReadyToRecycle.gameObject.SetActive(true);
-        RecycleShopCanvas.gameObject.SetActive(true);
-        isRecycleShopOpen = true;
+
+        // Attempt to parse the material into a valid RecyclableType
+        if (System.Enum.TryParse(material, out RecyclableType recyclableType))
+        {
+            // Update the current type based on the parsed recyclableType
+            type = recyclableType;
+            RecyclableSpawner.currentRecyclableType = recyclableType; // Update the spawner's current type
+
+            // Activate UI components
+            ReadyToRecycle.gameObject.SetActive(true);
+            RecycleShopCanvas.gameObject.SetActive(true);
+            isRecycleShopOpen = true;
+            isDialogVisible = true;
+
+            Debug.Log("Recycle Shop Opened");
+            Debug.Log($"Current recyclable set to: {type}");
+        }
+        else
+        {
+            // Log an error if the material is invalid
+            Debug.LogError($"Invalid recyclable type: {material}");
+        }
+    }
+
+    public void CheckGameIsComplete()
+    {
+
         isDialogVisible = true;
-        Debug.Log("Recycle Shop Opened");
+        bool condition = GameManager.Instance.CompleteGame();
+        if (GameManager.Instance.gameIsWon)
+        {
+            ReadyToRecycle.SetActive(false);
+            if (condition)
+            {
+                WinUI.SetActive(true);
+
+            }
+            else
+            {
+                LoseUI.SetActive(true);
+            }
+        }
+    }
+    
+    public void TimeIsOut()
+    {
+        isDialogVisible = true;
+        GameManager.Instance.gameIsWon = true;
+        LoseUI.SetActive(true);
+        WinUI.SetActive(false);
+
     }
 
     /// <summary>
@@ -247,23 +319,51 @@ public class DialogBoxController : MonoBehaviour
     public void OnButtonPress(string material)
     {
         Inventory inventory = FindAnyObjectByType<Inventory>();
+        RecyclableSpawner.placeholderRecyacableCount--;
 
         if (System.Enum.TryParse(material, out RecyclableType type))
         {
-            if (inventory.useRecycable(type))
+            // Check if the selected recyclable type matches the current recyclable type
+            if (RecyclableSpawner.currentRecyclableType == type)
             {
-                GameManager.Instance.currentScore++;
-                GameManager.Instance.CheckProgress();
-                Debug.Log($"Correct Item: {type}. Score Updated!");
+                // Correct selection
+                if (inventory.useRecycable(type)) // Check if the item is available in inventory
+                {
+                    GameManager.Instance.currentScore++;
+                    GameManager.Instance.CheckProgress();
+                    Debug.Log($"Correct Item: {type}. Score Updated!");
+                }
+                else
+                {
+                    Debug.Log($"Item {type} not available in inventory.");
+                }
             }
             else
             {
-                Debug.Log($"Item {type} not available in inventory.");
+                // Incorrect selection
+                Debug.Log($"Incorrect selection! Expected: {RecyclableSpawner.currentRecyclableType}, but selected: {type}");
+
+                inventory.useRecycable(type); // Attempt to use the item, even if incorrect
             }
         }
         else
         {
             Debug.LogError($"Invalid material: {material}");
         }
+    }
+
+
+    public void ResetGame()
+    {
+        // Get the current active scene
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Reload the current scene
+        SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void OnApplicationQuit()
+    {
+        Application.Quit();
     }
 }

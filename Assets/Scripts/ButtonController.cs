@@ -14,11 +14,11 @@ public class ButtonController : MonoBehaviour
     }
 
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if(collision.gameObject.CompareTag(TriggerTag))
-        {
-            gate.CloseGateWithDelay(1f);
-        }
-    }
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if(collision.gameObject.CompareTag(TriggerTag))
+    //    {
+    //        gate.CloseGateWithDelay(1f);
+    //    }
+    //}
 }

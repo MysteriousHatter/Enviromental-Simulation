@@ -5,7 +5,7 @@ public class DetachChild : MonoBehaviour
     // Reference to the child object you want to detach
     public Transform childToDetach;
 
-    void Update()
+    public void DropItem()
     {
         // Detach the child object
         childToDetach.SetParent(null);

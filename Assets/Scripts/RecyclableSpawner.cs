@@ -1,4 +1,5 @@
 using UnityEngine;
+using static RecyclableItem;
 
 public class RecyclableSpawner : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class RecyclableSpawner : MonoBehaviour
     public float safeDistance = 5.0f; // Minimum distance from the drop-off point
     private static int totalRecycableCount; // Value that does not get modified
     protected static int maxRecycableCount; // Value that does
+    public int placeholderRecyacableCount { get; set; }
+
+    public static RecyclableType currentRecyclableType;
 
     void Awake()
     {
@@ -29,6 +33,7 @@ public class RecyclableSpawner : MonoBehaviour
                 Debug.Log($"Found recyclable: {item.name} at position {itemPosition}");
                 foundCount++;
                 maxRecycableCount++;
+                placeholderRecyacableCount++;
                 setRecycableCount(1);
             }
             else
@@ -44,6 +49,11 @@ public class RecyclableSpawner : MonoBehaviour
     {
         Debug.Log($"Total recyclable count: {maxRecycableCount}");
         return maxRecycableCount;
+    }
+
+    public int getCurrentRecycableCount()
+    {
+        return placeholderRecyacableCount;
     }
 
     public void setRecycableCount(int count)

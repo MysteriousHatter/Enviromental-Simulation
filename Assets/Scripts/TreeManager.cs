@@ -1,90 +1,69 @@
-using System.Collections.Generic;
 using UnityEngine;
-using Treegen;
+using System.Collections.Generic;
 
-public class TreeManager : MonoBehaviour
+public class TreeManager: MonoBehaviour
 {
-    [SerializeField] private List<TreegenTreeGenerator> _treeList = new List<TreegenTreeGenerator>();
-    [SerializeField] private Vector3 initialLeafScale = new Vector3(0.5f, 0.5f, 0.5f); // Initial leaf scale
-    [SerializeField] private Vector3 maxLeafScale = new Vector3(2f, 2f, 2f); // Maximum leaf scale
+    [SerializeField] private Terrain terrain; // Assign your terrain in the Inspector
+    [SerializeField] private GameObject forestedTreePrefab; // Assign the forested tree prefab
 
-    private Dictionary<TreegenTreeGenerator, bool> _treeFullyGrown = new Dictionary<TreegenTreeGenerator, bool>();
     private bool goalReached = false;
 
-    void Start()
+    void Update()
     {
-        InitializeTrees();
-    }
-
-    private void InitializeTrees()
-    {
-        // Retrieve all root GameObjects in the scene and find trees
-        GameObject[] rootGameObjects = gameObject.scene.GetRootGameObjects();
-
-        foreach (GameObject root in rootGameObjects)
+        if (!goalReached && GameManager.Instance.currentScore >= 6)
         {
-            FindTreeComponents(root);
-        }
-
-        // Mark all trees as not fully grown and set the initial scale
-        foreach (TreegenTreeGenerator tree in _treeList)
-        {
-            _treeFullyGrown[tree] = false;
-            tree.LeavesScale = initialLeafScale; // Set initial scale for the tree
+            goalReached = true;
+            ReplaceDeforestedTrees();
         }
     }
 
-    private void FindTreeComponents(GameObject obj)
+    private void ReplaceDeforestedTrees()
     {
-        if (obj.TryGetComponent<TreegenTreeGenerator>(out TreegenTreeGenerator treeComponent))
+        if (terrain == null || forestedTreePrefab == null)
         {
-            _treeList.Add(treeComponent);
+            Debug.LogError("Terrain or forestedTreePrefab is not assigned.");
+            return;
         }
 
-        foreach (Transform child in obj.transform)
-        {
-            FindTreeComponents(child.gameObject);
-        }
-    }
+        TerrainData terrainData = terrain.terrainData;
+        TreeInstance[] originalTrees = terrainData.treeInstances;
+        List<TreeInstance> newTreeInstances = new List<TreeInstance>();
 
-    public void SetProgress(float progress)
-    {
-        if (!goalReached)
+        // Iterate through all trees in the terrain
+        foreach (TreeInstance tree in originalTrees)
         {
-            // Check if the goal score is reached in the GameManager
-            if (GameManager.Instance.currentScore >= GameManager.Instance.goalScore)
+            Vector3 treeWorldPosition = Vector3.Scale(tree.position, terrainData.size) + terrain.transform.position;
+
+            // Replace the deforested trees based on conditions (customize as needed)
+            if (IsDeforestedTree(tree))
             {
-                goalReached = true;
-                FullyGrowAllTrees();
+                // Instantiate a forested tree prefab at the tree's position
+                InstantiateForestedTree(treeWorldPosition);
+
+                // Optionally, you can skip adding the replaced tree to the terrain
+                continue;
             }
-            else
-            {
-                IncrementallyGrowTrees(progress);
-            }
+
+            // Keep the original tree if it's not deforested
+            newTreeInstances.Add(tree);
         }
+
+        // Update the terrain's tree instances with the remaining trees
+        terrainData.treeInstances = newTreeInstances.ToArray();
     }
 
-    private void IncrementallyGrowTrees(float progress)
+    private bool IsDeforestedTree(TreeInstance tree)
     {
-        foreach (TreegenTreeGenerator tree in _treeList)
-        {
-            if (!_treeFullyGrown[tree])
-            {
-                // Scale between initialLeafScale and maxLeafScale based on progress
-                Vector3 currentLeafScale = Vector3.Lerp(initialLeafScale, maxLeafScale, progress);
-                tree.LeavesScale = currentLeafScale;
-            }
-        }
+        // Define your logic to identify deforested trees (e.g., prototype index or color)
+        // For example, if deforested trees have a specific prototype index:
+        int deforestedPrototypeIndex = 0; // Replace with your actual index
+        return tree.prototypeIndex == deforestedPrototypeIndex;
     }
 
-    private void FullyGrowAllTrees()
+    private void InstantiateForestedTree(Vector3 position)
     {
-        foreach (TreegenTreeGenerator tree in _treeList)
-        {
-            tree.LeavesScale = maxLeafScale; // Set to maximum scale
-            tree.NewGen(); // Fully regenerate the tree (leaves, branches, etc.)
-            _treeFullyGrown[tree] = true;
-            Debug.Log($"Tree {tree.name} is now fully grown.");
-        }
+        // Instantiate the forested tree prefab at the tree's position
+        Instantiate(forestedTreePrefab, position, Quaternion.identity);
+        Debug.Log($"Replaced tree at position {position} with forested tree.");
     }
 }

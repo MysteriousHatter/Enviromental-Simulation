@@ -1,0 +1,18 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 26.02.2021 10:22:53
+
+newmtl MI_INT_BrokenGlassB
+	Ns 60.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka TX_INT_BrokenGlassB_alpha.png
+	map_Kd TX_INT_BrokenGlassB_alpha.png
+	map_d TX_INT_BrokenGlassB_alpha.png
+	map_bump TX_INT_BrokenGlassB_Nor.png

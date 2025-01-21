@@ -8,7 +8,6 @@ public class Buoyancy : MonoBehaviour
     [SerializeField] private Transform waterTransform; // Reference to the water object
 
     private Rigidbody rb;
-    private bool isSubmerged;
 
     void Start()
     {
@@ -26,9 +25,11 @@ public class Buoyancy : MonoBehaviour
             float waterLevel = waterTransform.position.y;
             float objectDepth = waterLevel - transform.position.y;
 
-            if (objectDepth > 0) // Check if the object is submerged
+            Debug.Log($"Water Level: {waterLevel}, Object Position Y: {transform.position.y}, Object Depth: {objectDepth}");
+
+
+            if (objectDepth > 23) // Check if the object is submerged
             {
-                isSubmerged = true;
 
                 // Apply upward buoyancy force proportional to the depth
                 Vector3 upwardForce = Vector3.up * buoyancyForce * objectDepth;
@@ -40,7 +41,6 @@ public class Buoyancy : MonoBehaviour
             }
             else
             {
-                isSubmerged = false;
 
                 // Reset drag when out of water
                 rb.linearDamping = 0f;

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static RecyclableItem;
 using UnityEngine.UI;
 using TMPro;
+using static RecyclableItem;
 
 public class Inventory : MonoBehaviour
 {
@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
             // Match button name with recyclable type
             foreach (RecyclableType type in System.Enum.GetValues(typeof(RecyclableType)))
             {
-                Debug.Log("What the dictionary says: " +type.ToString());
+                Debug.Log("What the dictionary says: " + type.ToString());
                 if (button.name == type.ToString())
                 {
                     buttonText.text = $"{type}: {recyclables[type]}";
