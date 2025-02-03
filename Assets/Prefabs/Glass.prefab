@@ -277,7 +277,9 @@ MonoBehaviour:
   recyclableItem:
     type: 2
     prefab: {fileID: 6359994462491698424}
-  detectionRadius: 15
+    ItemDescription: This is glass step on it and you'll bleed hard and get major
+      goosebumps hahaa
+    sprite: {fileID: -371492287, guid: 83ce06d21f1d25042985ec82a4941295, type: 3}
   proximitySounds:
   - {fileID: 8300000, guid: 90d1ac382b89e67439034ef69cdd8040, type: 3}
   - {fileID: 8300000, guid: b1f01be517a2dda4aa561ba3f286145c, type: 3}
@@ -285,6 +287,7 @@ MonoBehaviour:
   greenThreshold: 10
   yellowThreshold: 5
   redThreshold: 2
+  quantity: 0
 --- !u!82 &-9133741485708931014
 AudioSource:
   m_ObjectHideFlags: 0

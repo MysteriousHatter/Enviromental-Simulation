@@ -9,6 +9,7 @@ public class RecyclableItemComponent : MonoBehaviour
     [SerializeField] private float greenThreshold = 10f;
     [SerializeField] private float yellowThreshold = 5f;
     [SerializeField] private float redThreshold = 2f;
+    [SerializeField] private int quantity;
 
     private bool itemPickedUp = false;
     private AudioSource itemAudioSource => GetComponent<AudioSource>();
@@ -91,6 +92,19 @@ public class RecyclableItemComponent : MonoBehaviour
     void OnGrabbed(SelectEnterEventArgs args)
     {
         SetItemPicked(true);
+        int leftOverItems = playerTransform.GetComponent<Inventory>().AddRecyclable(recyclableItem.type, quantity, recyclableItem.sprite, recyclableItem.ItemDescription);
+        Debug.Log("We have these numbers left:" +  leftOverItems);
+        if(leftOverItems <= 0) //If there are no leftovers, destory the item
+        {
+            Debug.Log("Destory Items");
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Stick to limit number");
+            quantity = leftOverItems;
+        }
+
     }
 
     void OnReleased(SelectExitEventArgs args)

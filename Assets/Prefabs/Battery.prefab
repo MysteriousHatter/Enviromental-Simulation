@@ -279,7 +279,6 @@ MonoBehaviour:
   recyclableItem:
     type: 1
     prefab: {fileID: 1279188228315373869}
-  detectionRadius: 15
   proximitySounds:
   - {fileID: 8300000, guid: 90d1ac382b89e67439034ef69cdd8040, type: 3}
   - {fileID: 8300000, guid: b1f01be517a2dda4aa561ba3f286145c, type: 3}
@@ -287,6 +286,8 @@ MonoBehaviour:
   greenThreshold: 10
   yellowThreshold: 5
   redThreshold: 2
+  quantity: 0
+  sprite: {fileID: 128173847, guid: fccb8207b93c59243b40c18a6aba00da, type: 3}
 --- !u!82 &-6766675170342958008
 AudioSource:
   m_ObjectHideFlags: 0

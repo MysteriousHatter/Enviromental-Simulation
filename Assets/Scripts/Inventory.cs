@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour
     [Header("Recyclable UI Buttons")]
     [SerializeField] private Button[] recyclableButtons; // Assign buttons in the Inspector'
     [HideInInspector] public string currentRecycable = "";
+    [SerializeField] private DialogBoxController dialogBoxController;
 
     void Start()
     {
@@ -25,12 +26,34 @@ public class Inventory : MonoBehaviour
         UpdateRecyclableButtons();
     }
     // Add recyclables to the inventory
-    public void AddRecyclable(RecyclableType type, int amount)
+    public int AddRecyclable(RecyclableType type, int amount, Sprite itemSprite, string description)
     {
         if (recyclables.ContainsKey(type))
         {
-            recyclables[type] += amount;
-            Debug.Log($"Added {amount} of {type}. Total: {recyclables[type]}");
+            for(int i = 0; i < dialogBoxController.itemSlot.Length; i++)
+            {
+                if(dialogBoxController.itemSlot[i].isFull == false && dialogBoxController.itemSlot[i].itemName == type.ToString() || dialogBoxController.itemSlot[i].quantity == 0)
+                {
+                    Debug.Log("We are full and our name mathces the slot Orr our quanity equals zero");
+                    int leftOverItems = dialogBoxController.itemSlot[i].AddItem(type, amount, itemSprite, description);
+                    Debug.Log("Our left over items " + leftOverItems);
+                    if (leftOverItems > 0)
+                    {
+                        leftOverItems = AddRecyclable(type, leftOverItems, itemSprite, description);
+                    }
+                    return leftOverItems;
+                }
+            }
+        }
+        return amount;
+    }
+
+    public void DeselectAllSlots()
+    {
+        for(int i = 0; i < dialogBoxController.itemSlot.Length;i++)
+        {
+            dialogBoxController.itemSlot[i].selectedShader.SetActive(false);
+            dialogBoxController.itemSlot[i].thisItemSelected = false;
         }
     }
 

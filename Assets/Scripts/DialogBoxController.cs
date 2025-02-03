@@ -31,6 +31,8 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private Transform recycleShop; // Assign the item's Transform
     [SerializeField] private float proximityThreshold = 3.0f; // Distance threshold for being "near
 
+    public ItemSlot[] itemSlot;
+
     TrackedDeviceGraphicRaycaster raycaster => GetComponentInChildren<TrackedDeviceGraphicRaycaster>();
     private bool isDialogVisible = true;
     private bool isRecycleShopOpen = false; // Tracks if Recycle Shop UI is active
@@ -75,6 +77,7 @@ public class DialogBoxController : MonoBehaviour
     void Update()
     {
         PositionCanvas();
+        IsPlayerNear();
 
         if (isDialogVisible)
         {
@@ -97,7 +100,7 @@ public class DialogBoxController : MonoBehaviour
         ReadyToRecycle.transform.rotation = Quaternion.LookRotation(ReadyToRecycle.transform.position - cameraTransform.position);
 
         // Position Recycle Shop
-        RecycleShopCanvas.transform.position = basePosition + cameraTransform.right * horizontalSpacing;
+        RecycleShopCanvas.transform.position = basePosition;
         RecycleShopCanvas.transform.rotation = Quaternion.LookRotation(RecycleShopCanvas.transform.position - cameraTransform.position);
 
         WinUI.transform.position = basePosition;
@@ -202,6 +205,8 @@ public class DialogBoxController : MonoBehaviour
     /// </summary>
     private void OnToggleAction(InputAction.CallbackContext context)
     {
+        bool isNear = IsPlayerNear();
+
         if (isRecycleShopOpen)
         {
             // If Recycle Shop is open, close it and return to Ready to Recycle
@@ -212,7 +217,7 @@ public class DialogBoxController : MonoBehaviour
             // If Ready to Recycle is open, close it
             CloseReadyToRecycle();
         }
-        else if (!GameManager.Instance.gameIsWon)
+        else if (!GameManager.Instance.gameIsWon && isNear)
         {
             // If no menus are open, open Ready to Recycle
             OpenReadyToRecycle();
@@ -235,7 +240,7 @@ public class DialogBoxController : MonoBehaviour
             RecyclableSpawner.currentRecyclableType = recyclableType; // Update the spawner's current type
 
             // Activate UI components
-            ReadyToRecycle.gameObject.SetActive(true);
+            ReadyToRecycle.gameObject.SetActive(false);
             RecycleShopCanvas.gameObject.SetActive(true);
             isRecycleShopOpen = true;
             isDialogVisible = true;

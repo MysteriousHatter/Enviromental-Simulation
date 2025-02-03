@@ -6,4 +6,6 @@ public class RecyclableItem
     public enum RecyclableType { Paper, Battery, Glass, Plastic, LithiumBattery }
     public RecyclableType type;
     public GameObject prefab;
+    [TextArea]public string ItemDescription;
+    public Sprite sprite;
 }

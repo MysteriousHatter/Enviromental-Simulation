@@ -43,12 +43,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space)) // Simulate count increase
-        //{
-        //    currentScore += 1; // Increase count
-        //    spawner.placeholderRecyacableCount--;
-        //    CheckProgress();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space)) // Simulate count increase
+        {
+            currentScore += 1; // Increase count
+            spawner.placeholderRecyacableCount--;
+            CheckProgress();
+        }
 
         if (currentScore == 6)
         {

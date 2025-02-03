@@ -15,16 +15,16 @@ public class PlanetManagerScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Recyclable"))
-        {
-            RecyclableItem item = other.GetComponent<RecyclableItemComponent>().recyclableItem;
-            if (item != null && playerInventory != null)
-            {
-                playerInventory.AddRecyclable(item.type, 1);
-                Destroy(other.gameObject); // Remove the item from the scene
-            }
-        }
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Recyclable"))
+    //    {
+    //        RecyclableItem item = other.GetComponent<RecyclableItemComponent>().recyclableItem;
+    //        if (item != null && playerInventory != null)
+    //        {
+    //            playerInventory.AddRecyclable(item.type, 1);
+    //            Destroy(other.gameObject); // Remove the item from the scene
+    //        }
+    //    }
+    //}
 }
