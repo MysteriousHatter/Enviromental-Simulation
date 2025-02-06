@@ -20,7 +20,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private GameObject rightController;
     [SerializeField] private GameObject WinUI;
     [SerializeField] private GameObject LoseUI;
-    [SerializeField] private RecyclableSpawner RecyclableSpawner;
+    [SerializeField] private RecyclableSpawner recyclableSpawner;
 
     private Transform cameraTransform;
     private string defaultLayerMask = "Default";
@@ -237,7 +237,7 @@ public class DialogBoxController : MonoBehaviour
         {
             // Update the current type based on the parsed recyclableType
             type = recyclableType;
-            RecyclableSpawner.currentRecyclableType = recyclableType; // Update the spawner's current type
+            recyclableSpawner.currentRecyclableType = recyclableType; // Update the spawner's current type
 
             // Activate UI components
             ReadyToRecycle.gameObject.SetActive(false);
@@ -321,41 +321,41 @@ public class DialogBoxController : MonoBehaviour
     }
 
     // Handle Button Presses
-    public void OnButtonPress(string material)
-    {
-        Inventory inventory = FindAnyObjectByType<Inventory>();
-        RecyclableSpawner.placeholderRecyacableCount--;
+    //public void OnButtonPress(string material)
+    //{
+    //    Inventory inventory = FindAnyObjectByType<Inventory>();
+    //    RecyclableSpawner.placeholderRecyacableCount--;
 
-        if (System.Enum.TryParse(material, out RecyclableType type))
-        {
-            // Check if the selected recyclable type matches the current recyclable type
-            if (RecyclableSpawner.currentRecyclableType == type)
-            {
-                // Correct selection
-                if (inventory.useRecycable(type)) // Check if the item is available in inventory
-                {
-                    GameManager.Instance.currentScore++;
-                    GameManager.Instance.CheckProgress();
-                    Debug.Log($"Correct Item: {type}. Score Updated!");
-                }
-                else
-                {
-                    Debug.Log($"Item {type} not available in inventory.");
-                }
-            }
-            else
-            {
-                // Incorrect selection
-                Debug.Log($"Incorrect selection! Expected: {RecyclableSpawner.currentRecyclableType}, but selected: {type}");
+    //    if (System.Enum.TryParse(material, out RecyclableType type))
+    //    {
+    //        // Check if the selected recyclable type matches the current recyclable type
+    //        if (RecyclableSpawner.currentRecyclableType == type)
+    //        {
+    //            // Correct selection
+    //            if (inventory.useRecycable(type)) // Check if the item is available in inventory
+    //            {
+    //                GameManager.Instance.currentScore++;
+    //                GameManager.Instance.CheckProgress();
+    //                Debug.Log($"Correct Item: {type}. Score Updated!");
+    //            }
+    //            else
+    //            {
+    //                Debug.Log($"Item {type} not available in inventory.");
+    //            }
+    //        }
+    //        else
+    //        {
+    //            // Incorrect selection
+    //            Debug.Log($"Incorrect selection! Expected: {RecyclableSpawner.currentRecyclableType}, but selected: {type}");
 
-                inventory.useRecycable(type); // Attempt to use the item, even if incorrect
-            }
-        }
-        else
-        {
-            Debug.LogError($"Invalid material: {material}");
-        }
-    }
+    //            inventory.useRecycable(type); // Attempt to use the item, even if incorrect
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError($"Invalid material: {material}");
+    //    }
+    //}
 
 
     public void ResetGame()

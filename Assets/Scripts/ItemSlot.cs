@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using static RecyclableItem;
 using UnityEngine.EventSystems;
+using System;
 
 public class ItemSlot : MonoBehaviour
 {
@@ -80,5 +81,33 @@ public class ItemSlot : MonoBehaviour
                 itemDescriptionImage.sprite = emptySprite;
             }
         }
+        else if(thisItemSelected && this.quantity > 0)
+        {
+            inventory.OnButtonPress(itemName);
+            this.quantity -= 1;
+            quantityText.text = this.quantity.ToString();  
+            if(this.quantity <= 0)
+            {
+                EmptySlot();
+            }
+        }
+        else
+        {
+            EmptySlot();
+        }
+    }
+
+    private void EmptySlot()
+    {
+        quantityText.enabled = false;
+        this.itemImage.sprite = emptySprite;
+
+        this.itemSprite = emptySprite;
+        this.itemName = "";
+        this.itemDescription = "";
+        this.itemDescriptionImage.sprite = emptySprite;
+        ItemDescriptionNameText.text = itemName;
+        ItemDescriptionText.text = itemDescription;
+
     }
 }

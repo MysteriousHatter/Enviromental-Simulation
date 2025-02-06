@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Button[] recyclableButtons; // Assign buttons in the Inspector'
     [HideInInspector] public string currentRecycable = "";
     [SerializeField] private DialogBoxController dialogBoxController;
+    [SerializeField] private RecyclableSpawner recyclableSpawner;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class Inventory : MonoBehaviour
                 {
                     Debug.Log("We are full and our name mathces the slot Orr our quanity equals zero");
                     int leftOverItems = dialogBoxController.itemSlot[i].AddItem(type, amount, itemSprite, description);
+                    recyclables[type] += amount;
                     Debug.Log("Our left over items " + leftOverItems);
                     if (leftOverItems > 0)
                     {
@@ -93,8 +95,47 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void OnButtonPress(string material)
+    {
+        Inventory inventory = FindAnyObjectByType<Inventory>();
+        recyclableSpawner.placeholderRecyacableCount--;
+
+        if (System.Enum.TryParse(material, out RecyclableType type))
+        {
+            Debug.Log("Current recycable type " + recyclableSpawner.currentRecyclableType);
+            // Check if the selected recyclable type matches the current recyclable type
+            if (recyclableSpawner.currentRecyclableType == type)
+            {
+                Debug.Log($"Correct Item: {type}. Score Updated!");
+                // Correct selection
+                if (inventory.useRecycable(type)) // Check if the item is available in inventory
+                {
+                    Debug.Log("We have a match" + type);
+                    GameManager.Instance.currentScore++;
+                    GameManager.Instance.CheckProgress();
+                }
+                else
+                {
+                    Debug.Log($"Item {type} not available in inventory.");
+                }
+            }
+            else
+            {
+                // Incorrect selection
+                Debug.Log($"Incorrect selection! Expected: {recyclableSpawner.currentRecyclableType}, but selected: {type}");
+                GameManager.Instance.currentScore++;
+                useRecycable(type); // Attempt to use the item, even if incorrect
+            }
+        }
+        else
+        {
+            Debug.LogError($"Invalid material: {material}");
+        }
+    }
+
     public bool useRecycable(RecyclableType type)
     {
+        Debug.Log("We have this amount of " + type.ToString() + recyclables[type]);
         if (recyclables.ContainsKey(type) && recyclables[type] > 0)
         {
             recyclables[type]--;

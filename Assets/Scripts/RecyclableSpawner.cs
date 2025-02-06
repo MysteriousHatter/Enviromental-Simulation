@@ -10,7 +10,7 @@ public class RecyclableSpawner : MonoBehaviour
     protected static int maxRecycableCount; // Value that does
     public int placeholderRecyacableCount { get; set; }
 
-    public static RecyclableType currentRecyclableType;
+    public RecyclableType currentRecyclableType;
 
     void Awake()
     {
