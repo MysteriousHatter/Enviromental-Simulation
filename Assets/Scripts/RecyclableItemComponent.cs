@@ -71,6 +71,24 @@ public class RecyclableItemComponent : MonoBehaviour
             StopAudio();
         }
     }
+    void OnDrawGizmos()
+    {
+        if (playerTransform != null)
+        {
+            // Draw the red threshold sphere
+            Gizmos.color = new Color(1, 0, 0, 0.3f); // Red with 30% opacity
+            Gizmos.DrawSphere(playerTransform.position, redThreshold);
+
+            // Draw the yellow threshold sphere
+            Gizmos.color = new Color(1, 1, 0, 0.3f); // Yellow with 30% opacity
+            Gizmos.DrawSphere(playerTransform.position, yellowThreshold);
+
+            // Draw the green threshold sphere
+            Gizmos.color = new Color(0, 1, 0, 0.3f); // Green with 30% opacity
+            Gizmos.DrawSphere(playerTransform.position, greenThreshold);
+        }
+    }
+
 
     void PlayProximitySound(int index)
     {

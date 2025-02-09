@@ -180,7 +180,7 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
-        raycaster.blockingMask = 1 << 5;
+        //raycaster.blockingMask = 1 << 5;
     }
 
     public void HideDialog()
@@ -196,8 +196,8 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
-        raycaster.blockingMask = 0;
-        raycaster.blockingMask = 1;
+        //raycaster.blockingMask = 0;
+        //raycaster.blockingMask = 1;
     }
 
     /// <summary>
