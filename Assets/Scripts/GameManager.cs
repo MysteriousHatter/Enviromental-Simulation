@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour
             DetachChild detachChild = FindAnyObjectByType<DetachChild>();
             if (detachChild != null)
             {
-                Debug.Log("Drop Item");
                 detachChild.DropItem();
             }
         }

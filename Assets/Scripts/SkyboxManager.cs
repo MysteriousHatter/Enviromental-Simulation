@@ -28,6 +28,11 @@ public class SkyboxManager : MonoBehaviour
     private FilmGrain filmGrain;
     private DepthOfField depthOfField;
 
+    [Header("Depth Of Field Values")]
+    [SerializeField] private float startDepthOfField = 50f;
+    [SerializeField] private float endDepthOfField = 70f;
+    [SerializeField] private float maxRadius = 2f;
+
 
     private void Start()
     {
@@ -97,9 +102,9 @@ public class SkyboxManager : MonoBehaviour
         filmGrain.intensity.value = Mathf.Lerp(0.195f, 0.05f, progress); // Less grain in the forested state
 
         // Adjust Depth of Field
-        depthOfField.gaussianStart.value = Mathf.Lerp(50f, 10f, progress); // Bring focus closer in the forested state
-        depthOfField.gaussianEnd.value = Mathf.Lerp(70f, 30f, progress);   // Blur the background more in the forested state
-        depthOfField.gaussianMaxRadius.value = Mathf.Lerp(2f, 1f, progress); // Subtle blur in forested
+        depthOfField.gaussianStart.value = Mathf.Lerp(startDepthOfField, 10f, progress); // Bring focus closer in the forested state
+        depthOfField.gaussianEnd.value = Mathf.Lerp(endDepthOfField, 30f, progress);   // Blur the background more in the forested state
+        depthOfField.gaussianMaxRadius.value = Mathf.Lerp(maxRadius, 1f, progress); // Subtle blur in forested
     }
 
     public void SetProgress(float progress)
