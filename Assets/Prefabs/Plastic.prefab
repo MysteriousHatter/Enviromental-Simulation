@@ -279,7 +279,13 @@ MonoBehaviour:
   recyclableItem:
     type: 3
     prefab: {fileID: 1987219909169953657}
-    ItemDescription: 
+    ItemDescription: Plastic is made from petroleum-based chemicals, requiring fossil
+      fuels and emitting greenhouse gases during production. It is non-biodegradable,
+      breaking down into microplastics that pollute oceans, soil, and wildlife. Improper
+      disposal leads to landfill overflow and marine contamination, harming ecosystems
+      and human health. While recyclable, most plastic ends up as waste due to low
+      recycling rates. Reducing plastic use, improving recycling systems, and developing
+      biodegradable alternatives are key to minimizing its environmental impact.
     sprite: {fileID: -1621113353, guid: 180b95ea85a25a949885b3807cf8e69a, type: 3}
   proximitySounds:
   - {fileID: 8300000, guid: 90d1ac382b89e67439034ef69cdd8040, type: 3}
@@ -288,7 +294,7 @@ MonoBehaviour:
   greenThreshold: 10
   yellowThreshold: 5
   redThreshold: 2
-  quantity: 0
+  quantity: 1
 --- !u!82 &159982516242872269
 AudioSource:
   m_ObjectHideFlags: 0

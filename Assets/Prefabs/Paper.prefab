@@ -277,7 +277,12 @@ MonoBehaviour:
   recyclableItem:
     type: 0
     prefab: {fileID: 1451748198219162282}
-    ItemDescription: 
+    ItemDescription: Paper is made from wood pulp, requiring deforestation, water,
+      and energy for production. The process generates carbon emissions and chemical
+      waste, contributing to air and water pollution. While recyclable, paper degrades
+      with each cycle, limiting reuse. Additionally, discarded paper in landfills
+      produces methane, a potent greenhouse gas. Sustainable forestry, increased
+      recycling, and digital alternatives can help reduce its environmental impact.
     sprite: {fileID: 1129407211, guid: 1505b7f5fc996db4490f8c4fc85a7277, type: 3}
   proximitySounds:
   - {fileID: 8300000, guid: 90d1ac382b89e67439034ef69cdd8040, type: 3}
@@ -286,7 +291,7 @@ MonoBehaviour:
   greenThreshold: 10
   yellowThreshold: 5
   redThreshold: 2
-  quantity: 0
+  quantity: 1
 --- !u!82 &-2939900040095205803
 AudioSource:
   m_ObjectHideFlags: 0

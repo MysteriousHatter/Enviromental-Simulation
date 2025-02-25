@@ -33,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3.23, y: 3.23, z: 3.23}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6469981359056864512}
   m_Father: {fileID: 0}
@@ -277,7 +277,15 @@ MonoBehaviour:
   recyclableItem:
     type: 4
     prefab: {fileID: 2546022857071143515}
-    ItemDescription: 
+    ItemDescription: "Lithium batteries are crucial for modern technology but have
+      a significant environmental cost. Mining lithium depletes water resources\u2014up
+      to 500,000 gallons per ton\u2014leading to soil degradation, habitat destruction,
+      and pollution. Manufacturing releases greenhouse gases and toxic chemicals,
+      while improper disposal contributes to e-waste and groundwater contamination
+      since only 5% are recycled. Additionally, fire hazards from damaged batteries
+      pose safety risks. To reduce their impact, improving recycling, adopting sustainable
+      mining, and developing alternative battery technologies are essential for a
+      greener future."
     sprite: {fileID: 128173847, guid: fccb8207b93c59243b40c18a6aba00da, type: 3}
   proximitySounds:
   - {fileID: 8300000, guid: 90d1ac382b89e67439034ef69cdd8040, type: 3}
@@ -286,7 +294,7 @@ MonoBehaviour:
   greenThreshold: 10
   yellowThreshold: 5
   redThreshold: 2
-  quantity: 0
+  quantity: 1
 --- !u!82 &3057174827927511568
 AudioSource:
   m_ObjectHideFlags: 0

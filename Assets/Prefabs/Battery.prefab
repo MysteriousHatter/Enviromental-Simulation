@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5225958950221440636}
@@ -279,6 +279,15 @@ MonoBehaviour:
   recyclableItem:
     type: 1
     prefab: {fileID: 1279188228315373869}
+    ItemDescription: Batteries have a major environmental impact, from resource extraction
+      to disposal. Mining materials like lithium, cobalt, and nickel causes deforestation,
+      pollution, and carbon emissions, while manufacturing releases greenhouse gases
+      and toxic waste. Improper disposal leads to soil and water contamination, with
+      only 5% of lithium-ion batteries recycled, increasing e-waste. Additionally,
+      damaged batteries pose fire hazards. To reduce harm, improving recycling, developing
+      alternative materials, and adopting sustainable mining practices are crucial
+      for a greener future.
+    sprite: {fileID: 128173847, guid: fccb8207b93c59243b40c18a6aba00da, type: 3}
   proximitySounds:
   - {fileID: 8300000, guid: 90d1ac382b89e67439034ef69cdd8040, type: 3}
   - {fileID: 8300000, guid: b1f01be517a2dda4aa561ba3f286145c, type: 3}
@@ -286,8 +295,7 @@ MonoBehaviour:
   greenThreshold: 10
   yellowThreshold: 5
   redThreshold: 2
-  quantity: 0
-  sprite: {fileID: 128173847, guid: fccb8207b93c59243b40c18a6aba00da, type: 3}
+  quantity: 1
 --- !u!82 &-6766675170342958008
 AudioSource:
   m_ObjectHideFlags: 0
