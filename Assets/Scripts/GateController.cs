@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GateController : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class GateController : MonoBehaviour
     [SerializeField] private float openHeight = 3f; 
     [SerializeField] private float openSpeed = 2f;
     [SerializeField] private float closeSpeed = 2f;
+    [SerializeField] private XRBaseInteractable recycable;
 
     private Vector3 closedPosition;
     private Vector3 openPosition;
@@ -18,6 +21,7 @@ public class GateController : MonoBehaviour
         //Store the gate's inital and open postions
         closedPosition = transform.position;
         openPosition = closedPosition + new Vector3(0, openHeight, 0);
+        recycable.interactionLayers = InteractionLayerMask.GetMask("Gate");
     }
 
     // Update is called once per frame
@@ -50,6 +54,7 @@ public class GateController : MonoBehaviour
     {
         isOpening = true;
         Debug.Log("Open Gate");
+        recycable.interactionLayers = InteractionLayerMask.GetMask("Recycable");
         isClosed = false; // Stop closing if it's already closing
     }
 
@@ -68,6 +73,7 @@ public class GateController : MonoBehaviour
     {
         isClosed = true;
         Debug.Log("Close Gate");
+        recycable.interactionLayers = InteractionLayerMask.GetMask("Gate");
         isOpening = false; // Stop opening if it's already opening
     }
 }
