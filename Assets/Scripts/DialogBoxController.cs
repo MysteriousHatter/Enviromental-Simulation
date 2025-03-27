@@ -24,6 +24,7 @@ public class DialogBoxController : MonoBehaviour
 
     private Transform cameraTransform;
     private string defaultLayerMask = "Default";
+    private string recycaleLayerMask = "Recycable";
     private string UILayerMask = "UI";
     private RecyclableType type;
 
@@ -168,6 +169,7 @@ public class DialogBoxController : MonoBehaviour
         ReadyToRecycle.transform.position = newPosition;
         InteractionLayerMask UIlayerMask = InteractionLayerMask.GetMask(UILayerMask);
         InteractionLayerMask defaultlayerMask = InteractionLayerMask.GetMask(defaultLayerMask);
+        InteractionLayerMask recycalelayerMask = InteractionLayerMask.GetMask(recycaleLayerMask);
 
         // Align the canvas to face the camera
         ReadyToRecycle.transform.rotation = Quaternion.LookRotation(ReadyToRecycle.transform.position - cameraTransform.position);
@@ -180,6 +182,9 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~defaultlayerMask;
+
+        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~recycalelayerMask;
+        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~recycalelayerMask;
         //raycaster.blockingMask = 1 << 5;
     }
 
@@ -190,9 +195,13 @@ public class DialogBoxController : MonoBehaviour
 
         InteractionLayerMask UIlayerMask = InteractionLayerMask.GetMask(UILayerMask);
         InteractionLayerMask defaultlayerMask = InteractionLayerMask.GetMask(defaultLayerMask);
+        InteractionLayerMask recycalelayerMask = InteractionLayerMask.GetMask(recycaleLayerMask);
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = defaultlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = defaultlayerMask;
+
+        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = recycalelayerMask;
+        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = recycalelayerMask;
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
@@ -262,7 +271,7 @@ public class DialogBoxController : MonoBehaviour
         bool condition = GameManager.Instance.CompleteGame();
         if (GameManager.Instance.gameIsWon)
         {
-            ReadyToRecycle.SetActive(false);
+           // ReadyToRecycle.SetActive(false);
             if (condition)
             {
                 WinUI.SetActive(true);
