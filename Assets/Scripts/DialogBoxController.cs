@@ -11,6 +11,9 @@ public class DialogBoxController : MonoBehaviour
 {
     [SerializeField] private GameObject ReadyToRecycle; // Assign your World Space Canvas here
     [SerializeField] private GameObject RecycleShopCanvas;
+    [SerializeField] private GameObject cameraInventory;
+    [SerializeField] private GameObject ShowPhotoUI;
+    [SerializeField] private GameObject cameraMode;
     [SerializeField] private GameObject timer;
     [SerializeField] private float distanceFromCamera = 2.0f; // Distance in meters
     [SerializeField] private float horizontalSpacing = 1.5f; // Space between canvases
@@ -33,6 +36,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private float proximityThreshold = 3.0f; // Distance threshold for being "near
 
     public ItemSlot[] itemSlot;
+    public ItemSlot[] photoSlot;
 
     TrackedDeviceGraphicRaycaster raycaster => GetComponentInChildren<TrackedDeviceGraphicRaycaster>();
     private bool isDialogVisible = true;
@@ -61,6 +65,8 @@ public class DialogBoxController : MonoBehaviour
         // Initially hide the dialog
         ReadyToRecycle.gameObject.SetActive(false);
         RecycleShopCanvas.gameObject.SetActive(false);
+        cameraMode.gameObject.SetActive(false);
+        cameraInventory.gameObject.SetActive(false);
         WinUI.gameObject.SetActive(false);
         LoseUI.gameObject.SetActive(false);
         isDialogVisible = false;
@@ -89,6 +95,12 @@ public class DialogBoxController : MonoBehaviour
         {
             EnableAllActionMaps();
         }
+
+        //REDO Will refactor later with with Inventory panel fro panel switching.
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            cameraInventory.SetActive(true);
+        }
     }
 
     private void PositionCanvas()
@@ -103,6 +115,16 @@ public class DialogBoxController : MonoBehaviour
         // Position Recycle Shop
         RecycleShopCanvas.transform.position = basePosition;
         RecycleShopCanvas.transform.rotation = Quaternion.LookRotation(RecycleShopCanvas.transform.position - cameraTransform.position);
+
+        cameraInventory.transform.position = basePosition;
+        cameraInventory.transform.rotation = Quaternion.LookRotation(cameraInventory.transform.position - cameraTransform.position);
+
+        //Postion Camera
+        cameraMode.transform.position = basePosition;
+        cameraMode.transform.rotation = Quaternion.LookRotation(cameraMode.transform.position - cameraTransform.position);
+
+        ShowPhotoUI.transform.position = basePosition;
+        ShowPhotoUI.transform.rotation = Quaternion.LookRotation(ShowPhotoUI.transform.position - cameraTransform.position);
 
         WinUI.transform.position = basePosition;
         WinUI.transform.rotation = Quaternion.LookRotation(WinUI.transform.position - cameraTransform.position);
