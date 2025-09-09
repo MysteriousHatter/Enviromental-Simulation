@@ -15,6 +15,12 @@ public class ItemSlot : MonoBehaviour
     public string itemDescription;
     public Sprite emptySprite;
 
+    //======PHOTO DATA====//
+    private AnimationClip SpeicesClip;
+    private int animalRarity;
+    public string animalTag;
+    private bool isPhoto;
+
     [SerializeField] private int maxNumberOfItems;
 
     //====ITEM SLOT======//
@@ -59,10 +65,34 @@ public class ItemSlot : MonoBehaviour
         //Update Quantity Text
         quantityText.text = this.quantity.ToString();
         quantityText.enabled = true;
+        this.isPhoto = false;
 
         return 0;
 
     }
+    public void AddPhotoItem(PhotoData data)
+    {
+        // Mark as filled
+        isFull = true;
+        quantity = 1;
+
+        // Display in UI
+        itemImage.sprite = data.photoTaken.sprite;
+        itemImage.enabled = true;
+        itemName = data.speciesName;
+
+        // Update description text if you’re showing hover/tooltip
+        this.itemDescription = data.Description;
+        this.itemDescriptionImage.sprite = data.photoTaken.sprite;
+
+        // Private values for Photos
+        this.animalRarity = data.rarityLevel;
+        this.animalTag = data.speicesTag;
+        this.SpeicesClip = data.animationClip;
+        this.isPhoto = true;
+
+    }
+
 
 
     public void OnItemClicked()
@@ -75,13 +105,13 @@ public class ItemSlot : MonoBehaviour
             thisItemSelected = true;
             ItemDescriptionNameText.text = itemName;
             ItemDescriptionText.text = itemDescription;
-            itemDescriptionImage.sprite = itemSprite;
+            itemDescriptionImage.sprite = (this.isPhoto)? itemImage.sprite : itemImage.sprite;
             if(itemDescriptionImage.sprite == null)
             {
                 itemDescriptionImage.sprite = emptySprite;
             }
         }
-        else if(thisItemSelected && this.quantity > 0)
+        else if((thisItemSelected && this.quantity > 0))
         {
             inventory.OnButtonPress(itemName);
             this.quantity -= 1;

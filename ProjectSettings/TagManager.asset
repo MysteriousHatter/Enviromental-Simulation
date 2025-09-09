@@ -16,6 +16,7 @@ TagManager:
   - Weapon
   - Obstacle
   - Ground
+  - Creature
   layers:
   - Default
   - TransparentFX

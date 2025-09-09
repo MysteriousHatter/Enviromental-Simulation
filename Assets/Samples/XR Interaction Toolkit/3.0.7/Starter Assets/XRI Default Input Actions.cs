@@ -3420,6 +3420,85 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""XRI Camera"",
+            ""id"": ""045a2005-0b0d-4ffc-9453-822cb1998783"",
+            ""actions"": [
+                {
+                    ""name"": ""Zoom In/Out"",
+                    ""type"": ""Value"",
+                    ""id"": ""3bcf1276-95aa-485b-aad4-cdd6dc70c608"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Photo Capture"",
+                    ""type"": ""Button"",
+                    ""id"": ""cce6b176-f6d8-4ac8-b1c8-e05822d32458"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a1f7f6d-de9a-46af-9618-fa428e0954a3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""bb621c31-6174-4572-8325-61c89a5dc619"",
+                    ""path"": ""<XRController>{LeftHand}/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom In/Out"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb761e22-b882-4e63-866d-d08c0f1ad4af"",
+                    ""path"": ""<XRController>{RightHand}/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom In/Out"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4e3899c-059f-4147-8216-b2ec6a2b8527"",
+                    ""path"": ""<XRController>{RightHand}/{SecondaryButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Photo Capture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89461a55-1aaf-4ff9-9bd8-6a8dad9b3a5b"",
+                    ""path"": ""<XRController>{RightHand}/{PrimaryButton}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -3533,6 +3612,11 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         m_TouchscreenGestures_TwistDeltaRotation = m_TouchscreenGestures.FindAction("Twist Delta Rotation", throwIfNotFound: true);
         m_TouchscreenGestures_ScreenTouchCount = m_TouchscreenGestures.FindAction("Screen Touch Count", throwIfNotFound: true);
         m_TouchscreenGestures_SpawnObject = m_TouchscreenGestures.FindAction("Spawn Object", throwIfNotFound: true);
+        // XRI Camera
+        m_XRICamera = asset.FindActionMap("XRI Camera", throwIfNotFound: true);
+        m_XRICamera_ZoomInOut = m_XRICamera.FindAction("Zoom In/Out", throwIfNotFound: true);
+        m_XRICamera_PhotoCapture = m_XRICamera.FindAction("Photo Capture", throwIfNotFound: true);
+        m_XRICamera_Quit = m_XRICamera.FindAction("Quit", throwIfNotFound: true);
     }
 
     ~@XRIDefaultInputActions()
@@ -3546,6 +3630,7 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         UnityEngine.Debug.Assert(!m_XRIRightLocomotion.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.XRIRightLocomotion.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_XRIUI.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.XRIUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_TouchscreenGestures.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.TouchscreenGestures.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_XRICamera.enabled, "This will cause a leak and performance issues, XRIDefaultInputActions.XRICamera.Disable() has not been called.");
     }
 
     /// <summary>
@@ -5383,11 +5468,68 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
     /// Provides a new <see cref="TouchscreenGesturesActions" /> instance referencing this action map.
     /// </summary>
     public TouchscreenGesturesActions @TouchscreenGestures => new TouchscreenGesturesActions(this);
-    /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "XRI Head" which allows adding and removing callbacks.
-    /// </summary>
-    /// <seealso cref="XRIHeadActions.AddCallbacks(IXRIHeadActions)" />
-    /// <seealso cref="XRIHeadActions.RemoveCallbacks(IXRIHeadActions)" />
+
+    // XRI Camera
+    private readonly InputActionMap m_XRICamera;
+    private List<IXRICameraActions> m_XRICameraActionsCallbackInterfaces = new List<IXRICameraActions>();
+    private readonly InputAction m_XRICamera_ZoomInOut;
+    private readonly InputAction m_XRICamera_PhotoCapture;
+    private readonly InputAction m_XRICamera_Quit;
+    public struct XRICameraActions
+    {
+        private @XRIDefaultInputActions m_Wrapper;
+        public XRICameraActions(@XRIDefaultInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ZoomInOut => m_Wrapper.m_XRICamera_ZoomInOut;
+        public InputAction @PhotoCapture => m_Wrapper.m_XRICamera_PhotoCapture;
+        public InputAction @Quit => m_Wrapper.m_XRICamera_Quit;
+        public InputActionMap Get() { return m_Wrapper.m_XRICamera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(XRICameraActions set) { return set.Get(); }
+        public void AddCallbacks(IXRICameraActions instance)
+        {
+            if (instance == null || m_Wrapper.m_XRICameraActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_XRICameraActionsCallbackInterfaces.Add(instance);
+            @ZoomInOut.started += instance.OnZoomInOut;
+            @ZoomInOut.performed += instance.OnZoomInOut;
+            @ZoomInOut.canceled += instance.OnZoomInOut;
+            @PhotoCapture.started += instance.OnPhotoCapture;
+            @PhotoCapture.performed += instance.OnPhotoCapture;
+            @PhotoCapture.canceled += instance.OnPhotoCapture;
+            @Quit.started += instance.OnQuit;
+            @Quit.performed += instance.OnQuit;
+            @Quit.canceled += instance.OnQuit;
+        }
+
+        private void UnregisterCallbacks(IXRICameraActions instance)
+        {
+            @ZoomInOut.started -= instance.OnZoomInOut;
+            @ZoomInOut.performed -= instance.OnZoomInOut;
+            @ZoomInOut.canceled -= instance.OnZoomInOut;
+            @PhotoCapture.started -= instance.OnPhotoCapture;
+            @PhotoCapture.performed -= instance.OnPhotoCapture;
+            @PhotoCapture.canceled -= instance.OnPhotoCapture;
+            @Quit.started -= instance.OnQuit;
+            @Quit.performed -= instance.OnQuit;
+            @Quit.canceled -= instance.OnQuit;
+        }
+
+        public void RemoveCallbacks(IXRICameraActions instance)
+        {
+            if (m_Wrapper.m_XRICameraActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IXRICameraActions instance)
+        {
+            foreach (var item in m_Wrapper.m_XRICameraActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_XRICameraActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public XRICameraActions @XRICamera => new XRICameraActions(this);
     public interface IXRIHeadActions
     {
         /// <summary>
@@ -6091,5 +6233,11 @@ public partial class @XRIDefaultInputActions: IInputActionCollection2, IDisposab
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSpawnObject(InputAction.CallbackContext context);
+    }
+    public interface IXRICameraActions
+    {
+        void OnZoomInOut(InputAction.CallbackContext context);
+        void OnPhotoCapture(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
 }

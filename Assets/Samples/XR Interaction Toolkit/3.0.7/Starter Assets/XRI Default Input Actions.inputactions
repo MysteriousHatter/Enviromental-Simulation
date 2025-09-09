@@ -3333,6 +3333,85 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "XRI Camera",
+            "id": "045a2005-0b0d-4ffc-9453-822cb1998783",
+            "actions": [
+                {
+                    "name": "Zoom In/Out",
+                    "type": "Value",
+                    "id": "3bcf1276-95aa-485b-aad4-cdd6dc70c608",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Photo Capture",
+                    "type": "Button",
+                    "id": "cce6b176-f6d8-4ac8-b1c8-e05822d32458",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "7a1f7f6d-de9a-46af-9618-fa428e0954a3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bb621c31-6174-4572-8325-61c89a5dc619",
+                    "path": "<XRController>{LeftHand}/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom In/Out",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb761e22-b882-4e63-866d-d08c0f1ad4af",
+                    "path": "<XRController>{RightHand}/{Primary2DAxis}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom In/Out",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4e3899c-059f-4147-8216-b2ec6a2b8527",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Photo Capture",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89461a55-1aaf-4ff9-9bd8-6a8dad9b3a5b",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

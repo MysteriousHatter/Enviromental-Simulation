@@ -4,9 +4,14 @@ using UnityEngine.UI;
 using TMPro;
 using static RecyclableItem;
 
+
+/// <summary>
+/// TODO: Find a way to have both item inventory and object inventory concide with eacth other and when to use, will come into play with crafting system.
+/// </summary>
 public class Inventory : MonoBehaviour
 {
     private Dictionary<RecyclableType, int> recyclables = new Dictionary<RecyclableType, int>();
+    private List<PhotoData> photos = new List<PhotoData>();
 
     [Header("Recyclable UI Buttons")]
     [SerializeField] private Button[] recyclableButtons; // Assign buttons in the Inspector'
@@ -48,6 +53,30 @@ public class Inventory : MonoBehaviour
             }
         }
         return amount;
+    }
+
+    public void AddPhoto(PhotoData photoData)
+    {
+        if(photoData == null)
+        {
+            Debug.LogWarning("Tried to add a null photo to inventory.");
+            return;
+        }
+        photos.Add(photoData);
+
+        for (int i = 0; i < dialogBoxController.photoSlot.Length; i++)
+        {
+            var slot = dialogBoxController.photoSlot[i];
+
+            if (!slot.isFull || slot.quantity == 0)
+            {
+                // Instead of RecyclableType, just set the slot directly
+                slot.AddPhotoItem(photoData);
+                Debug.Log($"Photo added to slot {i}: {photoData.speciesName}");
+                return;
+            }
+
+        }
     }
 
     public void DeselectAllSlots()
