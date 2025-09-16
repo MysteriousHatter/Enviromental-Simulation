@@ -12,6 +12,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private GameObject ReadyToRecycle; // Assign your World Space Canvas here
     [SerializeField] private GameObject RecycleShopCanvas;
     [SerializeField] private GameObject cameraInventory;
+    [SerializeField] private GameObject ToolWheel;
     [SerializeField] private GameObject ShowPhotoUI;
     [SerializeField] private GameObject cameraMode;
     [SerializeField] private GameObject timer;
@@ -69,6 +70,7 @@ public class DialogBoxController : MonoBehaviour
         cameraInventory.gameObject.SetActive(false);
         WinUI.gameObject.SetActive(false);
         LoseUI.gameObject.SetActive(false);
+        ToolWheel.gameObject.SetActive(false);
         isDialogVisible = false;
 
         InventoryButton.action.performed += OnToggleAction;
@@ -118,6 +120,9 @@ public class DialogBoxController : MonoBehaviour
 
         cameraInventory.transform.position = basePosition;
         cameraInventory.transform.rotation = Quaternion.LookRotation(cameraInventory.transform.position - cameraTransform.position);
+
+        ToolWheel.transform.position = basePosition;
+        ToolWheel.transform.rotation = Quaternion.LookRotation(ToolWheel.transform.position - cameraTransform.position);
 
         //Postion Camera
         cameraMode.transform.position = basePosition;
