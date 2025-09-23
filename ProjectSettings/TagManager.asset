@@ -17,6 +17,7 @@ TagManager:
   - Obstacle
   - Ground
   - Creature
+  - Grass
   layers:
   - Default
   - TransparentFX
@@ -26,9 +27,9 @@ TagManager:
   - UI
   - Weather
   - Gate
-  - 
-  - 
-  - 
+  - Tools
+  - Cuttable
+  - Seed Area
   - 
   - 
   - 
