@@ -39,6 +39,13 @@ namespace BioTools
         public UnityEvent OnNoAmmo;
         public UnityEvent OnNoEnergy;
 
+        [Header("Visual Pellets (optional)")]
+        [Tooltip("Instantiate a visual pellet every N logical seeds (1 = every seed). 0 disables visuals.")]
+        public int visualEveryN = 3;
+        [Tooltip("If the prefab has a Rigidbody, velocity = dir * projectileSpeed. Otherwise we move it via script.")]
+        public bool useProjectileSpeed = true;
+
+
         // internal
         private bool _inWindZone;
         private SeedDefinition ActiveSeed => CurrentAmmo as SeedDefinition;
@@ -87,6 +94,7 @@ namespace BioTools
         private void FireGust(float charge01)
         {
             var seed = ActiveSeed;
+            Debug.Log("IS seed null " + seed);
             if (seed == null) return;
 
             // Energy gate
@@ -143,47 +151,30 @@ namespace BioTools
                 Vector3 dir = RandomCone(forward, seedCone);
                 float range = Random.Range(seed.minRange, maxRange);
 
-                if (Physics.Raycast(origin, dir, out var hit, range, seedHitLayers, QueryTriggerInteraction.Ignore))
+                // --- add this (visual pellet spawn) ---
+                if (seed.pelletPrefab && visualEveryN > 0 && (i % visualEveryN) == 0)
                 {
-                    ApplySeedAt(hit.point, perSeedFertilize, seed);
-                }
-                else
-                {
-                    // Let seeds "fall" if they didn't hit along the path
-                    Vector3 end = origin + dir * range;
-                    if (Physics.Raycast(end + Vector3.up * 1.5f, Vector3.down, out var ground, 3f, seedHitLayers, QueryTriggerInteraction.Ignore))
+                    Vector3 spawnPos = tip ? tip.position : (Muzzle ? Muzzle.position : transform.position);
+                    Quaternion rot = Quaternion.LookRotation(dir, Vector3.up);
+
+                    var go = Instantiate(seed.pelletPrefab, spawnPos, rot);
+                    Debug.Log("Instantiate seed");
+                    // push it forward if the prefab has a Rigidbody
+                    if (go.TryGetComponent<Rigidbody>(out var rb))
                     {
-                        ApplySeedAt(ground.point, perSeedFertilize, seed);
+                        float speed = (Definition.output.projectileSpeed > 0f)
+                                      ? Definition.output.projectileSpeed
+                                      : Mathf.Max(6f, range / 0.4f);   // simple fallback
+                        rb.linearVelocity = dir * speed;
                     }
+
+                    // optional: auto-destroy after a few seconds if your prefab doesn't handle it
+                    Destroy(go, 4f);
                 }
             }
 
             OnGust?.Invoke();
             OnFireEvent?.Invoke();
-        }
-
-        private void ApplySeedAt(Vector3 pos, float fertilize, SeedDefinition seed)
-        {
-            // Direct impact on nearest IEcoTarget near landing
-            Collider[] hits = Physics.OverlapSphere(pos, perSeedDriftRadius, seedHitLayers, QueryTriggerInteraction.Collide);
-            for (int i = 0; i < hits.Length; i++)
-            {
-                var t = hits[i].GetComponentInParent<IEcoTarget>();
-                if (t == null) continue;
-
-                t.ApplyEcoEffect(new EcoImpact
-                {
-                    substrateTags = seed.preferredSubstrates,
-                    pollutantTags = seed.pollutantAffinity,
-                    fertilizeAmount = fertilize,
-                    hitPosition = pos
-                });
-                break;
-            }
-
-            // Optional: cheap extra area influence
-            if (Definition.output.aoeRadius > 0f)
-                ApplyEcoEffectSphere(pos, Definition.output.aoeRadius, 1f);
         }
 
         private static Vector3 RandomCone(Vector3 forward, float degrees)

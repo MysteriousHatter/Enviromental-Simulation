@@ -71,7 +71,7 @@ namespace BioTools
         protected virtual void InitializeFromDefinition()
         {
             if (Definition == null) return;
-            currentAmmo = Definition.resources.defaultAmmo;
+            //currentAmmo = Definition.resources.defaultAmmo;
             currentMagazine = Mathf.Max(0, Definition.resources.magazine);
             currentReserve = Mathf.Max(0, Definition.resources.reserve);
             currentHeat = 0f;

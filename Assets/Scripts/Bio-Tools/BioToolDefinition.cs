@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 public enum ToolArchetype { Cutter, Spreader, Purifier, Scanner }
-public enum Substrate { Air, Water, Soil, Plant, Seed }
+public enum Substrate { Air, Water, Soil, Plant, Seed, Oil, Silt, Microplastics }
 public enum UseMode { Semi, Auto, Burst, Charge, Channel, Beam, Thrown }
 
 [System.Serializable]
