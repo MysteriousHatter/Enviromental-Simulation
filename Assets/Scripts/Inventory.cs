@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using static RecyclableItem;
+using System;
 
 
 /// <summary>
@@ -19,6 +20,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] private DialogBoxController dialogBoxController;
     [SerializeField] private RecyclableSpawner recyclableSpawner;
 
+    [Header("Crafting Inventory")]
+    public InventorySlot[] inventorySlots;
+    public GameObject itemPrefab;
+
     void Start()
     {
         // Initialize the dictionary with recyclable types
@@ -26,11 +31,13 @@ public class Inventory : MonoBehaviour
         {
             recyclables[type] = 0;
         }
+
     }
     private void Update()
     {
         UpdateRecyclableButtons();
     }
+    
     // Add recyclables to the inventory
     public int AddRecyclable(RecyclableType type, int amount, Sprite itemSprite, string description)
     {
@@ -104,19 +111,19 @@ public class Inventory : MonoBehaviour
             TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
             if (buttonText == null)
             {
-                Debug.LogWarning($"Button {button.name} is missing a Text component.");
+                //Debug.LogWarning($"Button {button.name} is missing a Text component.");
                 continue;
             }
-            Debug.Log($"The button's name {button.name}");
+            //Debug.Log($"The button's name {button.name}");
 
             // Match button name with recyclable type
             foreach (RecyclableType type in System.Enum.GetValues(typeof(RecyclableType)))
             {
-                Debug.Log("What the dictionary says: " + type.ToString());
+                //Debug.Log("What the dictionary says: " + type.ToString());
                 if (button.name == type.ToString())
                 {
                     buttonText.text = $"{type}: {recyclables[type]}";
-                    Debug.Log($"Updated Button {button.name} with {type}: {recyclables[type]}");
+                    //Debug.Log($"Updated Button {button.name} with {type}: {recyclables[type]}");
 
                     break;
                 }
@@ -176,4 +183,31 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    //Crafting Inventory----------
+
+    //Adding an item to the crafting inventory
+    // -The method is a bool so that if the inventory is full then an item will not get picked up
+    public bool AddItem(RecyclableItem item, InventorySlot inventory)
+    {
+        //find an empty spot
+        for(int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            ItemSlot itemInSlot = slot.GetComponentInChildren<ItemSlot>();
+            if (itemInSlot == null)
+            {
+                SpawnNewItem(item, inventory);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void SpawnNewItem(RecyclableItem item, InventorySlot slot)
+    {
+        GameObject newItemGO = Instantiate(itemPrefab, slot.transform);
+        ItemSlot itemSlot = newItemGO.GetComponent<ItemSlot>();
+        itemSlot.AddItem(item.type, item.amount, item.sprite, item.ItemDescription);
+    }
 }

@@ -37,6 +37,9 @@ public class DialogBoxController : MonoBehaviour
 
     public ItemSlot[] itemSlot;
     public ItemSlot[] photoSlot;
+    public ItemSlot[] craftingGrid;
+
+    private Inventory inventory;
 
     TrackedDeviceGraphicRaycaster raycaster => GetComponentInChildren<TrackedDeviceGraphicRaycaster>();
     private bool isDialogVisible = true;
@@ -54,8 +57,7 @@ public class DialogBoxController : MonoBehaviour
 
     private void Awake()
     {
-
-
+        inventory = new Inventory();
     }
     void Start()
     {
@@ -168,10 +170,10 @@ public class DialogBoxController : MonoBehaviour
             foreach (var actionMap in asset.actionMaps)
             {
                 actionMap.Enable();
-                Debug.Log($"Enabled Action Map: {actionMap.name}");
+                //Debug.Log($"Enabled Action Map: {actionMap.name}");
             }
         }
-        Debug.Log("All action maps have been enabled.");
+        //Debug.Log("All action maps have been enabled.");
     }
 
     private bool IsActionMapAllowed(string actionMapName)

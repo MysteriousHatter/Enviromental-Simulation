@@ -3,9 +3,19 @@ using UnityEngine;
 [System.Serializable]
 public class RecyclableItem
 {
-    public enum RecyclableType { Paper, Battery, Glass, Plastic, LithiumBattery }
+    public enum RecyclableType 
+    { 
+        Paper, 
+        Battery, 
+        Glass, 
+        Plastic, 
+        LithiumBattery,
+        Placeholder
+    }
+
     public RecyclableType type;
+    public int amount;
     public GameObject prefab;
-    [TextArea]public string ItemDescription;
+    public string ItemDescription;
     public Sprite sprite;
 }

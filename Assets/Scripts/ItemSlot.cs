@@ -45,9 +45,12 @@ public class ItemSlot : MonoBehaviour
         this.itemSprite = itemSprite;
         this.itemName = type.ToString();
 
+        if (this.itemName == "empty")
+            itemName = "";
+
         this.itemDescription = description;
 
-        itemImage.sprite = itemSprite;
+        itemImage.sprite = this.itemSprite;
 
         this.quantity += amount;
         if(this.quantity >= maxNumberOfItems)
@@ -114,12 +117,12 @@ public class ItemSlot : MonoBehaviour
         else if((thisItemSelected && this.quantity > 0))
         {
             inventory.OnButtonPress(itemName);
-            this.quantity -= 1;
+            /*this.quantity -= 1;
             quantityText.text = this.quantity.ToString();  
             if(this.quantity <= 0)
             {
                 EmptySlot();
-            }
+            }*/
         }
         else
         {

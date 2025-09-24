@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] RecyclableSpawner spawner;
     void Awake()
     {
+
         // Singleton Pattern: Ensure only one GameManager exists
         if (Instance == null)
         {
