@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f994d57930a7e4bae025917bb273c7, type: 3}
+  m_Name: "Tropical House \u2013 Purifier Seed (Main)"
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectiveDefinition
+  id: MAIN_Tropical
+  title: "Tropical House \u2013 Purifier Seed (Main)"
+  description: "Scan reed + frog \u2192 craft Reed Frog Purifier \u2192 clear fire"
+  restorationPercent: 12
+  prerequisites:
+  - {fileID: 11400000, guid: e296c71f8a40c1f469e6dc6980a43056, type: 2}
+  steps:
+  - label: Take Photos of a reed and a frog
+    conditionProviders: []
+  - label: Create Reed Frog Purifier
+    conditionProviders: []
+  - label: Find some water to put out the fire
+    conditionProviders: []
+  - label: Use purified water to extinguish the fire before it regenerates.
+    conditionProviders: []

@@ -9,8 +9,8 @@ using static RecyclableItem;
 
 public class DialogBoxController : MonoBehaviour
 {
-    [SerializeField] private GameObject ReadyToRecycle; // Assign your World Space Canvas here
-    [SerializeField] private GameObject RecycleShopCanvas;
+    [SerializeField] private GameObject PlayerLogUI; // Assign your World Space Canvas here
+    [SerializeField] private GameObject InventoryMenuUI;
     [SerializeField] private GameObject cameraInventory;
     [SerializeField] private GameObject ToolWheel;
     [SerializeField] private GameObject ShowPhotoUI;
@@ -33,7 +33,7 @@ public class DialogBoxController : MonoBehaviour
     private RecyclableType type;
 
     [SerializeField] private Transform player;
-    [SerializeField] private Transform recycleShop; // Assign the item's Transform
+    [SerializeField] private Transform RecycleShopTransform; // Assign the item's Transform
     [SerializeField] private float proximityThreshold = 3.0f; // Distance threshold for being "near
 
     public ItemSlot[] itemSlot;
@@ -41,7 +41,8 @@ public class DialogBoxController : MonoBehaviour
 
     TrackedDeviceGraphicRaycaster raycaster => GetComponentInChildren<TrackedDeviceGraphicRaycaster>();
     private bool isDialogVisible = true;
-    private bool isRecycleShopOpen = false; // Tracks if Recycle Shop UI is active
+    private bool isInventoryMenuOpen = false; // Tracks if Recycle Shop UI is active
+    private bool isPhotoAlbumOpen = false;
     private readonly string[] allowedActionMaps =
     {
         "XRI Head",
@@ -64,8 +65,8 @@ public class DialogBoxController : MonoBehaviour
         cameraTransform = Camera.main.transform;
 
         // Initially hide the dialog
-        ReadyToRecycle.gameObject.SetActive(false);
-        RecycleShopCanvas.gameObject.SetActive(false);
+        PlayerLogUI.gameObject.SetActive(false);
+        InventoryMenuUI.gameObject.SetActive(false);
         cameraMode.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(false);
         WinUI.gameObject.SetActive(false);
@@ -111,12 +112,12 @@ public class DialogBoxController : MonoBehaviour
         Vector3 basePosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
 
         // Position Ready to Recycle
-        ReadyToRecycle.transform.position = basePosition;
-        ReadyToRecycle.transform.rotation = Quaternion.LookRotation(ReadyToRecycle.transform.position - cameraTransform.position);
+        PlayerLogUI.transform.position = basePosition;
+        PlayerLogUI.transform.rotation = Quaternion.LookRotation(PlayerLogUI.transform.position - cameraTransform.position);
 
         // Position Recycle Shop
-        RecycleShopCanvas.transform.position = basePosition;
-        RecycleShopCanvas.transform.rotation = Quaternion.LookRotation(RecycleShopCanvas.transform.position - cameraTransform.position);
+        InventoryMenuUI.transform.position = basePosition;
+        InventoryMenuUI.transform.rotation = Quaternion.LookRotation(InventoryMenuUI.transform.position - cameraTransform.position);
 
         cameraInventory.transform.position = basePosition;
         cameraInventory.transform.rotation = Quaternion.LookRotation(cameraInventory.transform.position - cameraTransform.position);
@@ -143,7 +144,7 @@ public class DialogBoxController : MonoBehaviour
 
     public bool IsPlayerNear()
     {
-        float distance = Vector3.Distance(player.position, recycleShop.position);
+        float distance = Vector3.Distance(player.position, RecycleShopTransform.position);
         return distance <= proximityThreshold;
     }
 
@@ -193,16 +194,16 @@ public class DialogBoxController : MonoBehaviour
     {
         // Position the canvas in front of the camera
         Vector3 newPosition = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
-        ReadyToRecycle.transform.position = newPosition;
+        PlayerLogUI.transform.position = newPosition;
         InteractionLayerMask UIlayerMask = InteractionLayerMask.GetMask(UILayerMask);
         InteractionLayerMask defaultlayerMask = InteractionLayerMask.GetMask(defaultLayerMask);
         InteractionLayerMask recycalelayerMask = InteractionLayerMask.GetMask(recycaleLayerMask);
 
         // Align the canvas to face the camera
-        ReadyToRecycle.transform.rotation = Quaternion.LookRotation(ReadyToRecycle.transform.position - cameraTransform.position);
+        PlayerLogUI.transform.rotation = Quaternion.LookRotation(PlayerLogUI.transform.position - cameraTransform.position);
 
         // Show the dialog
-        ReadyToRecycle.gameObject.SetActive(true);
+        PlayerLogUI.gameObject.SetActive(true);
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = UIlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = UIlayerMask;
@@ -218,7 +219,7 @@ public class DialogBoxController : MonoBehaviour
     public void HideDialog()
     {
         // Hide the dialog
-        ReadyToRecycle.gameObject.SetActive(false);
+        PlayerLogUI.gameObject.SetActive(false);
 
         InteractionLayerMask UIlayerMask = InteractionLayerMask.GetMask(UILayerMask);
         InteractionLayerMask defaultlayerMask = InteractionLayerMask.GetMask(defaultLayerMask);
@@ -241,54 +242,46 @@ public class DialogBoxController : MonoBehaviour
     /// </summary>
     private void OnToggleAction(InputAction.CallbackContext context)
     {
-        bool isNear = IsPlayerNear();
-
-        if (isRecycleShopOpen)
+        if (isInventoryMenuOpen || isPhotoAlbumOpen)
         {
             // If Recycle Shop is open, close it and return to Ready to Recycle
-            CloseRecycleShop();
+            CloseInventoryMenu();
         }
         else if (isDialogVisible)
         {
             // If Ready to Recycle is open, close it
-            CloseReadyToRecycle();
+            ClosePlayerLog();
         }
-        else if (!GameManager.Instance.gameIsWon && isNear)
+        else if (!GameManager.Instance.gameIsWon)
         {
             // If no menus are open, open Ready to Recycle
-            OpenReadyToRecycle();
+            OpenPlayerLog();
         }
 
-        Debug.Log($"Toggle Action: isRecycleShopOpen={isRecycleShopOpen}, isDialogVisible={isDialogVisible}");
+        Debug.Log($"Toggle Action: isRecycleShopOpen={isInventoryMenuOpen}, isDialogVisible={isDialogVisible}");
     }
 
     /// <summary>
     /// Open the Recycle Shop UI and disable the Ready to Recycle UI
     /// </summary>
-    public void OpenRecycleShop(string material)
+    public void OpenInventoryMenu()
     {
-
-        // Attempt to parse the material into a valid RecyclableType
-        if (System.Enum.TryParse(material, out RecyclableType recyclableType))
-        {
-            // Update the current type based on the parsed recyclableType
-            type = recyclableType;
-            recyclableSpawner.currentRecyclableType = recyclableType; // Update the spawner's current type
-
-            // Activate UI components
-            ReadyToRecycle.gameObject.SetActive(false);
-            RecycleShopCanvas.gameObject.SetActive(true);
-            isRecycleShopOpen = true;
+            PlayerLogUI.gameObject.SetActive(false);
+            cameraInventory.gameObject.SetActive(false);
+            InventoryMenuUI.gameObject.SetActive(true);
+            isInventoryMenuOpen = true;
+            isPhotoAlbumOpen = false;
             isDialogVisible = true;
+    }
 
-            Debug.Log("Recycle Shop Opened");
-            Debug.Log($"Current recyclable set to: {type}");
-        }
-        else
-        {
-            // Log an error if the material is invalid
-            Debug.LogError($"Invalid recyclable type: {material}");
-        }
+    public void OpenPhotoAlbum()
+    {
+        PlayerLogUI.gameObject.SetActive(false);
+        InventoryMenuUI.gameObject.SetActive(false);
+        cameraInventory.gameObject.SetActive(true);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = true;
+        isDialogVisible = true;
     }
 
     public void CheckGameIsComplete()
@@ -323,23 +316,36 @@ public class DialogBoxController : MonoBehaviour
     /// <summary>
     /// Close Recycle Shop UI and return to Ready to Recycle UI
     /// </summary>
-    private void CloseRecycleShop()
+    private void CloseInventoryMenu()
     {
-        RecycleShopCanvas.gameObject.SetActive(false);
-        ReadyToRecycle.gameObject.SetActive(true);
-        isRecycleShopOpen = false;
+        InventoryMenuUI.gameObject.SetActive(false);
+        PlayerLogUI.gameObject.SetActive(true);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
         isDialogVisible = true;
         Debug.Log("Recycle Shop Closed, Back to Ready to Recycle");
+    }
+
+    private void ClosePhotoAlbum()
+    {
+        PlayerLogUI.gameObject.SetActive(true);
+        InventoryMenuUI.gameObject.SetActive(false);
+        cameraInventory.gameObject .SetActive(false);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
+        isDialogVisible = true;
     }
 
     /// <summary>
     /// Open the Ready to Recycle UI
     /// </summary>
-    private void OpenReadyToRecycle()
+    private void OpenPlayerLog()
     {
-        ReadyToRecycle.gameObject.SetActive(true);
-        RecycleShopCanvas.gameObject.SetActive(false);
-        isRecycleShopOpen = false;
+        PlayerLogUI.gameObject.SetActive(true);
+        InventoryMenuUI.gameObject.SetActive(false);
+        cameraInventory.gameObject.SetActive(false);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
         isDialogVisible = true;
         ShowDialog();
         Debug.Log("Ready to Recycle UI Opened");
@@ -348,9 +354,9 @@ public class DialogBoxController : MonoBehaviour
     /// <summary>
     /// Close the Ready to Recycle UI
     /// </summary>
-    private void CloseReadyToRecycle()
+    public void ClosePlayerLog()
     {
-        ReadyToRecycle.gameObject.SetActive(false);
+        PlayerLogUI.gameObject.SetActive(false);
         isDialogVisible = false;
         HideDialog();
         Debug.Log("Ready to Recycle UI Closed");
