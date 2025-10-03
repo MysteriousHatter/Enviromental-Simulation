@@ -12,12 +12,16 @@ public class Inventory : MonoBehaviour
 {
     private Dictionary<RecyclableType, int> recyclables = new Dictionary<RecyclableType, int>();
     private List<PhotoData> photos = new List<PhotoData>();
+    [SerializeField] private QuestSystem system;
 
     [Header("Recyclable UI Buttons")]
     [SerializeField] private Button[] recyclableButtons; // Assign buttons in the Inspector'
     [HideInInspector] public string currentRecycable = "";
     [SerializeField] private DialogBoxController dialogBoxController;
     [SerializeField] private RecyclableSpawner recyclableSpawner;
+
+
+
 
     void Start()
     {
@@ -32,7 +36,7 @@ public class Inventory : MonoBehaviour
         UpdateRecyclableButtons();
     }
     // Add recyclables to the inventory
-    public int AddRecyclable(RecyclableType type, int amount, Sprite itemSprite, string description)
+    public int AddRecyclable(RecyclableType type, int amount, Sprite itemSprite, string description, int ObjectiveNum = 0)
     {
         if (recyclables.ContainsKey(type))
         {
@@ -41,12 +45,12 @@ public class Inventory : MonoBehaviour
                 if(dialogBoxController.itemSlot[i].isFull == false && dialogBoxController.itemSlot[i].itemName == type.ToString() || dialogBoxController.itemSlot[i].quantity == 0)
                 {
                     Debug.Log("We are full and our name mathces the slot Orr our quanity equals zero");
-                    int leftOverItems = dialogBoxController.itemSlot[i].AddItem(type, amount, itemSprite, description);
+                    int leftOverItems = dialogBoxController.itemSlot[i].AddItem(type, amount, itemSprite, description, ObjectiveNum);
                     recyclables[type] += amount;
                     Debug.Log("Our left over items " + leftOverItems);
                     if (leftOverItems > 0)
                     {
-                        leftOverItems = AddRecyclable(type, leftOverItems, itemSprite, description);
+                        leftOverItems = AddRecyclable(type, leftOverItems, itemSprite, description, ObjectiveNum);
                     }
                     return leftOverItems;
                 }
@@ -124,7 +128,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void OnButtonPress(string material)
+    public void OnButtonPress(string material, int currentObjectiveIndex = 0)
     {
         Inventory inventory = FindAnyObjectByType<Inventory>();
         recyclableSpawner.placeholderRecyacableCount--;
@@ -147,6 +151,11 @@ public class Inventory : MonoBehaviour
                 {
                     Debug.Log($"Item {type} not available in inventory.");
                 }
+            }
+            else if(type == RecyclableType.Seed)
+            {
+                Debug.Log("Complete objective");
+               system.CompleteObjective(currentObjectiveIndex);
             }
             else
             {

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Centrixe</author>
+      <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.6;  Revision: 68</authoring_tool>
+    </contributor>
+    <created>2020-06-04T10:56:23</created>
+    <modified>2020-06-04T10:56:23</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="mClover">
+      <profile_COMMON>
+        <newparam sid="mClover_Alb_png-surface">
+          <surface type="2D">
+            <init_from>mClover_Alb_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="mClover_Alb_png-sampler">
+          <sampler2D>
+            <source>mClover_Alb_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <newparam sid="mClover_Nrm_png-surface">
+          <surface type="2D">
+            <init_from>mClover_Nrm_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="mClover_Nrm_png-sampler">
+          <sampler2D>
+            <source>mClover_Nrm_png-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="mClover_Alb_png-sampler" texcoord="CHANNEL1"/>
+            </diffuse>
+            <specular>
+              <color>0 0 0 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <transparent opaque="A_ONE">
+              <texture texture="mClover_Alb_png-sampler" texcoord="CHANNEL1"/>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+          <extra>
+            <technique profile="OpenCOLLADA3dsMax">
+              <bump bumptype="HEIGHTFIELD">
+                <texture texture="mClover_Nrm_png-sampler" texcoord="CHANNEL1"/>
+              </bump>
+            </technique>
+          </extra>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="OpenCOLLADA3dsMax">
+          <extended_shader>
+            <opacity_type sid="opacity_type" type="int">0</opacity_type>
+            <falloff_type sid="falloff_type" type="int">0</falloff_type>
+            <falloff sid="falloff" type="float">0</falloff>
+            <index_of_refraction sid="index_of_refraction" type="float">1.5</index_of_refraction>
+            <wire_size sid="wire_size" type="float">1</wire_size>
+            <wire_units sid="wire_units" type="int">0</wire_units>
+            <apply_reflection_dimming sid="apply_reflection_dimming" type="bool">0</apply_reflection_dimming>
+            <dim_level sid="dim_level" type="float">0</dim_level>
+            <reflection_level sid="reflection_level" type="float">3</reflection_level>
+          </extended_shader>
+          <shader>
+            <ambient_diffuse_texture_lock sid="ambient_diffuse_texture_lock" type="bool">1</ambient_diffuse_texture_lock>
+            <ambient_diffuse_lock sid="ambient_diffuse_lock" type="bool">1</ambient_diffuse_lock>
+            <diffuse_specular_lock sid="diffuse_specular_lock" type="bool">0</diffuse_specular_lock>
+            <use_self_illum_color sid="use_self_illum_color" type="bool">0</use_self_illum_color>
+            <self_illumination sid="self_illumination" type="float">0</self_illumination>
+            <specular_level sid="specular_level" type="float">0</specular_level>
+            <soften sid="soften" type="float">0.1</soften>
+          </shader>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="mClover-material" name="mClover">
+      <instance_effect url="#mClover"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="geom-pCylinder8__mClover" name="pCylinder8__mClover">
+      <mesh>
+        <source id="geom-pCylinder8__mClover-positions">
+          <float_array id="geom-pCylinder8__mClover-positions-array" count="78">0.03249145 -2.372028 0.4124999 0.1557709 -2.832112 0.4124999 1.536023 -3.201951 0.4124999 0.9196281 -0.9015285 0.4125 -0.0907886 -1.911943 0.4124999 2.916276 -3.571786 0.4124999 3.25308 -3.234982 0.4124999 1.891899 -1.873801 0 3.589885 -2.898178 0.4124999 3.220047 -1.517925 0.4124999 2.390125 -0.01439464 0.4125 1.930041 0.1088848 0.4125 2.850211 -0.1376728 0.4125 -0.542918 1.980493 0.3375 -0.5089526 2.368721 0.3375001 -1.466651 3.039305 0.3375001 -1.636479 1.098167 0.3375 -0.5768838 1.592264 0.3375 -2.42435 3.709896 0.3374999 -2.777549 3.545195 0.3375001 -2.111925 2.117762 0 -3.130748 3.380497 0.3375001 -3.232644 2.215811 0.3375001 -3.015307 0.8275983 0.3375 -2.696075 0.6040695 0.3375 -3.334539 1.051127 0.3375</float_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-positions-array" count="26" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-pCylinder8__mClover-normals">
+          <float_array id="geom-pCylinder8__mClover-normals-array" count="78">0.1623424 0.04303431 0.9857957 0.1154972 0.2094716 0.9709696 0.06065386 0.2250201 0.9724644 0.1643835 -0.1643954 0.9726008 0.2036474 -0.1233573 0.9712418 0.003910043 0.2388464 0.9710495 -0.1193039 0.1193039 0.9856638 0 0 1 -0.2388464 -0.003910043 0.9710495 -0.2250175 -0.06065316 0.9724652 -0.04303457 -0.1623423 0.9857957 0.1233576 -0.203648 0.9712416 -0.2094746 -0.1154989 0.9709688 -0.1681848 0.01367318 0.9856607 -0.1801281 -0.1566197 0.9710944 -0.1330974 -0.189853 0.9727492 -0.09788184 0.2094607 0.9729056 -0.1507286 0.1859669 0.970926 -0.08613936 -0.2231565 0.9709691 0.0704062 -0.1525666 0.9857822 0 0 1 0.2251664 -0.07832185 0.9711671 0.2309604 -0.01957454 0.9727662 0.09584426 0.1369357 0.9859323 -0.04501325 0.2349129 0.9709736 0.2368438 0.03719311 0.9708356</float_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-normals-array" count="26" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-pCylinder8__mClover-map-2">
+          <float_array id="geom-pCylinder8__mClover-map-2-array" count="78">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-map-2-array" count="26" stride="3">
+              <param name="R" type="float"/>
+              <param name="G" type="float"/>
+              <param name="B" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-pCylinder8__mClover-map0">
+          <float_array id="geom-pCylinder8__mClover-map0-array" count="78">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-map0-array" count="26" stride="3">
+              <param name="R" type="float"/>
+              <param name="G" type="float"/>
+              <param name="B" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-pCylinder8__mClover-map1">
+          <float_array id="geom-pCylinder8__mClover-map1-array" count="78">0.01574803 0.1574803 0 0.04724409 0.03937006 0 0.2519685 0.03937006 0 0.07874016 0.6220472 0 -0.01574803 0.2755905 0 0.4566929 0.03937006 0 0.488189 0.1574803 0 0.2519685 0.4330709 0 0.519685 0.2755905 0 0.4173228 0.6220472 0 0.2519685 0.976378 0 0.1811024 0.976378 0 0.3149606 0.976378 0 0.01574803 0.1574803 0 0.04724409 0.03937006 0 0.2519685 0.03937006 0 0.07874016 0.6220472 0 -0.01574803 0.2755905 0 0.4566929 0.03937006 0 0.488189 0.1574803 0 0.2519685 0.4330709 0 0.519685 0.2755905 0 0.4173228 0.6220472 0 0.2519685 0.976378 0 0.1811024 0.976378 0 0.3149606 0.976378 0</float_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-map1-array" count="26" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-pCylinder8__mClover-vertices">
+          <input semantic="POSITION" source="#geom-pCylinder8__mClover-positions"/>
+        </vertices>
+        <triangles material="mClover" count="24">
+          <input semantic="VERTEX" source="#geom-pCylinder8__mClover-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-pCylinder8__mClover-normals" offset="1"/>
+          <input semantic="COLOR" source="#geom-pCylinder8__mClover-map0" offset="2" set="0"/>
+          <input semantic="TEXCOORD" source="#geom-pCylinder8__mClover-map1" offset="3" set="0"/>
+          <p>0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 0 0 0 0 2 2 2 2 5 5 5 5 6 6 6 6 7 7 7 7 0 0 0 0 2 2 2 2 7 7 7 7 2 2 2 2 6 6 6 6 7 7 7 7 3 3 3 3 0 0 0 0 6 6 6 6 8 8 8 8 9 9 9 9 7 7 7 7 6 6 6 6 9 9 9 9 7 7 7 7 10 10 10 10 3 3 3 3 7 7 7 7 9 9 9 9 10 10 10 10 10 10 10 10 11 11 11 11 3 3 3 3 9 9 9 9 12 12 12 12 10 10 10 10 13 13 13 13 14 14 14 14 15 15 15 15 16 16 16 16 17 17 17 17 13 13 13 13 15 15 15 15 18 18 18 18 19 19 19 19 20 20 20 20 13 13 13 13 15 15 15 15 20 20 20 20 15 15 15 15 19 19 19 19 20 20 20 20 16 16 16 16 13 13 13 13 19 19 19 19 21 21 21 21 22 22 22 22 20 20 20 20 19 19 19 19 22 22 22 22 20 20 20 20 23 23 23 23 16 16 16 16 20 20 20 20 22 22 22 22 23 23 23 23 23 23 23 23 24 24 24 24 16 16 16 16 22 22 22 22 25 25 25 25 23 23 23 23</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers>
+    <controller id="geom-pCylinder8__mClover-skin1">
+      <skin source="#geom-pCylinder8__mClover">
+        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <source id="geom-pCylinder8__mClover-skin1-joints">
+          <Name_array id="geom-pCylinder8__mClover-skin1-joints-array" count="1">joint0</Name_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-skin1-joints-array" count="1" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-pCylinder8__mClover-skin1-bind_poses">
+          <float_array id="geom-pCylinder8__mClover-skin1-bind_poses-array" count="16">1 0 0 0 0 0 1 0 0 -1 0 0 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-skin1-bind_poses-array" count="1" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-pCylinder8__mClover-skin1-weights">
+          <float_array id="geom-pCylinder8__mClover-skin1-weights-array" count="1">1</float_array>
+          <technique_common>
+            <accessor source="#geom-pCylinder8__mClover-skin1-weights-array" count="1" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#geom-pCylinder8__mClover-skin1-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#geom-pCylinder8__mClover-skin1-bind_poses"/>
+        </joints>
+        <vertex_weights count="26">
+          <input semantic="JOINT" source="#geom-pCylinder8__mClover-skin1-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#geom-pCylinder8__mClover-skin1-weights" offset="1"/>
+          <vcount>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</vcount>
+          <v>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_lights>
+    <light id="EnvironmentAmbientLight" name="EnvironmentAmbientLight">
+      <technique_common>
+        <ambient>
+          <color>0 0 0</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_images>
+    <image id="mClover_Alb_png">
+      <init_from>./mClover_Alb.png</init_from>
+    </image>
+    <image id="mClover_Nrm_png">
+      <init_from>./mClover_Nrm.png</init_from>
+    </image>
+  </library_images>
+  <library_visual_scenes>
+    <visual_scene id="MaxScene">
+      <node name="EnvironmentAmbientLight">
+        <instance_light url="#EnvironmentAmbientLight"/>
+      </node>
+      <node id="node-Root" name="Root" sid="joint0" type="JOINT">
+        <rotate>-1 0 0 -90</rotate>
+        <extra>
+          <technique profile="OpenCOLLADA">
+            <cast_shadows sid="cast_shadows" type="bool">1</cast_shadows>
+            <receive_shadows sid="receive_shadows" type="bool">1</receive_shadows>
+            <primary_visibility sid="primary_visibility" type="bool">1</primary_visibility>
+            <secondary_visibility sid="secondary_visibility" type="bool">1</secondary_visibility>
+          </technique>
+        </extra>
+      </node>
+      <node id="node-pCylinder8__mClover" name="pCylinder8__mClover">
+        <instance_controller url="#geom-pCylinder8__mClover-skin1">
+          <skeleton>#node-Root</skeleton>
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="mClover" target="#mClover-material">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_controller>
+        <extra>
+          <technique profile="OpenCOLLADA">
+            <cast_shadows sid="cast_shadows" type="bool">1</cast_shadows>
+            <receive_shadows sid="receive_shadows" type="bool">1</receive_shadows>
+            <primary_visibility sid="primary_visibility" type="bool">1</primary_visibility>
+            <secondary_visibility sid="secondary_visibility" type="bool">1</secondary_visibility>
+          </technique>
+        </extra>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#MaxScene"/>
+  </scene>
+</COLLADA>

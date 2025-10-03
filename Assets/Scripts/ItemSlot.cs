@@ -37,7 +37,11 @@ public class ItemSlot : MonoBehaviour
     public bool thisItemSelected;
     private Inventory inventory => FindAnyObjectByType<Inventory>();
 
-    public int AddItem(RecyclableType type, int amount, Sprite itemSprite, string description)
+
+    ///======OBJECTIVE INFO======////
+    private int itemObjectiveIndex;
+
+    public int AddItem(RecyclableType type, int amount, Sprite itemSprite, string description, int itemObjectiveNum)
     {
         //Check to see if the slot is already full
         if (isFull) { return quantity; }
@@ -46,6 +50,7 @@ public class ItemSlot : MonoBehaviour
         this.itemName = type.ToString();
 
         this.itemDescription = description;
+        this.itemObjectiveIndex = itemObjectiveNum;
 
         itemImage.sprite = itemSprite;
 
@@ -113,7 +118,7 @@ public class ItemSlot : MonoBehaviour
         }
         else if((thisItemSelected && this.quantity > 0))
         {
-            inventory.OnButtonPress(itemName);
+            inventory.OnButtonPress(itemName, itemObjectiveIndex);
             this.quantity -= 1;
             quantityText.text = this.quantity.ToString();  
             if(this.quantity <= 0)

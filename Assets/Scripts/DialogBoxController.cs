@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
@@ -11,6 +12,7 @@ public class DialogBoxController : MonoBehaviour
 {
     [SerializeField] private GameObject PlayerLogUI; // Assign your World Space Canvas here
     [SerializeField] private GameObject InventoryMenuUI;
+    [SerializeField] private GameObject SeedUI;
     [SerializeField] private GameObject cameraInventory;
     [SerializeField] private GameObject ToolWheel;
     [SerializeField] private GameObject ShowPhotoUI;
@@ -25,6 +27,14 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private GameObject WinUI;
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private RecyclableSpawner recyclableSpawner;
+
+    [Header("UI For Seed Controller")]
+    [SerializeField] private Button yesButton; // "Yes" button
+    [SerializeField] private InputActionReference toggleSeedUIAction; // Input action for toggling SeedUI
+
+    private bool isSeedUIVisible = false; // Tracks if the SeedUI is currently visible
+    private bool hasSeed = false; // Tracks if the player has a seed
+
 
     private Transform cameraTransform;
     private string defaultLayerMask = "Default";
@@ -71,16 +81,23 @@ public class DialogBoxController : MonoBehaviour
         cameraInventory.gameObject.SetActive(false);
         WinUI.gameObject.SetActive(false);
         LoseUI.gameObject.SetActive(false);
+        SeedUI.gameObject.SetActive(false);
         ToolWheel.gameObject.SetActive(false);
         isDialogVisible = false;
 
         InventoryButton.action.performed += OnToggleAction;
+
+        UpdateYesButtonState();
+
+        // Subscribe to the input action
+        toggleSeedUIAction.action.performed += OnToggleSeedUI;
     }
 
     void OnDestroy()
     {
         // Unsubscribe from the input action event to prevent memory leaks
         InventoryButton.action.performed -= OnToggleAction;
+        toggleSeedUIAction.action.performed -= OnToggleSeedUI;
     }
 
     // Update is called once per frame
@@ -103,6 +120,12 @@ public class DialogBoxController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             cameraInventory.SetActive(true);
+        }
+
+        // Automatically hide the SeedUI if the player moves away
+        if (!IsPlayerNear() && isSeedUIVisible)
+        {
+            ToggleSeedUI(false);
         }
     }
 
@@ -138,6 +161,9 @@ public class DialogBoxController : MonoBehaviour
         LoseUI.transform.position = basePosition;
         LoseUI.transform.rotation = Quaternion.LookRotation(LoseUI.transform.position - cameraTransform.position);
 
+        SeedUI.transform.position = basePosition;
+        SeedUI.transform.rotation = Quaternion.LookRotation(SeedUI.transform.position - cameraTransform.position);
+
         timer.transform.position = basePosition;
         timer.transform.rotation = Quaternion.LookRotation(timer.transform.position - cameraTransform.position);
     }
@@ -145,6 +171,7 @@ public class DialogBoxController : MonoBehaviour
     public bool IsPlayerNear()
     {
         float distance = Vector3.Distance(player.position, RecycleShopTransform.position);
+        Debug.Log("Player's Distance " + distance);
         return distance <= proximityThreshold;
     }
 
@@ -262,11 +289,39 @@ public class DialogBoxController : MonoBehaviour
     }
 
     /// <summary>
+    /// Handles the input action for toggling the SeedUI.
+    /// </summary>
+    /// <param name="context">The input action context.</param>
+    private void OnToggleSeedUI(InputAction.CallbackContext context)
+    {
+        Debug.Log("Exit Button");
+        if (isDialogVisible && isInventoryMenuOpen)
+        {
+            Debug.Log("Seed toogle off");
+            SeedUI.SetActive(false);
+            isSeedUIVisible = false;
+            isDialogVisible = false;
+            isInventoryMenuOpen = false;
+        }
+        else if (isSeedUIVisible)
+        {
+            Debug.Log("Close Seed Shop");
+            CloseSeedShop();
+        }
+        else if (IsPlayerNear() && !GameManager.Instance.gameIsWon)
+        {
+            ToggleSeedUI(!isSeedUIVisible);
+        }
+    }
+
+
+    /// <summary>
     /// Open the Recycle Shop UI and disable the Ready to Recycle UI
     /// </summary>
     public void OpenInventoryMenu()
     {
             PlayerLogUI.gameObject.SetActive(false);
+            SeedUI.SetActive(false);
             cameraInventory.gameObject.SetActive(false);
             InventoryMenuUI.gameObject.SetActive(true);
             isInventoryMenuOpen = true;
@@ -323,6 +378,7 @@ public class DialogBoxController : MonoBehaviour
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
+        isSeedUIVisible = false;
         Debug.Log("Recycle Shop Closed, Back to Ready to Recycle");
     }
 
@@ -399,6 +455,64 @@ public class DialogBoxController : MonoBehaviour
     //    }
     //}
 
+    /// <summary>
+    /// Toggles the visibility of the SeedUI.
+    /// </summary>
+    /// <param name="visible">True to show the UI, false to hide it.</param>
+    private void ToggleSeedUI(bool visible)
+    {
+        isSeedUIVisible = visible;
+        SeedUI.SetActive(visible);
+        InventoryMenuUI.SetActive(false);
+        if (visible)
+        {
+            isDialogVisible = visible;
+            UpdateYesButtonState();
+        }
+    }
+    public void CloseSeedShop()
+    {
+        SeedUI.gameObject.SetActive(false);
+        isDialogVisible = false;
+        isSeedUIVisible = false;
+        HideDialog();
+        Debug.Log("Ready to Recycle UI Closed");
+    }
+
+    /// <summary>
+    /// Updates the state of the "Yes" button based on whether the player has a seed.
+    /// </summary>
+    private void UpdateYesButtonState()
+    {
+        if (hasSeed)
+        {
+            // Make the "Yes" button interactable and change its color to indicate availability
+            yesButton.interactable = true;
+            ColorBlock colors = yesButton.colors;
+            colors.normalColor = Color.white; // Default color when interactable
+            yesButton.colors = colors;
+        }
+        else
+        {
+            // Make the "Yes" button non-interactable and change its color to indicate unavailability
+            yesButton.interactable = false;
+            ColorBlock colors = yesButton.colors;
+            colors.normalColor = Color.gray; // Gray out the button when not interactable
+            yesButton.colors = colors;
+        }
+    }
+
+    /// <summary>
+    /// Call this method to update whether the player has a seed.
+    /// </summary>
+    /// <param name="hasSeed">True if the player has a seed, false otherwise.</param>
+    public void SetHasSeed(bool hasSeed)
+    {
+        this.hasSeed = hasSeed;
+
+        // Update the "Yes" button state immediately
+        UpdateYesButtonState();
+    }
 
     public void ResetGame()
     {
