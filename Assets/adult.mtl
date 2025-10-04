@@ -1,0 +1,27 @@
+
+newmtl Material.000001
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.9 0.9 0.9
+d 1
+Ns 1
+map_Kd adult.png
+
+
+newmtl Material.0000a9
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.9 0.9 0.9
+d 1
+Ns 1
+map_Kd adult.png
+
+
+newmtl Material.0001b6
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.9 0.9 0.9
+d 1
+Ns 1
+map_Kd adult.png
+
