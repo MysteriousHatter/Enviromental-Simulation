@@ -3,9 +3,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using static RecyclableItem;
 
 public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public RecyclableType type;
     public Image image;
     public string itemName;
     public int quantity = 1;
@@ -18,8 +20,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Transform parentAfterDrag;
     private RectTransform m_DraggingPlane;
 
-    public void AddItem(string name, int amount, Image itemSprite, string description)
+    public void AddItem(RecyclableType type, string name, int amount, Image itemSprite, string description)
     {
+        this.type = type;
         this.image = itemSprite;
         this.itemName = name;
 
@@ -34,6 +37,10 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void RefreshCount()
     {
         quantityText.text = quantity.ToString();
+        bool textActive = quantity > 1;
+        quantityText.gameObject.SetActive(textActive);
+
+        
     }
 
     private void Awake()
@@ -74,4 +81,5 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             rt.rotation = m_DraggingPlane.rotation;
         }
     }
+
 }

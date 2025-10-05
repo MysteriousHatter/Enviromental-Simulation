@@ -5,12 +5,16 @@ public class RecyclableItem
 {
     public enum RecyclableType 
     { 
+        None,
         Paper, 
         Battery, 
         Glass, 
         Plastic, 
         LithiumBattery,
-        Placeholder
+        Placeholder,
+        Rings,
+        Frog,
+        Reed
     }
 
     public RecyclableType type;

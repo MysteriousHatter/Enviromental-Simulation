@@ -1,31 +1,31 @@
 using System;
-using System.Collections.Generic;
+using UnityEngine;
 using static RecyclableItem;
 
-public class CraftingSystem
+public class CraftingSystem : MonoBehaviour
 {
-    /*private const int GRID_SIZE = 3;
-    private RecyclableItem[,] grid; // 3x3 Crafting Grid
+    private const int GRID_SIZE = 3;
+    [SerializeField] public DraggableItem[] grid; // 3x3 Crafting Grid
 
     public event Action OnCraftingGridChanged; // Notify UI to refresh
-    public RecyclableItem outputItem; // Current output item
+    public DraggableItem outputItem; // Current output item
 
     public CraftingSystem()
     {
-        grid = new RecyclableItem[GRID_SIZE, GRID_SIZE];
+        grid = new DraggableItem[GRID_SIZE * GRID_SIZE];
     }
 
     // Helper Functions
-    public RecyclableItem GetItem(int x, int y) => grid[x, y];
-    public void SetItem(RecyclableItem item, int x, int y)
+    public DraggableItem GetItem(int x, int y) => grid[x + y];
+    public void SetItem(DraggableItem item, int x, int y)
     {
-        grid[x, y] = item;
+        grid[x + y] = item;
         OnCraftingGridChanged?.Invoke();
         UpdateOutput();
     }
     public void RemoveItem(int x, int y)
     {
-        grid[x, y] = null;
+        grid[x + y] = null;
         OnCraftingGridChanged?.Invoke();
     }
 
@@ -35,37 +35,39 @@ public class CraftingSystem
         outputItem = GetRecipeOutput();
     }
 
-    private RecyclableItem GetRecipeOutput()
+    private DraggableItem GetRecipeOutput()
     {
         // Define recipes
-        var stickRecipe = new RecyclableType[,] {
-            { null, RecyclableType.Paper, null },
-            { null, RecyclableType.Paper, null },
-            { null, null, null }
+        var ReedFrogPurifierRecipe = new DraggableItem[] {
+             null, RecyclableType.Frog, null,
+             null, RecyclableType.Reed, null,
+             null, null, null 
         };
 
-        var swordRecipe = new RecyclableType[,] {
-            { null, RecyclableType.Glass, null },
-            { null, RecyclableType.Glass, null },
-            { null, RecyclableType.Plastic, null }
+        var windTurbineRecipe = new DraggableItem[] {
+            null, RecyclableType.Plastic, null,
+             RecyclableType.Plastic, RecyclableType.Rings, RecyclableType.Plastic,
+             null, RecyclableType.Plastic, null
         };
 
         // Match recipes
-        if (MatchRecipe(stickRecipe)) return new RecyclableItem(RecyclableType.Placeholder, 1);
-        if (MatchRecipe(swordRecipe)) return new RecyclableItem(RecyclableType.Placeholder, 1);
+        if (MatchRecipe(ReedFrogPurifierRecipe))
+            Debug.Log("Frog");
+        if (MatchRecipe(windTurbineRecipe))
+            Debug.Log("Turbine");
         return null;
     }
 
-    private bool MatchRecipe(RecyclableType[,] recipe)
+    private bool MatchRecipe(DraggableItem[] recipe)
     {
         for (int x = 0; x < GRID_SIZE; x++)
         {
             for (int y = 0; y < GRID_SIZE; y++)
             {
-                if (grid[x, y]?.RecyclableType != recipe[x, y] && recipe[x, y] != null)
+                if (grid[x + y]?.type != recipe[x + y] && recipe[x + y] != null)
                     return false;
             }
         }
         return true;
-    }*/
+    }
 }
