@@ -14,7 +14,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         }
         else
         {
-            if(eventData.pointerDrag.GetComponent<DraggableItem>().type == GetComponentInChildren<DraggableItem>().type)
+            if(eventData.pointerDrag.GetComponent<DraggableItem>().recyclableItem.type == GetComponentInChildren<DraggableItem>().recyclableItem.type)
             {
 
             }

@@ -37,7 +37,7 @@ public class ItemSlot : MonoBehaviour
     public bool thisItemSelected;
     private Inventory inventory => FindAnyObjectByType<Inventory>();
 
-    public int AddItem(RecyclableType type, int amount, Sprite itemSprite, string description)
+    public int AddItem(RecyclableType? type, int amount, Sprite itemSprite, string description)
     {
         //Check to see if the slot is already full
         if (isFull) { return quantity; }

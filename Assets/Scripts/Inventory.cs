@@ -11,7 +11,7 @@ using System;
 /// </summary>
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<RecyclableType, int> recyclables = new Dictionary<RecyclableType, int>();
+    private Dictionary<RecyclableType?, int> recyclables = new Dictionary<RecyclableType?, int>();
     private List<PhotoData> photos = new List<PhotoData>();
 
     [Header("Recyclable UI Buttons")]
@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
     }
     
     // Add recyclables to the inventory
-    public int AddRecyclable(RecyclableType type, int amount, Sprite itemSprite, string description)
+    public int AddRecyclable(RecyclableType? type, int amount, Sprite itemSprite, string description)
     {
         if (recyclables.ContainsKey(type))
         {

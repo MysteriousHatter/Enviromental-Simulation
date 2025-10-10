@@ -88,5 +88,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae243593dfc134942808f3f15db02678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
+  recyclableItem:
+    type: 3
+    amount: 0
+    prefab: {fileID: 0}
+    ItemDescription: 
+    sprite: {fileID: 0}
   image: {fileID: 5542790878868918349}
+  itemName: 
+  quantity: 1
+  itemDescription: 
+  maxNumberOfItems: 0
+  isFull: 0
+  quantityText: {fileID: 0}
   parentAfterDrag: {fileID: 0}
