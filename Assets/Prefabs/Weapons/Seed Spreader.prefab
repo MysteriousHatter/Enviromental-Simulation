@@ -114,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3868492804601436636}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 98.56783, y: 27.81146, z: 117.66}
   m_LocalScale: {x: 0.099999994, y: 0.10000001, z: 0.099999994}
   m_ConstrainProportionsScale: 1
@@ -351,6 +351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   tool: {fileID: 1500565628642548885}
+  absorbRight: {fileID: 0}
+  absorbLeft: {fileID: 0}
+  preventSprayWhileAbsorbing: 1
 --- !u!114 &1500565628642548885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,12 +369,13 @@ MonoBehaviour:
   Definition: {fileID: 11400000, guid: 0a44cabd7d3bd80438aa151ac657d517, type: 2}
   muzzle: {fileID: 3640443209916984463}
   state: 0
-  currentMagazine: 0
+  currentMagazine: 5
   currentReserve: 0
-  currentAmmo: {fileID: 11400000, guid: f3db6669f4887b64b8f2225af26ed19a, type: 2}
+  currentAmmo: {fileID: 11400000, guid: e6da351574b2fea48a9966848fb7ab37, type: 2}
   currentHeat: 0
   chargeHeldTime: 0
   twoHandStabilized: 0
+  noCooldown: 0
   OnEquip:
     m_PersistentCalls:
       m_Calls: []
@@ -402,6 +406,7 @@ MonoBehaviour:
   OnRecoveredFromHeat:
     m_PersistentCalls:
       m_Calls: []
+  spray: {fileID: 0}
   OnAmmoChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -429,6 +434,8 @@ MonoBehaviour:
   OnNoEnergy:
     m_PersistentCalls:
       m_Calls: []
+  visualEveryN: 3
+  useProjectileSpeed: 1
 --- !u!1 &4598905937044491806
 GameObject:
   m_ObjectHideFlags: 0

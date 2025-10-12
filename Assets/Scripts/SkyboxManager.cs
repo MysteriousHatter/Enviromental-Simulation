@@ -159,8 +159,8 @@ public class SkyboxManager : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 // Blend between the two textures based on progress
-                splatmap[y, x, 0] = Mathf.Lerp(1f, 0f, progress); // Deforested texture
-                splatmap[y, x, 1] = Mathf.Lerp(0f, 1f, progress); // Forested texture
+                splatmap[y, x, 1] = Mathf.Lerp(1f, 0f, progress); // Deforested texture
+                splatmap[y, x, 0] = Mathf.Lerp(0f, 1f, progress); // Forested texture
             }
         }
 

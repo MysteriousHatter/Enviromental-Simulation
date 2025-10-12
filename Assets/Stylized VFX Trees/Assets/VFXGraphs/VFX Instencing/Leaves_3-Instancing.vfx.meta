@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7528e1af8406a824685a620e02e39e25
+VisualEffectImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Assets/VFXGraphs/VFX Instencing/Leaves_3-Instancing.vfx
+  uploadId: 593115

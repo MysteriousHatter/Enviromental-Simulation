@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -9,11 +10,19 @@ public class RecyclableItemComponent : MonoBehaviour
     [SerializeField] private float greenThreshold = 10f;
     [SerializeField] private float yellowThreshold = 5f;
     [SerializeField] private float redThreshold = 2f;
+    // Cooldown timer to ensure sounds are played every n seconds
+    private float soundCooldownTimer = 0f;
+    private const float soundCooldownDuration = 15f;
     [SerializeField] private int quantity;
+
+    public int questIndex; // The index of the quest in the QuestSystem
+    public int objectiveIndex; // The index of the objective in the quest
 
     private bool itemPickedUp = false;
     private AudioSource itemAudioSource => GetComponent<AudioSource>();
     private Transform playerTransform;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private QuestCountManager _questCountManager;
 
 
     void Awake()
@@ -47,7 +56,7 @@ public class RecyclableItemComponent : MonoBehaviour
     {
         if (!itemPickedUp && playerTransform != null)
         {
-            AdjustAudioBasedOnProximity();
+            if (this.gameObject.GetComponent<AudioSource>() != null) { AdjustAudioBasedOnProximity(); }
         }
     }
 
@@ -56,15 +65,7 @@ public class RecyclableItemComponent : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
         if (distanceToPlayer <= redThreshold)
         {
-            PlayProximitySound(2); // Red
-        }
-        else if (distanceToPlayer <= yellowThreshold)
-        {
-            PlayProximitySound(1); // Yellow
-        }
-        else if (distanceToPlayer <= greenThreshold)
-        {
-            PlayProximitySound(0); // Green
+            PlayProximitySoundWithCooldown(0);
         }
         else
         {
@@ -73,12 +74,19 @@ public class RecyclableItemComponent : MonoBehaviour
     }
 
 
-    void PlayProximitySound(int index)
+    void PlayProximitySoundWithCooldown(int index)
     {
-        if (itemAudioSource.clip != proximitySounds[index])
+        // Check if the cooldown timer has elapsed
+        if (Time.time >= soundCooldownTimer)
         {
-            itemAudioSource.clip = proximitySounds[index];
-            itemAudioSource.Play();
+            if (itemAudioSource.clip != proximitySounds[index])
+            {
+                itemAudioSource.clip = proximitySounds[index];
+                itemAudioSource.Play();
+            }
+
+            // Reset the cooldown timer
+            soundCooldownTimer = Time.time + soundCooldownDuration;
         }
     }
 
@@ -93,20 +101,32 @@ public class RecyclableItemComponent : MonoBehaviour
     void OnGrabbed(SelectEnterEventArgs args)
     {
         SetItemPicked(true);
-        int leftOverItems = playerTransform.GetComponent<Inventory>().AddRecyclable(recyclableItem.type, quantity, recyclableItem.sprite, recyclableItem.ItemDescription);
-        Debug.Log("We have these numbers left:" +  leftOverItems);
-        if(leftOverItems <= 0) //If there are no leftovers, destory the item
+        if (this.recyclableItem.type == RecyclableItem.RecyclableType.Seed) 
         {
-            Debug.Log("Destory Items");
+            // Add the seed to the seed inventory
+            FindObjectOfType<DialogBoxController>().SetHasSeed(true);
+            inventory.AddSeedToInventory(this.gameObject);
             this.gameObject.SetActive(false);
         }
-        else
-        {
-            Debug.Log("Stick to limit number");
-            quantity = leftOverItems;
+        else 
+        { 
+            int leftOverItems = playerTransform.GetComponent<Inventory>().AddRecyclable(recyclableItem.type, quantity, recyclableItem.sprite, recyclableItem.ItemDescription, recyclableItem.GetObjectiveIndex()); 
+            Debug.Log("We have these numbers left:" + leftOverItems);
+            if (leftOverItems <= 0) //If there are no leftovers, destory the item
+            {
+                Debug.Log("Destory Items");
+                if(_questCountManager != null) { _questCountManager.UnregisterCollectiable(this.gameObject); }
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("Stick to limit number");
+                quantity = leftOverItems;
+            }
         }
 
     }
+
 
     void OnReleased(SelectExitEventArgs args)
     {

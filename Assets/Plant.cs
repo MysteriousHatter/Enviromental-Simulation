@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Plant : MonoBehaviour
@@ -9,6 +12,12 @@ public class Plant : MonoBehaviour
     public float maxSlope = 60f;
     [Tooltip("Lift planted object slightly off the surface to avoid z-fighting.")]
     public float surfaceOffset = 0.02f;
+    public LayerMask zoneLayers;           // set to the layer your WaterGrowZone boxes live on
+    [SerializeField] private string plantType;
+
+    // per-zone accounting
+    readonly Dictionary<WaterGrowZoneConfig, int> _zoneHits = new();
+    readonly HashSet<WaterGrowZoneConfig> _completed = new();
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -28,9 +37,21 @@ public class Plant : MonoBehaviour
         Vector3 pos = contact.point + contact.normal * surfaceOffset;
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
 
-        if (plantobj != null)
-            Instantiate(plantobj, pos, rot);
 
-        Destroy(gameObject);
+        if (((1 << collision.gameObject.layer) & zoneLayers.value) == 0)
+        {
+            return;
+        }
+
+        if (plantType == "Flower") { collision.gameObject.GetComponent<SeedGrowZone>().BeginGrowthProcess(); }
+        else if(plantType == "Weed") 
+        {
+            Debug.Log("Destory Weeds");
+            collision.gameObject.GetComponent<WeedManager>().BeginGrowthProcess();
+            Destroy(gameObject);
+        }
+
+
     }
+
 }

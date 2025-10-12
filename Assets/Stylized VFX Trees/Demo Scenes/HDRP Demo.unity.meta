@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 317ebe270d5f61f48b89c00ad1530f4a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Demo Scenes/HDRP Demo.unity
+  uploadId: 593115

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
@@ -11,6 +12,8 @@ public class DialogBoxController : MonoBehaviour
 {
     [SerializeField] private GameObject PlayerLogUI; // Assign your World Space Canvas here
     [SerializeField] private GameObject InventoryMenuUI;
+    [SerializeField] private GameObject SeedUI;
+    [SerializeField] private GameObject QuestUI;
     [SerializeField] private GameObject cameraInventory;
     [SerializeField] private GameObject ToolWheel;
     [SerializeField] private GameObject ShowPhotoUI;
@@ -25,11 +28,22 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private GameObject WinUI;
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private RecyclableSpawner recyclableSpawner;
+    [SerializeField] private WeaponEquipManager weaponEquipManager;
+    [SerializeField] private GameObject AmmoUI;
+
+    [Header("UI For Seed Controller")]
+    [SerializeField] private Button yesButton; // "Yes" button
+    [SerializeField] private InputActionReference toggleSeedUIAction; // Input action for toggling SeedUI
+
+    private bool isSeedUIVisible = false; // Tracks if the SeedUI is currently visible
+    private bool hasSeed = false; // Tracks if the player has a seed
+
 
     private Transform cameraTransform;
     private string defaultLayerMask = "Default";
     private string recycaleLayerMask = "Recycable";
     private string UILayerMask = "UI";
+    private string ToolsLayerMask = "Tools";
     private RecyclableType type;
 
     [SerializeField] private Transform player;
@@ -43,6 +57,7 @@ public class DialogBoxController : MonoBehaviour
     private bool isDialogVisible = true;
     private bool isInventoryMenuOpen = false; // Tracks if Recycle Shop UI is active
     private bool isPhotoAlbumOpen = false;
+    private bool isQuestsWindowOpen = false;
     private readonly string[] allowedActionMaps =
     {
         "XRI Head",
@@ -71,16 +86,25 @@ public class DialogBoxController : MonoBehaviour
         cameraInventory.gameObject.SetActive(false);
         WinUI.gameObject.SetActive(false);
         LoseUI.gameObject.SetActive(false);
+        QuestUI.gameObject.SetActive(false);
+        SeedUI.gameObject.SetActive(false);
         ToolWheel.gameObject.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
         isDialogVisible = false;
 
         InventoryButton.action.performed += OnToggleAction;
+
+        UpdateYesButtonState();
+
+        // Subscribe to the input action
+        toggleSeedUIAction.action.performed += OnToggleSeedUI;
     }
 
     void OnDestroy()
     {
         // Unsubscribe from the input action event to prevent memory leaks
         InventoryButton.action.performed -= OnToggleAction;
+        toggleSeedUIAction.action.performed -= OnToggleSeedUI;
     }
 
     // Update is called once per frame
@@ -103,6 +127,12 @@ public class DialogBoxController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             cameraInventory.SetActive(true);
+        }
+
+        // Automatically hide the SeedUI if the player moves away
+        if (!IsPlayerNear() && isSeedUIVisible)
+        {
+            ToggleSeedUI(false);
         }
     }
 
@@ -138,13 +168,23 @@ public class DialogBoxController : MonoBehaviour
         LoseUI.transform.position = basePosition;
         LoseUI.transform.rotation = Quaternion.LookRotation(LoseUI.transform.position - cameraTransform.position);
 
+        SeedUI.transform.position = basePosition;
+        SeedUI.transform.rotation = Quaternion.LookRotation(SeedUI.transform.position - cameraTransform.position);
+
         timer.transform.position = basePosition;
         timer.transform.rotation = Quaternion.LookRotation(timer.transform.position - cameraTransform.position);
+
+        QuestUI.transform.position = basePosition;
+        QuestUI.transform.rotation = Quaternion.LookRotation(QuestUI.transform.position - cameraTransform.position);
+
+        AmmoUI.transform.position = basePosition;
+        AmmoUI.transform.rotation = Quaternion.LookRotation(AmmoUI.transform.position - cameraTransform.position);
     }
 
     public bool IsPlayerNear()
     {
         float distance = Vector3.Distance(player.position, RecycleShopTransform.position);
+        Debug.Log("Player's Distance " + distance);
         return distance <= proximityThreshold;
     }
 
@@ -213,26 +253,23 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~recycalelayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~recycalelayerMask;
+        weaponEquipManager.SetToolActive(false);
         //raycaster.blockingMask = 1 << 5;
     }
 
     public void HideDialog()
     {
+        Debug.Log("Add LayerMasks back");
         // Hide the dialog
         PlayerLogUI.gameObject.SetActive(false);
-
         InteractionLayerMask UIlayerMask = InteractionLayerMask.GetMask(UILayerMask);
-        InteractionLayerMask defaultlayerMask = InteractionLayerMask.GetMask(defaultLayerMask);
-        InteractionLayerMask recycalelayerMask = InteractionLayerMask.GetMask(recycaleLayerMask);
 
-        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = defaultlayerMask;
-        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = defaultlayerMask;
-
-        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = recycalelayerMask;
-        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = recycalelayerMask;
+        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = InteractionLayerMask.GetMask(defaultLayerMask, recycaleLayerMask, ToolsLayerMask);
+        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = InteractionLayerMask.GetMask(defaultLayerMask, recycaleLayerMask, ToolsLayerMask);
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
+        weaponEquipManager.SetToolActive(true);
         //raycaster.blockingMask = 0;
         //raycaster.blockingMask = 1;
     }
@@ -242,10 +279,14 @@ public class DialogBoxController : MonoBehaviour
     /// </summary>
     private void OnToggleAction(InputAction.CallbackContext context)
     {
-        if (isInventoryMenuOpen || isPhotoAlbumOpen)
+        if (isInventoryMenuOpen || isPhotoAlbumOpen || isQuestsWindowOpen)
         {
             // If Recycle Shop is open, close it and return to Ready to Recycle
             CloseInventoryMenu();
+            ClosePhotoAlbum();
+            CloseQuestsWindow();
+
+
         }
         else if (isDialogVisible)
         {
@@ -262,26 +303,71 @@ public class DialogBoxController : MonoBehaviour
     }
 
     /// <summary>
+    /// Handles the input action for toggling the SeedUI.
+    /// </summary>
+    /// <param name="context">The input action context.</param>
+    private void OnToggleSeedUI(InputAction.CallbackContext context)
+    {
+        Debug.Log("Exit Button");
+        if (isDialogVisible && isInventoryMenuOpen)
+        {
+            Debug.Log("Seed toogle off");
+            SeedUI.SetActive(false);
+            isSeedUIVisible = false;
+            isDialogVisible = false;
+            isInventoryMenuOpen = false;
+        }
+        else if (isSeedUIVisible)
+        {
+            Debug.Log("Close Seed Shop");
+            CloseSeedShop();
+        }
+        else if (IsPlayerNear() && !GameManager.Instance.gameIsWon)
+        {
+            ToggleSeedUI(!isSeedUIVisible);
+        }
+    }
+
+
+    /// <summary>
     /// Open the Recycle Shop UI and disable the Ready to Recycle UI
     /// </summary>
     public void OpenInventoryMenu()
     {
             PlayerLogUI.gameObject.SetActive(false);
+            SeedUI.SetActive(false);
             cameraInventory.gameObject.SetActive(false);
+            AmmoUI.gameObject.SetActive(false);
             InventoryMenuUI.gameObject.SetActive(true);
             isInventoryMenuOpen = true;
             isPhotoAlbumOpen = false;
             isDialogVisible = true;
+            isQuestsWindowOpen = false;
     }
 
     public void OpenPhotoAlbum()
     {
         PlayerLogUI.gameObject.SetActive(false);
         InventoryMenuUI.gameObject.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(true);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = true;
+        isQuestsWindowOpen = false;
         isDialogVisible = true;
+    }
+
+    public void OpenQuestsWindow()
+    {
+        PlayerLogUI.gameObject.SetActive(false);
+        InventoryMenuUI.gameObject.SetActive(false);
+        QuestUI.gameObject.SetActive(true);
+        AmmoUI.gameObject.SetActive(false);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
+        isDialogVisible = true;
+        isQuestsWindowOpen = true;
+
     }
 
     public void CheckGameIsComplete()
@@ -323,6 +409,7 @@ public class DialogBoxController : MonoBehaviour
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
+        isSeedUIVisible = false;
         Debug.Log("Recycle Shop Closed, Back to Ready to Recycle");
     }
 
@@ -336,6 +423,18 @@ public class DialogBoxController : MonoBehaviour
         isDialogVisible = true;
     }
 
+    private void CloseQuestsWindow()
+    {
+        PlayerLogUI.gameObject.SetActive(true);
+        InventoryMenuUI.gameObject.SetActive(false);
+        cameraInventory.gameObject.SetActive(false);
+        QuestUI.gameObject .SetActive(false);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
+        isQuestsWindowOpen = false;
+        isDialogVisible = true;
+    }
+
     /// <summary>
     /// Open the Ready to Recycle UI
     /// </summary>
@@ -344,6 +443,7 @@ public class DialogBoxController : MonoBehaviour
         PlayerLogUI.gameObject.SetActive(true);
         InventoryMenuUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
@@ -399,6 +499,66 @@ public class DialogBoxController : MonoBehaviour
     //    }
     //}
 
+    /// <summary>
+    /// Toggles the visibility of the SeedUI.
+    /// </summary>
+    /// <param name="visible">True to show the UI, false to hide it.</param>
+    private void ToggleSeedUI(bool visible)
+    {
+        isSeedUIVisible = visible;
+        SeedUI.SetActive(visible);
+        InventoryMenuUI.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
+        weaponEquipManager.SetToolActive(!visible);
+        if (visible)
+        {
+            isDialogVisible = visible;
+            UpdateYesButtonState();
+        }
+    }
+    public void CloseSeedShop()
+    {
+        SeedUI.gameObject.SetActive(false);
+        isDialogVisible = false;
+        isSeedUIVisible = false;
+        HideDialog();
+        Debug.Log("Ready to Recycle UI Closed");
+    }
+
+    /// <summary>
+    /// Updates the state of the "Yes" button based on whether the player has a seed.
+    /// </summary>
+    private void UpdateYesButtonState()
+    {
+        if (hasSeed)
+        {
+            // Make the "Yes" button interactable and change its color to indicate availability
+            yesButton.interactable = true;
+            ColorBlock colors = yesButton.colors;
+            colors.normalColor = Color.white; // Default color when interactable
+            yesButton.colors = colors;
+        }
+        else
+        {
+            // Make the "Yes" button non-interactable and change its color to indicate unavailability
+            yesButton.interactable = false;
+            ColorBlock colors = yesButton.colors;
+            colors.normalColor = Color.gray; // Gray out the button when not interactable
+            yesButton.colors = colors;
+        }
+    }
+
+    /// <summary>
+    /// Call this method to update whether the player has a seed.
+    /// </summary>
+    /// <param name="hasSeed">True if the player has a seed, false otherwise.</param>
+    public void SetHasSeed(bool hasSeed)
+    {
+        this.hasSeed = hasSeed;
+
+        // Update the "Yes" button state immediately
+        UpdateYesButtonState();
+    }
 
     public void ResetGame()
     {
@@ -408,6 +568,11 @@ public class DialogBoxController : MonoBehaviour
         // Reload the current scene
         SceneManager.LoadScene(currentScene.name);
     }
+
+    public void DisbaleAmmoUI()
+    {
+        AmmoUI.gameObject.SetActive(false);
+    }    
 
     public void OnApplicationQuit()
     {

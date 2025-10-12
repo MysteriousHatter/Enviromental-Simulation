@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307d87d27f907ab409224ea823bb2f13, type: 3}
+  m_Name: Find The Second Seed
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Quests.Quest
+  objectives:
+  - reference: 'Create a Reed Frog Pruifier '
+    description: Find the parts for a reed frog pruifer and craft it back in the
+      lab
+    usesCondition: 1
+    completionCondition:
+      and: []
+  - reference: Find Water
+    description: Absorb Dirty Water from a bathroom
+    usesCondition: 0
+    completionCondition:
+      and: []
+  - reference: Put Out The Fire
+    description: Put out the fire at the aquarium
+    usesCondition: 0
+    completionCondition:
+      and: []
+  - reference: Return the seed
+    description: Return the Second Seed
+    usesCondition: 0
+    completionCondition:
+      and: []

@@ -144,6 +144,8 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  - {fileID: -4732631995657796006, guid: 154dcd9c4d7ed4e4897a690ac4ce300f, type: 2}
+  - {fileID: 7123263897819914800, guid: 3820980a7fdf1d44e84a563bdc0a85f6, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -521,7 +523,10 @@ PlayerSettings:
       m_Height: 720
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching: []
+  m_BuildTargetBatching:
+  - m_BuildTarget: Standalone
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []
   m_BuildTargetGraphicsJobMode: []
@@ -840,7 +845,7 @@ PlayerSettings:
     PS5: UNITY_POST_PROCESSING_STACK_V2
     QNX: UNITY_POST_PROCESSING_STACK_V2
     ReservedCFE: UNITY_POST_PROCESSING_STACK_V2
-    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS;UNITY_POST_PROCESSING_STACK_V2
+    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS;UNITY_POST_PROCESSING_STACK_V2;APP_UI_EDITOR_ONLY
     VisionOS: UNITY_POST_PROCESSING_STACK_V2
     WebGL: UNITY_POST_PROCESSING_STACK_V2
     Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS

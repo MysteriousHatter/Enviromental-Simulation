@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 77d978c56c14c1840b1d4ed3e1fffbf3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Assets/Prefabs/_VFX Instencing/Stylized Autumn
+    Trees/Ins_StylizedA_tree_2.prefab
+  uploadId: 593115

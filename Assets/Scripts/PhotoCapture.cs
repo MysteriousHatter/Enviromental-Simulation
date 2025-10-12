@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.IO;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PhotoCapture : MonoBehaviour
@@ -13,9 +15,8 @@ public class PhotoCapture : MonoBehaviour
     [SerializeField] private GameObject photoFrame;
     [SerializeField] private GameObject cameraUI;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private float zoomSpeed = 10f;
-    [SerializeField] private float minFOV = 15f;
-    [SerializeField] private float maxFOV = 90f;
+    [SerializeField] private TextMeshProUGUI tryAgainUI;
+
 
     [Header("Flash Effect")]
     [SerializeField] private GameObject cameraFlash;
@@ -33,34 +34,36 @@ public class PhotoCapture : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] Inventory inventory;
 
+    [Header("Input Actions")]
+    [SerializeField] private InputActionReference zoomInAction; // Input action for zooming in
+    [SerializeField] private InputActionReference zoomOutAction; // Input action for zooming out
+    [SerializeField] private InputActionReference takePhotoAction; // Input action for taking a photo
+
+
     private void Start()
     {
         screenCapture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        tryAgainUI.gameObject.SetActive(false);
+        takePhotoAction.action.performed += OnTakePhoto;
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            if (!viewingPhoto)
-            {
-                StartCoroutine(CapturePhoto());
-            }
-            else
-            {
-                RemovePhoto();
-            }
-        }
-
-        // Get mouse scroll wheel input
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-
-        // Adjust FOV based on scroll input
-        mainCamera.fieldOfView -= scroll * zoomSpeed;
-
-        // Clamp FOV within min/max values
-        mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView, minFOV, maxFOV);
+        takePhotoAction.action.performed -= OnTakePhoto;
     }
+
+    private void OnTakePhoto(InputAction.CallbackContext context)
+    {
+        if (!viewingPhoto)
+        {
+            StartCoroutine(CapturePhoto());
+        }
+        else
+        {
+            RemovePhoto();
+        }
+    }
+
 
     private void RemovePhoto()
     {
@@ -78,24 +81,31 @@ public class PhotoCapture : MonoBehaviour
         if(Physics.Raycast(ray, out RaycastHit hit, 500f))
         {
             var target = hit.collider.GetComponent<ScannableTarget>();
-            string name = target.speciesData.Name;
-            int rarity = target.speciesData.Rarity;
-            string Description = target.speciesData.Description;
-            string tag = hit.collider.tag;
-            AnimatorClipInfo[] m_CurrentClipInfo = hit.collider.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0);
-            AnimationClip currentClip = m_CurrentClipInfo[0].clip;
+            if (target != null)
+            {
+                string name = target.speciesData.Name;
+                int rarity = target.speciesData.Rarity;
+                string Description = target.speciesData.Description;
+                string tag = hit.collider.tag;
+                AnimatorClipInfo[] m_CurrentClipInfo = hit.collider.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0);
+                AnimationClip currentClip = m_CurrentClipInfo[0].clip;
+                cameraUI.SetActive(false);
+                viewingPhoto = true;
 
-            cameraUI.SetActive(false);
-            viewingPhoto = true;
+                yield return new WaitForEndOfFrame();
 
-            yield return new WaitForEndOfFrame();
+                Rect regionToRead = new Rect(0, 0, Screen.width, Screen.height);
 
-            Rect regionToRead = new Rect(0, 0, Screen.width, Screen.height);
-
-            screenCapture.ReadPixels(regionToRead, 0, 0, false);
-            screenCapture.Apply();
-            var record = ShowPhoto(name, rarity, Description, tag, currentClip);
-            inventory.AddPhoto(record);
+                screenCapture.ReadPixels(regionToRead, 0, 0, false);
+                screenCapture.Apply();
+                var record = ShowPhoto(name, rarity, Description, tag, currentClip);
+                inventory.AddPhoto(record);
+            }
+            else
+            {
+                Debug.Log("Can't find Substance");
+                StartCoroutine(ShowTextForSeconds(tryAgainUI, 4f));
+            }
 
         }
         else
@@ -104,6 +114,13 @@ public class PhotoCapture : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    private IEnumerator ShowTextForSeconds(TextMeshProUGUI textObject, float duration)
+    {
+        textObject.gameObject.SetActive(true); // Activate the text object
+        yield return new WaitForSeconds(duration); // Wait for the specified duration
+        textObject.gameObject.SetActive(false); // Deactivate the text object
     }
 
     PhotoData ShowPhoto(string name, int rarity, string description, string tag, AnimationClip currentClip)
