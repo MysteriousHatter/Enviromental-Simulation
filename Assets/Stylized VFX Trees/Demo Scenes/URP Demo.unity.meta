@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 69b33203af503dd4aa532cf78bc5c1fd
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Demo Scenes/URP Demo.unity
+  uploadId: 593115

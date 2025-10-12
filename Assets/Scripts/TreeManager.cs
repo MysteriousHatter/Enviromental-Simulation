@@ -10,11 +10,11 @@ public class TreeManager: MonoBehaviour
 
     void Update()
     {
-        if (!goalReached && GameManager.Instance.currentScore >= 6)
-        {
-            goalReached = true;
-            ReplaceDeforestedTrees();
-        }
+        //if (!goalReached && GameManager.Instance.currentScore >= 6)
+        //{
+        //    goalReached = true;
+        //    ReplaceDeforestedTrees();
+        //}
     }
 
     private void ReplaceDeforestedTrees()

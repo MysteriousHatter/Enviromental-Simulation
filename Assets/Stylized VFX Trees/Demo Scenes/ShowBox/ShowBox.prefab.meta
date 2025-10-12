@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cfed4dbdc6e72b24fb2f3aa45b95e591
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Demo Scenes/ShowBox/ShowBox.prefab
+  uploadId: 593115

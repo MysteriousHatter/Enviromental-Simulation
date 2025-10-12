@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4b16823aea7b0794d8032cf0db0efb3c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Demo Scenes/ShowBox/ShowBox.mat
+  uploadId: 593115

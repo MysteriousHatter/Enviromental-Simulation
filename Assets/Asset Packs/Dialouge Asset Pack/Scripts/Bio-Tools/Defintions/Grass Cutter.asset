@@ -29,7 +29,7 @@ MonoBehaviour:
   output:
     effectPower: 0
     minRange: 0
-    maxRange: 2
+    maxRange: 13.55
     falloff:
       serializedVersion: 2
       m_Curve: []

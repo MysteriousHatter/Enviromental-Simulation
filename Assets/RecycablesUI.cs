@@ -14,7 +14,7 @@ public class RecycablesUI : MonoBehaviour
     {
         // Assuming GameManager is a Singleton
         totalRecyclables = spawner.getRecycableCount(); 
-        collectedRecyclables = GameManager.Instance.currentScore;
+        //collectedRecyclables = GameManager.Instance.currentScore;
 
         // Initialize the text UI
         UpdateRecyclablesUI();
@@ -23,7 +23,7 @@ public class RecycablesUI : MonoBehaviour
     private void Update()
     {
         // Continuously fetch updated counts (optional if values change dynamically)
-        collectedRecyclables = GameManager.Instance.currentScore;
+        //collectedRecyclables = GameManager.Instance.currentScore;
         UpdateRecyclablesUI();
     }
 

@@ -1,7 +1,9 @@
 using BioTools;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
+using UnityEngine.UI;
 
 
 namespace BioTools
@@ -38,6 +40,12 @@ namespace BioTools
         public UnityEvent OnBagFull;
         public UnityEvent OnBagEmptied;
 
+        [Header("Weed Cutter UI")]
+        [SerializeField] private Slider ammoSlider;
+        [SerializeField] private TextMeshProUGUI ammoText;
+        [SerializeField] private GameObject UIContainer;
+        [SerializeField] private GameObject[] noUIs;
+
         // internal
         private bool _bagFullAnnounced;
         private bool _isEmptying;
@@ -50,6 +58,29 @@ namespace BioTools
         {
             base.Awake();
             if (!tip) tip = Muzzle ? Muzzle : transform;
+            foreach(GameObject ui in noUIs)
+            {
+                ui.SetActive(false);
+            }
+            UpdateWeedDisplay();
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            if (!UIContainer.active)
+            {
+                UIContainer.SetActive(true);
+                var SeedTextAmountGameObject = ammoText.gameObject;
+                var SeedDisplayAmountGameObject = ammoSlider.gameObject;
+
+
+                SeedTextAmountGameObject.SetActive(true);
+                SeedDisplayAmountGameObject.SetActive(true);
+            }
+
+            // Update the UI
+            UpdateWeedDisplay();
         }
 
         /// <summary>
@@ -187,7 +218,23 @@ namespace BioTools
             OnBagEmptied?.Invoke();
         }
 
-    #if UNITY_EDITOR
+        private void UpdateWeedDisplay()
+        {
+            if (ammoSlider != null)
+            {
+                ammoSlider.gameObject.SetActive(true);
+                float fillPercentage = (float)bagFill / bagCapacity;
+                ammoSlider.value = fillPercentage;
+
+                if (ammoText != null)
+                {
+                    ammoText.gameObject.SetActive(true);
+                    ammoText.text = $"{(fillPercentage * 100):0}%";
+                }
+            }
+        }
+
+#if UNITY_EDITOR
         protected override void OnDrawGizmosSelected()
         {
             base.OnDrawGizmosSelected();

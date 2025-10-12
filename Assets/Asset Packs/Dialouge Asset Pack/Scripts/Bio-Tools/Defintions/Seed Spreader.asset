@@ -41,7 +41,7 @@ MonoBehaviour:
     canPierce: 0
     aoeRadius: 0
   resources:
-    magazine: 36
+    magazine: 10
     reserve: 180
     reloadTime: 1.3
     gathersFromEnvironment: 0
@@ -49,7 +49,9 @@ MonoBehaviour:
     gatherRatePerSec: 0
     ammoCategory: 1
     defaultAmmo: {fileID: 0}
-    allowedAmmo: []
+    allowedAmmo:
+    - {fileID: 11400000, guid: e6da351574b2fea48a9966848fb7ab37, type: 2}
+    - {fileID: 11400000, guid: 5960d7f97a1d1974c842c4f0ad4c15cc, type: 2}
     restrictToAllowed: 0
   eco:
     affects: 

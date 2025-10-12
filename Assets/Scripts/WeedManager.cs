@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,14 @@ public class WeedManager : MonoBehaviour
     public Transform player;
     [Min(0f)] public float proximityThreshold = 3f;
     [Min(0f)] public float regrowthTime = 5f;
+
+    [Tooltip("How many seed impacts are needed before we grow the zone.")]
+    public int seedsToComplete = 1;
+
+    int _seedHits;
+
+
+    [SerializeField] private bool isSideQuest;
 
     // If true, the player must be away for the *entire* regrowth time (timer resets when near).
     public bool requirePlayerFarForEntireDelay = false;
@@ -25,6 +34,53 @@ public class WeedManager : MonoBehaviour
             // capture w in a local for the closure
             var weed = w;
             weed.OnCleared.AddListener(() => ScheduleRegrow(weed));
+        }
+    }
+
+    public int CountWeeds()
+    {
+        int count = 0;
+
+        foreach (Cuttable child in weeds)
+        {
+            if (child.gameObject)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public void BeginGrowthProcess()
+    {
+        if (isSideQuest)
+        {
+            _seedHits++;
+            if (_seedHits >= seedsToComplete)
+            {
+                // Defer terrain edits until end of frame to avoid physics-phase issues
+                this.gameObject.GetComponent<BoxCollider>().enabled = false;
+                TurnOffDestoryOnClear();
+            }
+        }
+    }
+
+    private void TurnOffDestoryOnClear()
+    {
+        foreach (Cuttable child in weeds)
+        {
+            child.destroyOnClear = true;
+        }
+
+    }
+
+    public void RemoveWeed(Cuttable weed)
+    {
+        if (weeds.Contains(weed))
+        {
+            weeds.Remove(weed);
+            Debug.Log($"Weed removed. Remaining weeds: {weeds.Count}");
         }
     }
 
@@ -50,6 +106,7 @@ public class WeedManager : MonoBehaviour
     private IEnumerator RegrowRoutine(Cuttable weed)
     {
         float t = 0f;
+        Debug.Log("What's my current regrowth time " + t);
 
         while (t < regrowthTime)
         {
@@ -85,4 +142,22 @@ public class WeedManager : MonoBehaviour
         float distance = Vector3.Distance(player.position, weedWorldPos);
         return distance <= proximityThreshold;
     }
+    public void CheckIfAllWeedsCleared()
+    {
+        int remainingWeeds = CountWeeds();
+
+        Debug.Log("Check the remaing weeds: " +  remainingWeeds);
+
+        if (remainingWeeds == 0)
+        {
+            Debug.Log("All weeds are cleared! Update the score.");
+            // You can add additional logic here, such as updating the score.
+            GameManager.Instance.RegisterSideObjectiveCompleted("Clearing Special Weed");
+        }
+        else
+        {
+            Debug.Log($"Weeds remaining: {remainingWeeds}");
+        }
+    }
+
 }

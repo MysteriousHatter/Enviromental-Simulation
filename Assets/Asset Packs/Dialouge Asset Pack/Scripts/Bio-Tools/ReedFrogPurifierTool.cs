@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace BioTools
 {
@@ -29,6 +31,14 @@ namespace BioTools
 
         [Header("Leak (evaporation)")]
         public float leakShotsPerSec = 0.05f;
+
+        [Header("Weed Cutter UI")]
+        [SerializeField] private Slider ammoSlider;
+        [SerializeField] private TextMeshProUGUI ammoText;
+        [SerializeField] private GameObject UIContainer;
+        [SerializeField] private GameObject[] noUIs;
+        private float absorptionProgress = 0f;
+
 
         [Header("Absorb Visuals (optional)")]
         public GameObject absorbPrefab;
@@ -62,7 +72,27 @@ namespace BioTools
         {
             base.Awake();
             if (!tip) tip = Muzzle ? Muzzle : transform;
+            UpdateReedAbsorptionDisplay();
+            CurrentWaterLevel();
 
+        }
+
+        private void CurrentWaterLevel()
+        {
+            if (ammoSlider != null)
+            {
+                ammoSlider.gameObject.SetActive(true);
+                // Calculate the normalized water level
+                float waterLevel = (float)currentMagazine / tankCapacityShots;
+                ammoSlider.value = waterLevel;
+
+                // Optional: Update text to show exact values or percentage
+                if (ammoText != null)
+                {
+                    ammoText.gameObject.SetActive(true);
+                    ammoText.text = $"{currentMagazine}/{tankCapacityShots} ({waterLevel * 100:0}%)";
+                }
+            }
         }
 
         private void OnDisable()
@@ -92,8 +122,29 @@ namespace BioTools
                 }
             }
 
+            foreach (GameObject ui in noUIs)
+            {
+                ui.SetActive(false);
+            }
+
+            if (!UIContainer.active)
+            {
+                UIContainer.SetActive(true);
+                var ReedTextAmountGameObject = ammoText.gameObject;
+                var ReedDisplayAmountGameObject = ammoSlider.gameObject;
+
+
+                ReedTextAmountGameObject.SetActive(true);
+                ReedDisplayAmountGameObject.SetActive(true);
+            }
+
+
             // Run absorb logic continuously while held
             if (_absorbing) TickAbsorb(Time.deltaTime);
+
+            // Update the UI
+            UpdateReedAbsorptionDisplay();
+            CurrentWaterLevel();
 
             ////// Keep the spray object riding the tip
             //if (spray)
@@ -188,6 +239,7 @@ namespace BioTools
                 {
                     var volume = waterHit.collider.GetComponentInParent<WaterVolume>();
                     int cleanShots = requested;
+                    Debug.Log("The requested amount " + requested);
                     if (volume) cleanShots = Mathf.Max(0, volume.AbsorbCleanShots(requested));
                     currentMagazine += cleanShots;
                     _absorbAccum -= requested;
@@ -197,6 +249,34 @@ namespace BioTools
             // optional ambient cleaning
             ApplyEcoEffectSphere(samplePoint, 0.5f, dt);
         }
+        private void UpdateReedAbsorptionDisplay()
+        {
+            if (ammoSlider != null)
+            {
+                ammoSlider.gameObject.SetActive(true);
+                // Simulate absorption progress based on absorbShotsPerSec
+                if (_absorbing) // Check if the tool is in the absorbing state
+                {
+                    absorptionProgress += absorbShotsPerSec * Time.deltaTime;
+                    absorptionProgress = Mathf.Clamp(absorptionProgress, 0f, tankCapacityShots);
+                }
+                else
+                {
+                    absorptionProgress = 0f; // Reset progress if not absorbing
+                }
+
+                // Update the slider value
+                ammoSlider.value = absorptionProgress / tankCapacityShots;
+
+                // Optional: Update text to show exact values or percentage
+                if (ammoText != null)
+                {
+                    ammoText.gameObject.SetActive(true);
+                    ammoText.text = $"{absorptionProgress:0.0}/{tankCapacityShots} Absorbed";
+                }
+            }
+        }
+
 
         int GetMaxTank()
         {

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 47248953fd7290f40bd313a3cfca78de
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Assets/Materials/Material01.mat
+  uploadId: 593115

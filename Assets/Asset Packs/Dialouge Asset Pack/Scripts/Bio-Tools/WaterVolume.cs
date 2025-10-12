@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using RPG.Quests;
+using Unity.VisualScripting;
+using UnityEngine;
 
 namespace BioTools
 {
@@ -26,11 +28,18 @@ namespace BioTools
         public string[] pollutantTags = new[] { "oil", "silt", "microplastics" };
         public Substrate[] substrates = new[] { Substrate.Water };
 
+        [Header("Quest Settings")]
+        public bool isQuestImportant = false;
+        public string questObjectiveReference; // Optional: Reference to the specific quest objective
+        [SerializeField] private bool isSidequest;
+
         [Header("Visuals (optional)")]
         public Renderer[] tintRenderers;
         public string colorProperty = "_BaseColor"; // URP Lit
         public Color dirtyColor = new Color(0.25f, 0.35f, 0.55f, 1f);
+        [SerializeField] private Material waterMaterial;
         public Color cleanColor = new Color(0.35f, 0.75f, 0.95f, 1f);
+        
 
         // fractional carry so we don't lose sub-shot yield
         float _yieldFracCarry;
@@ -55,7 +64,21 @@ namespace BioTools
             // Purify the body proportional to the *requested* amount (even if some was wasted)
             purity01 = Mathf.Clamp01(purity01 + purifyPerRequestedShot * requestedShots);
             UpdateTint();
-            return granted;
+
+            // Notify the quest system if this water volume is quest-important
+            if (isQuestImportant && granted > 0)
+            {
+                Debug.Log("Go to the next objective");
+                QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+                questList.CompleteObjectiveByReference(questObjectiveReference);
+            }
+
+            if(isQuestImportant && granted > 0)
+            {
+                GameManager.Instance.RegisterSideObjectiveCompleted("Cleaning Ponds");
+            }
+
+                return granted * 400;
         }
 
         /// <summary>
@@ -76,16 +99,35 @@ namespace BioTools
 
         void UpdateTint()
         {
-            if (tintRenderers == null || tintRenderers.Length == 0) return;
+            //if (tintRenderers == null || tintRenderers.Length == 0) return;
 
             Color c = Color.Lerp(dirtyColor, cleanColor, Mathf.Clamp01(purity01));
-            foreach (var r in tintRenderers)
-            {
-                if (!r) continue;
-                var mat = r.material; // instance
-                if (mat.HasProperty(colorProperty)) mat.SetColor(colorProperty, c);
-                else if (mat.HasProperty("_Color")) mat.SetColor("_Color", c);
-            }
+                if (waterMaterial != null)
+                {
+
+                    Debug.Log("Set the color");
+                    waterMaterial.SetColor(colorProperty, c);
+                    Renderer renderer = GetComponent<Renderer>();
+                    if (renderer != null)
+                    {
+                        renderer.material = waterMaterial; // Reassign the material to force an update
+                    }
+                    //Debug.Log("Changing the color of the water");
+                    //if (waterMaterial.HasProperty(colorProperty))
+                    //{
+
+                    //}
+                    //else if (waterMaterial.HasProperty("_Color"))
+                    //{
+                    //    Debug.Log("Set the normal color");
+                    //    waterMaterial.SetColor("_Color", c);
+                    //    Renderer renderer = GetComponent<Renderer>();
+                    //    if (renderer != null)
+                    //    {
+                    //        renderer.material = waterMaterial; // Reassign the material to force an update
+                    //    }
+                    //}
+                }
         }
 
 #if UNITY_EDITOR

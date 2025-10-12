@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ec588f6ac776dae409c952095f5c06b7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Demo Scenes/URP Demo/Global Volume Profile.asset
+  uploadId: 593115

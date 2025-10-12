@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8591339062515237920}
   - component: {fileID: 4849899678129995523}
   - component: {fileID: 3199771552909192162}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Seed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,9 +147,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793559125855521031}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9be3ff01c7356e44b02981ea544909d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantobj: {fileID: 4205136082419854867, guid: b25145c9dc3815148b5e3a7c7bc8312a, type: 3}
+  plantobj: {fileID: 793559125855521031}
+  requiredTag: GrowZone
+  maxSlope: 60
+  surfaceOffset: 0.02
+  zoneLayers:
+    serializedVersion: 2
+    m_Bits: 1024
+  plantType: Flower

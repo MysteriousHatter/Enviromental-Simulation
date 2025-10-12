@@ -18,6 +18,7 @@ TagManager:
   - Ground
   - Creature
   - Grass
+  - GrowZone
   layers:
   - Default
   - TransparentFX
@@ -30,9 +31,9 @@ TagManager:
   - Tools
   - Cuttable
   - Seed Area
-  - 
-  - 
-  - 
+  - Garden Area
+  - Player
+  - Seed
   - 
   - 
   - 

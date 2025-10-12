@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flower
   m_EditorClassIdentifier: Assembly-CSharp::BioTools.SeedDefinition
   displayName: Flower Seed
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e0694eb4b150eaf489504e17f0c751f4, type: 3}
   category: 1
   unitSize: 1
   preferredConeDeg: 20

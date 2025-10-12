@@ -1,7 +1,8 @@
+using RPG.Quests;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using static RecyclableItem;
 
 
@@ -19,8 +20,9 @@ public class Inventory : MonoBehaviour
     [HideInInspector] public string currentRecycable = "";
     [SerializeField] private DialogBoxController dialogBoxController;
     [SerializeField] private RecyclableSpawner recyclableSpawner;
+    [SerializeField] private PlanetManagerScript planetManagerScript;
 
-
+    [SerializeField] private List<GameObject> seedInventory = new List<GameObject>(); // Exclusive inventory for seeds
 
 
     void Start()
@@ -144,24 +146,20 @@ public class Inventory : MonoBehaviour
                 if (inventory.useRecycable(type)) // Check if the item is available in inventory
                 {
                     Debug.Log("We have a match" + type);
-                    GameManager.Instance.currentScore++;
-                    GameManager.Instance.CheckProgress();
+                    planetManagerScript.CompleteObjective();
+                    //GameManager.Instance.currentScore++;
+                    //GameManager.Instance.CheckProgress();
                 }
                 else
                 {
                     Debug.Log($"Item {type} not available in inventory.");
                 }
             }
-            else if(type == RecyclableType.Seed)
-            {
-                Debug.Log("Complete objective");
-               system.CompleteObjective(currentObjectiveIndex);
-            }
             else
             {
                 // Incorrect selection
                 Debug.Log($"Incorrect selection! Expected: {recyclableSpawner.currentRecyclableType}, but selected: {type}");
-                GameManager.Instance.currentScore++;
+                //GameManager.Instance.currentScore++;
                 useRecycable(type); // Attempt to use the item, even if incorrect
             }
         }
@@ -169,6 +167,13 @@ public class Inventory : MonoBehaviour
         {
             Debug.LogError($"Invalid material: {material}");
         }
+    }
+
+    public void SeedComptionHolder()
+    {
+        //GameManager.Instance.currentScore++;
+        //GameManager.Instance.CheckProgress();
+        planetManagerScript.CompleteObjective();
     }
 
     public bool useRecycable(RecyclableType type)
@@ -184,5 +189,52 @@ public class Inventory : MonoBehaviour
         Debug.Log($"No {type} available to use.");
         return false;
     }
+
+    public void AddSeedToInventory(GameObject seed)
+    {
+        if (!seedInventory.Contains(seed))
+        {
+            seedInventory.Add(seed);
+            Debug.Log($"Seed '{seed.name}' added to the seed inventory. Total seeds: {seedInventory.Count}");
+        }
+        else
+        {
+            Debug.Log($"Seed '{seed.name}' is already in the inventory.");
+        }
+    }
+
+    public int GetSeedCount()
+    {
+        return seedInventory.Count;
+    }
+
+    public void RemoveSeedFromInventory()
+    {
+        if (GetSeedCount() > 0)
+        {
+            // Get the first seed in the inventory
+            GameObject seedToRemove = seedInventory[0];
+
+            // Remove it from the inventory
+            seedInventory.RemoveAt(0);
+
+            if(GetSeedCount() == 0)
+            {
+                FindObjectOfType<DialogBoxController>().SetHasSeed(false);
+            }
+
+            Debug.Log($"Seed '{seedToRemove.name}' removed from the seed inventory. Remaining seeds: {seedInventory.Count}");
+        }
+        else
+        {
+            Debug.Log("No seeds available in the inventory to remove.");
+        }
+    }
+
+    public List<GameObject> GetAllSeeds()
+    {
+        return new List<GameObject>(seedInventory); // Return a copy of the inventory
+    }
+
 
 }

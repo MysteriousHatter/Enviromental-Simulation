@@ -13,6 +13,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private GameObject PlayerLogUI; // Assign your World Space Canvas here
     [SerializeField] private GameObject InventoryMenuUI;
     [SerializeField] private GameObject SeedUI;
+    [SerializeField] private GameObject QuestUI;
     [SerializeField] private GameObject cameraInventory;
     [SerializeField] private GameObject ToolWheel;
     [SerializeField] private GameObject ShowPhotoUI;
@@ -27,6 +28,8 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private GameObject WinUI;
     [SerializeField] private GameObject LoseUI;
     [SerializeField] private RecyclableSpawner recyclableSpawner;
+    [SerializeField] private WeaponEquipManager weaponEquipManager;
+    [SerializeField] private GameObject AmmoUI;
 
     [Header("UI For Seed Controller")]
     [SerializeField] private Button yesButton; // "Yes" button
@@ -40,6 +43,7 @@ public class DialogBoxController : MonoBehaviour
     private string defaultLayerMask = "Default";
     private string recycaleLayerMask = "Recycable";
     private string UILayerMask = "UI";
+    private string ToolsLayerMask = "Tools";
     private RecyclableType type;
 
     [SerializeField] private Transform player;
@@ -53,6 +57,7 @@ public class DialogBoxController : MonoBehaviour
     private bool isDialogVisible = true;
     private bool isInventoryMenuOpen = false; // Tracks if Recycle Shop UI is active
     private bool isPhotoAlbumOpen = false;
+    private bool isQuestsWindowOpen = false;
     private readonly string[] allowedActionMaps =
     {
         "XRI Head",
@@ -81,8 +86,10 @@ public class DialogBoxController : MonoBehaviour
         cameraInventory.gameObject.SetActive(false);
         WinUI.gameObject.SetActive(false);
         LoseUI.gameObject.SetActive(false);
+        QuestUI.gameObject.SetActive(false);
         SeedUI.gameObject.SetActive(false);
         ToolWheel.gameObject.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
         isDialogVisible = false;
 
         InventoryButton.action.performed += OnToggleAction;
@@ -166,6 +173,12 @@ public class DialogBoxController : MonoBehaviour
 
         timer.transform.position = basePosition;
         timer.transform.rotation = Quaternion.LookRotation(timer.transform.position - cameraTransform.position);
+
+        QuestUI.transform.position = basePosition;
+        QuestUI.transform.rotation = Quaternion.LookRotation(QuestUI.transform.position - cameraTransform.position);
+
+        AmmoUI.transform.position = basePosition;
+        AmmoUI.transform.rotation = Quaternion.LookRotation(AmmoUI.transform.position - cameraTransform.position);
     }
 
     public bool IsPlayerNear()
@@ -240,26 +253,23 @@ public class DialogBoxController : MonoBehaviour
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~recycalelayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~recycalelayerMask;
+        weaponEquipManager.SetToolActive(false);
         //raycaster.blockingMask = 1 << 5;
     }
 
     public void HideDialog()
     {
+        Debug.Log("Add LayerMasks back");
         // Hide the dialog
         PlayerLogUI.gameObject.SetActive(false);
-
         InteractionLayerMask UIlayerMask = InteractionLayerMask.GetMask(UILayerMask);
-        InteractionLayerMask defaultlayerMask = InteractionLayerMask.GetMask(defaultLayerMask);
-        InteractionLayerMask recycalelayerMask = InteractionLayerMask.GetMask(recycaleLayerMask);
 
-        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = defaultlayerMask;
-        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = defaultlayerMask;
-
-        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = recycalelayerMask;
-        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = recycalelayerMask;
+        leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers = InteractionLayerMask.GetMask(defaultLayerMask, recycaleLayerMask, ToolsLayerMask);
+        rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers = InteractionLayerMask.GetMask(defaultLayerMask, recycaleLayerMask, ToolsLayerMask);
 
         leftController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
         rightController.GetComponentInChildren<NearFarInteractor>().interactionLayers &= ~UIlayerMask;
+        weaponEquipManager.SetToolActive(true);
         //raycaster.blockingMask = 0;
         //raycaster.blockingMask = 1;
     }
@@ -269,10 +279,14 @@ public class DialogBoxController : MonoBehaviour
     /// </summary>
     private void OnToggleAction(InputAction.CallbackContext context)
     {
-        if (isInventoryMenuOpen || isPhotoAlbumOpen)
+        if (isInventoryMenuOpen || isPhotoAlbumOpen || isQuestsWindowOpen)
         {
             // If Recycle Shop is open, close it and return to Ready to Recycle
             CloseInventoryMenu();
+            ClosePhotoAlbum();
+            CloseQuestsWindow();
+
+
         }
         else if (isDialogVisible)
         {
@@ -323,20 +337,37 @@ public class DialogBoxController : MonoBehaviour
             PlayerLogUI.gameObject.SetActive(false);
             SeedUI.SetActive(false);
             cameraInventory.gameObject.SetActive(false);
+            AmmoUI.gameObject.SetActive(false);
             InventoryMenuUI.gameObject.SetActive(true);
             isInventoryMenuOpen = true;
             isPhotoAlbumOpen = false;
             isDialogVisible = true;
+            isQuestsWindowOpen = false;
     }
 
     public void OpenPhotoAlbum()
     {
         PlayerLogUI.gameObject.SetActive(false);
         InventoryMenuUI.gameObject.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(true);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = true;
+        isQuestsWindowOpen = false;
         isDialogVisible = true;
+    }
+
+    public void OpenQuestsWindow()
+    {
+        PlayerLogUI.gameObject.SetActive(false);
+        InventoryMenuUI.gameObject.SetActive(false);
+        QuestUI.gameObject.SetActive(true);
+        AmmoUI.gameObject.SetActive(false);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
+        isDialogVisible = true;
+        isQuestsWindowOpen = true;
+
     }
 
     public void CheckGameIsComplete()
@@ -392,6 +423,18 @@ public class DialogBoxController : MonoBehaviour
         isDialogVisible = true;
     }
 
+    private void CloseQuestsWindow()
+    {
+        PlayerLogUI.gameObject.SetActive(true);
+        InventoryMenuUI.gameObject.SetActive(false);
+        cameraInventory.gameObject.SetActive(false);
+        QuestUI.gameObject .SetActive(false);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
+        isQuestsWindowOpen = false;
+        isDialogVisible = true;
+    }
+
     /// <summary>
     /// Open the Ready to Recycle UI
     /// </summary>
@@ -400,6 +443,7 @@ public class DialogBoxController : MonoBehaviour
         PlayerLogUI.gameObject.SetActive(true);
         InventoryMenuUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
@@ -464,6 +508,8 @@ public class DialogBoxController : MonoBehaviour
         isSeedUIVisible = visible;
         SeedUI.SetActive(visible);
         InventoryMenuUI.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
+        weaponEquipManager.SetToolActive(!visible);
         if (visible)
         {
             isDialogVisible = visible;
@@ -522,6 +568,11 @@ public class DialogBoxController : MonoBehaviour
         // Reload the current scene
         SceneManager.LoadScene(currentScene.name);
     }
+
+    public void DisbaleAmmoUI()
+    {
+        AmmoUI.gameObject.SetActive(false);
+    }    
 
     public void OnApplicationQuit()
     {

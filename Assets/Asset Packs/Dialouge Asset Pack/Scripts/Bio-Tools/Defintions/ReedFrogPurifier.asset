@@ -41,7 +41,7 @@ MonoBehaviour:
     canPierce: 0
     aoeRadius: 0
   resources:
-    magazine: 12
+    magazine: 600
     reserve: 0
     reloadTime: 0
     gathersFromEnvironment: 0

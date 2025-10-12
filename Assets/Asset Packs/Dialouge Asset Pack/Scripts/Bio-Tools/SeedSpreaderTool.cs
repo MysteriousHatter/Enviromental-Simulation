@@ -1,5 +1,9 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace BioTools
 {
@@ -45,6 +49,17 @@ namespace BioTools
         [Tooltip("If the prefab has a Rigidbody, velocity = dir * projectileSpeed. Otherwise we move it via script.")]
         public bool useProjectileSpeed = true;
 
+        [Header("Seed Switching")]
+        [SerializeField] private SeedDefinition[] seedTypes; // List of seed types
+        private int currentSeedIndex = 0;
+        [SerializeField] private TextMeshProUGUI seedDisplayText;
+        [SerializeField] private Image seedDisplayUI;
+        [SerializeField] private TextMeshProUGUI seedAmount;
+        [SerializeField] private GameObject UIContainer;
+        [SerializeField] private GameObject[] noUIs;
+
+        [Header("Input System")]
+        [SerializeField] private InputActionReference switchSeedAction; // Input action for switching seeds
 
         // internal
         private bool _inWindZone;
@@ -63,7 +78,67 @@ namespace BioTools
         {
             base.Awake();
             if (!tip) tip = Muzzle ? Muzzle : transform;
+
+            foreach (GameObject ui in noUIs)
+            {
+                ui.SetActive(false);
+            }
+
+            // Subscribe to the input action
+            if (switchSeedAction != null)
+            {
+                switchSeedAction.action.performed += OnSwitchSeed;
+            }
+
+            // Initialize the seed display
+            UpdateSeedDisplay();
         }
+
+
+        void OnDestroy()
+        {
+            // Unsubscribe from the input action
+            if (switchSeedAction != null)
+            {
+                switchSeedAction.action.performed -= OnSwitchSeed;
+            }
+        }
+        private void OnSwitchSeed(InputAction.CallbackContext context)
+        {
+            if (seedTypes == null || seedTypes.Length == 0) return;
+
+            // Increment the index and wrap around if it exceeds the array length
+            currentSeedIndex = (currentSeedIndex + 1) % seedTypes.Length;
+
+            // Update the seed display or perform any other logic
+            UpdateSeedDisplay();
+        }
+
+        private void UpdateSeedDisplay()
+        {
+            if (seedTypes != null && seedTypes.Length > 0)
+            {
+                SeedDefinition currentSeed = seedTypes[currentSeedIndex];
+                Debug.Log($"Switched to seed: {currentSeed.displayName}");
+                currentAmmo = currentSeed;
+
+                // Update UI elements or perform other actions
+                if (seedDisplayText != null)
+                {
+                    seedDisplayText.text = $"Seed: {currentSeed.displayName}";
+                }
+                if (seedDisplayUI != null)
+                {
+                    seedDisplayUI.sprite = currentSeed.icon;
+                }
+                if(seedAmount != null)
+                {
+                    int currentAmmo = (Definition.resources.magazine > 0) ? currentMagazine : currentReserve;
+                    seedAmount.text = $"Ammo: {currentAmmo}";
+                }
+            }
+        }
+
 
         protected override void Update()
         {
@@ -74,6 +149,22 @@ namespace BioTools
             float regen = passiveRechargePerSec + (_inWindZone ? windRechargePerSec : 0f);
             if (regen > 0f && fanEnergy < 1f)
                 fanEnergy = Mathf.Min(1f, fanEnergy + regen * dt);
+
+            if(!UIContainer.active)
+            {
+                UIContainer.SetActive(true);
+                var SeedTextAmountGameObject = seedAmount.gameObject;
+                var SeedDisplayAmountGameObject = seedDisplayText.gameObject;
+                var SeedDisplayPicGameObject = seedDisplayUI.gameObject;
+
+                SeedTextAmountGameObject.SetActive(true);
+                SeedDisplayAmountGameObject.SetActive(true);
+                SeedDisplayPicGameObject.SetActive(true);
+            }
+
+            // Update the UI
+            UpdateSeedDisplay();
+
         }
 
         // If someone sets Semi/Auto, emit a tiny puff per tick.
@@ -175,6 +266,12 @@ namespace BioTools
 
             OnGust?.Invoke();
             OnFireEvent?.Invoke();
+        }
+
+        public void ReloadPellets(int amount)
+        {
+            currentMagazine += amount;
+            Debug.Log($"Reloaded {amount} pellets. Current magazine: {currentMagazine}");
         }
 
         private static Vector3 RandomCone(Vector3 forward, float degrees)

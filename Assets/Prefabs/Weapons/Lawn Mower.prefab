@@ -375,6 +375,7 @@ MonoBehaviour:
   currentHeat: 0
   chargeHeldTime: 0
   twoHandStabilized: 0
+  noCooldown: 1
   OnEquip:
     m_PersistentCalls:
       m_Calls: []
@@ -405,6 +406,7 @@ MonoBehaviour:
   OnRecoveredFromHeat:
     m_PersistentCalls:
       m_Calls: []
+  spray: {fileID: 0}
   OnAmmoChanged:
     m_PersistentCalls:
       m_Calls: []

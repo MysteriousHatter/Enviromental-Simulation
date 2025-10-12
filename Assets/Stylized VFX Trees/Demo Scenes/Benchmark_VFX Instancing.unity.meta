@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 31308a9cb2fbf3f468fca87bc4fdbe97
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238647
+  packageName: Stylized VFX Trees | GPU Based Effect
+  packageVersion: 2.0.0
+  assetPath: Assets/Stylized VFX Trees/Demo Scenes/Benchmark_VFX Instancing.unity
+  uploadId: 593115
