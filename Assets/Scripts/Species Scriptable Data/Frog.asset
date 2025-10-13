@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ac1b0c384e0c346adc137f90146fbd, type: 3}
+  m_Name: Frog
+  m_EditorClassIdentifier: Assembly-CSharp::SpeicesData
+  Name: Frog
+  Rarity: 1
+  Description: "Frogs are amphibians belonging to the order Anura (meaning \u201Cwithout
+    tail\u201D). They live both in water and on land, making them ecological bridges
+    between aquatic and terrestrial environments. Found on every continent except
+    Antarctica, frogs are vital to ecosystems as both predators and prey, helping
+    control insect populations and serving as food for birds, snakes, and mammals."
+  animationClips:
+  - {fileID: -2597794908530434257, guid: 0b04b4ee27b36df4c94e4df3ea384a9f, type: 3}

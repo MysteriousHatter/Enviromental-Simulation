@@ -9,6 +9,7 @@ namespace RPG.Quests
         [SerializeField] Quest quest;
         [SerializeField] string objective;
         [SerializeField] private GameObject questStarterPrefab;
+        [SerializeField] private GameObject turnOffLevel;
         [SerializeField] private bool isQuest;
 
 
@@ -29,10 +30,12 @@ namespace RPG.Quests
                 if(isQuest)
                 {
                     GameManager.Instance.QuestManager.GiveNextQuest();
+                    if(turnOffLevel != null) { turnOffLevel.SetActive(false); }
                 }
                 else
                 {
                     CompleteObjective();
+                    if (turnOffLevel != null) { turnOffLevel.SetActive(false); }
                 }
 
                 if (questStarterPrefab != null)

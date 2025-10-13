@@ -1,69 +1,88 @@
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.VFX;
 
-public class TreeManager: MonoBehaviour
+public class TreeManager : MonoBehaviour
 {
-    [SerializeField] private Terrain terrain; // Assign your terrain in the Inspector
-    [SerializeField] private GameObject forestedTreePrefab; // Assign the forested tree prefab
+    [Header("Targets")]
+    [SerializeField] private GameObject[] trees;               // Tree GameObjects with a VisualEffect child
+    [SerializeField] private string leafSizeProperty = "Leaves Size";
 
-    private bool goalReached = false;
+    [Header("Leaf Size Range")]
+    [SerializeField] private float minLeafSize = 0f;           // size when env = 0
+    [SerializeField] private float maxLeafSize = 5f;           // size when env = 1
 
-    void Update()
+    [Header("Progress (smooth like SkyboxManager)")]
+    [SerializeField] private float transitionSpeed = 1f;       // how fast currentProgress chases targetProgress
+    private float currentProgress = 0f;                        // 0..1 (what we apply this frame)
+    private float targetProgress = 0f;                         // 0..1 (what GameManager sets)
+
+    // cache
+    private VisualEffect[] leafVFX;
+
+    private void Awake()
     {
-        //if (!goalReached && GameManager.Instance.currentScore >= 6)
-        //{
-        //    goalReached = true;
-        //    ReplaceDeforestedTrees();
-        //}
-    }
-
-    private void ReplaceDeforestedTrees()
-    {
-        if (terrain == null || forestedTreePrefab == null)
+        if (trees == null || trees.Length == 0)
         {
-            Debug.LogError("Terrain or forestedTreePrefab is not assigned.");
+            Debug.LogError("[TreeManager] No trees assigned.");
             return;
         }
 
-        TerrainData terrainData = terrain.terrainData;
-        TreeInstance[] originalTrees = terrainData.treeInstances;
-        List<TreeInstance> newTreeInstances = new List<TreeInstance>();
-
-        // Iterate through all trees in the terrain
-        foreach (TreeInstance tree in originalTrees)
+        leafVFX = new VisualEffect[trees.Length];
+        for (int i = 0; i < trees.Length; i++)
         {
-            Vector3 treeWorldPosition = Vector3.Scale(tree.position, terrainData.size) + terrain.transform.position;
-
-            // Replace the deforested trees based on conditions (customize as needed)
-            if (IsDeforestedTree(tree))
+            if (trees[i] == null) continue;
+            leafVFX[i] = trees[i].GetComponentInChildren<VisualEffect>(true);
+            if (leafVFX[i] == null)
             {
-                // Instantiate a forested tree prefab at the tree's position
-                InstantiateForestedTree(treeWorldPosition);
-
-                // Optionally, you can skip adding the replaced tree to the terrain
-                continue;
+                Debug.LogWarning($"[TreeManager] No VisualEffect found under tree index {i} ({trees[i].name}).");
             }
-
-            // Keep the original tree if it's not deforested
-            newTreeInstances.Add(tree);
         }
 
-        // Update the terrain's tree instances with the remaining trees
-        terrainData.treeInstances = newTreeInstances.ToArray();
+        // initialize leaf size at the deforested state
+        ApplyLeafSize(minLeafSize);
     }
 
-    private bool IsDeforestedTree(TreeInstance tree)
+    private void Update()
     {
-        // Define your logic to identify deforested trees (e.g., prototype index or color)
-        // For example, if deforested trees have a specific prototype index:
-        int deforestedPrototypeIndex = 0; // Replace with your actual index
-        return tree.prototypeIndex == deforestedPrototypeIndex;
+        // Smoothly move toward the requested progress (same idea as SkyboxManager)
+        if (!Mathf.Approximately(currentProgress, targetProgress))
+        {
+            currentProgress = Mathf.MoveTowards(
+                currentProgress,
+                targetProgress,
+                transitionSpeed * Time.deltaTime
+            );
+
+            float leafSize = Mathf.Lerp(minLeafSize, maxLeafSize, currentProgress);
+            ApplyLeafSize(leafSize);
+        }
     }
 
-    private void InstantiateForestedTree(Vector3 position)
+    private void ApplyLeafSize(float size)
     {
-        // Instantiate the forested tree prefab at the tree's position
-        Instantiate(forestedTreePrefab, position, Quaternion.identity);
-        Debug.Log($"Replaced tree at position {position} with forested tree.");
+        if (leafVFX == null) return;
+        for (int i = 0; i < leafVFX.Length; i++)
+        {
+            if (leafVFX[i] == null) continue;
+            leafVFX[i].SetFloat(leafSizeProperty, size);
+        }
+    }
+
+    /// <summary>
+    /// Called by GameManager when overall progress changes, just like SkyboxManager.SetProgress.
+    /// </summary>
+    public void SetProgress(float progress01)
+    {
+        targetProgress = Mathf.Clamp01(progress01);
+    }
+
+    /// <summary>
+    /// Optional: force an immediate refresh (e.g., after scene load).
+    /// </summary>
+    public void ForceApply()
+    {
+        currentProgress = targetProgress;
+        float leafSize = Mathf.Lerp(minLeafSize, maxLeafSize, currentProgress);
+        ApplyLeafSize(leafSize);
     }
 }

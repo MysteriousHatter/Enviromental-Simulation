@@ -23,6 +23,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int mainCompletedCount = 0;       // out of 5
     [SerializeField] private int sideCompletedCount = 0;       // ~6–8 total recommended
 
+    [Header("Debug/Test")]
+    [SerializeField] private bool debugHotkeys = true;
+    [SerializeField] private KeyCode addMainKey = KeyCode.M;
+    [SerializeField] private KeyCode addSideKey = KeyCode.N;
+    [SerializeField] private KeyCode addPercentKey = KeyCode.P;
+    [SerializeField, Range(0f, 0.25f)] private float addPercentStep01 = 0.01f; // 1%
+
+    // Optional: small helper to generate unique IDs in tests
+    private int _testMainIdx = 0;
+    private int _testSideIdx = 0;
+
     // Track what’s been awarded so we don’t double count
     private readonly HashSet<string> completedMainIds = new HashSet<string>();
     private readonly HashSet<string> completedSideIds = new HashSet<string>();
@@ -64,12 +75,27 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space)) // Simulate count increase
-        //{
-        //    currentScore += 1; // Increase count
-        //    //spawner.placeholderRecyacableCount--;
-        //    CheckProgress();
-        //}
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        if (debugHotkeys)
+        {
+            if (Input.GetKeyDown(addMainKey))
+            {
+                RegisterMainObjectiveCompleted($"TEST_Main_{++_testMainIdx}");
+            }
+            if (Input.GetKeyDown(addSideKey))
+            {
+                RegisterSideObjectiveCompleted($"TEST_Side_{++_testSideIdx}");
+            }
+            if (Input.GetKeyDown(addPercentKey))
+            {
+                // direct % bump (useful to eyeball transitions)
+                var before = GetProgress01();
+                // Use internal AddProgress via a tiny proxy to keep it private outside.
+                AddProgress_Editor(addPercentStep01);
+                Debug.Log($"[TEST] Progress bump {before:P1} ? {GetProgress01():P1}");
+            }
+        }
+#endif
 
         //if (currentScore == 6)
         //{
@@ -101,6 +127,11 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[Progress] Main complete: {objectiveId} (+{mainSectionValue01:P0})");
         CheckWinCondition();
     }
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    // Editor-only proxy wrapper around private AddProgress
+    private void AddProgress_Editor(float delta01) => AddProgress(delta01);
+#endif
 
     /// <summary>
     /// Register a side objective completion.
@@ -163,10 +194,10 @@ public class GameManager : MonoBehaviour
         // Update environment systems safely
         if (enviroment) enviroment.SetProgress(currentProgress01);
         if (music) music.SetProgress(currentProgress01);
-
+        if (tree) tree.SetProgress(currentProgress01);
         // If your grass/water managers expect incremental calls, keep as-is:
         if (grass) grass.AddProgress();
-        // if (water) water.SetProgress(); // keep/comment as needed
+        if (water) water.SetProgress(); // keep/comment as needed
 
         Debug.Log($"[Progress] {currentProgress01:P1} | Main:{mainCompletedCount} | Side:{sideCompletedCount}");
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class RecyclableItem
 {
-    public enum RecyclableType { Paper, Battery, Glass, Plastic, LithiumBattery, Seed, None }
+    public enum RecyclableType { Paper, Battery, Glass, Plastic, Reed, LithiumBattery, Seed, None }
     public RecyclableType type;
     public GameObject prefab;
     [TextArea]public string ItemDescription;
