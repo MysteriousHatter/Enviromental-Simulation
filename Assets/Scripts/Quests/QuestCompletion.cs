@@ -15,7 +15,7 @@ namespace RPG.Quests
 
         private void Start()
         {
-            questStarterPrefab.SetActive(false);
+            if(questStarterPrefab != null) questStarterPrefab.SetActive(false);
         }
         public void CompleteObjective()
         {

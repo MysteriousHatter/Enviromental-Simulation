@@ -425,7 +425,7 @@ MonoBehaviour:
   - Obstacle
   cutPower: 1
   defaultBiomassYield: 1
-  bagCapacity: 50
+  bagCapacity: 1110.3
   bagFill: 0
   stopWhenFull: 1
   emptyDuration: 1.2
@@ -438,6 +438,10 @@ MonoBehaviour:
   OnBagEmptied:
     m_PersistentCalls:
       m_Calls: []
+  ammoSlider: {fileID: 0}
+  ammoText: {fileID: 0}
+  UIContainer: {fileID: 0}
+  noUIs: []
 --- !u!1 &4598905937044491806
 GameObject:
   m_ObjectHideFlags: 0

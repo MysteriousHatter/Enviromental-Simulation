@@ -141,7 +141,10 @@ namespace BioTools
 
             // Run absorb logic continuously while held
             if (_absorbing) TickAbsorb(Time.deltaTime);
-
+            else
+            {
+                FindObjectOfType<WaterVolume>().HideHealthUI();
+            }
             // Update the UI
             UpdateReedAbsorptionDisplay();
             CurrentWaterLevel();

@@ -12,6 +12,7 @@ public class BagEmptyingController : MonoBehaviour
     [SerializeField] private Transform grassBagTransform; // Reference to the Grass Bag's Transform
     [SerializeField] private float proximityThreshold = 5f; // Distance threshold for proximity
 
+
     private void OnEnable()
     {
         // Enable the input action
@@ -31,7 +32,9 @@ public class BagEmptyingController : MonoBehaviour
         // Check if the player is near the Grass Bag and call TryEmptyBag
         if (IsPlayerNear() && grassCutter != null)
         {
+            Debug.Log("Check out bag is empty"); 
             grassCutter.TryEmptyBag();
+            
         }
     }
 
@@ -39,7 +42,7 @@ public class BagEmptyingController : MonoBehaviour
     {
         // Calculate the distance between the player and the Grass Bag
         float distance = Vector3.Distance(player.position, grassBagTransform.position);
-        Debug.Log("Player's Distance: " + distance);
+        Debug.Log("Player's Distance from the grass bag: " + distance);
         return distance <= proximityThreshold;
     }
 }

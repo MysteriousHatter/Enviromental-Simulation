@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Flower
   m_EditorClassIdentifier: Assembly-CSharp::BioTools.SeedDefinition
   displayName: Flower Seed
-  icon: {fileID: 21300000, guid: e0694eb4b150eaf489504e17f0c751f4, type: 3}
+  icon: {fileID: 21300000, guid: 2aedce5d006d65b44acf6cfa434e69cf, type: 3}
   category: 1
   unitSize: 1
   preferredConeDeg: 20
-  minRange: 0.5
-  maxRange: 7
+  minRange: 33.2
+  maxRange: 99.9
+  ammoAmount: 264
   germinationChance: 0.65
   growthRate: 1.1
   preferredSubstrates: 0200000003000000

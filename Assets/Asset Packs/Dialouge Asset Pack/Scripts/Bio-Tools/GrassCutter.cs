@@ -29,11 +29,13 @@ namespace BioTools
         public float defaultBiomassYield = 1f;
 
         [Header("Bag / Collection")]
-        public float bagCapacity = 50f;
-        [SerializeField] private float bagFill = 0f;
+        [SerializeField] private float bagCapacity = 50f;
+        private float bagFill;  // the serialized backing field
+        public UnityEngine.Events.UnityEvent<float> OnBagFillChanged;
         public bool stopWhenFull = true;
         [Tooltip("Seconds to empty the bag when requested.")]
         public float emptyDuration = 1.2f;
+        [SerializeField] private AudioClip emptyAudioClip;
 
         [Header("Events")]
         public UnityEvent OnCut;
@@ -46,13 +48,15 @@ namespace BioTools
         [SerializeField] private GameObject UIContainer;
         [SerializeField] private GameObject[] noUIs;
 
+        [SerializeField] private Inventory playerInventory;
+        [SerializeField] private RecyclableItemComponent weedComponent;
+
         // internal
         private bool _bagFullAnnounced;
         private bool _isEmptying;
         private readonly Collider[] _hits = new Collider[32];
 
         public bool IsBagFull => bagFill >= bagCapacity - 0.0001f;
-        public float BagFill01 => Mathf.Clamp01(bagCapacity <= 0f ? 0f : bagFill / bagCapacity);
 
         protected override void Awake()
         {
@@ -78,9 +82,33 @@ namespace BioTools
                 SeedTextAmountGameObject.SetActive(true);
                 SeedDisplayAmountGameObject.SetActive(true);
             }
-
             // Update the UI
             UpdateWeedDisplay();
+        }
+
+        // Public read, private write with validation + side effects
+        public float BagFill
+        {
+            get => bagFill;
+            private set
+            {
+                float clamped = Mathf.Clamp(value, 0f, bagCapacity);
+                if (Mathf.Approximately(clamped, bagFill)) return;
+
+                bagFill = clamped;
+
+                // notify & refresh UI
+                OnBagFillChanged?.Invoke(bagFill);
+                Debug.Log("Bag Changed " + bagFill);
+                UpdateWeedDisplay();
+
+                // (optional) bag-full signal here if you want:
+                if (stopWhenFull && bagFill >= bagCapacity - 0.0001f && !_bagFullAnnounced)
+                {
+                    _bagFullAnnounced = true;
+                    OnBagFull?.Invoke();
+                }
+            }
         }
 
         /// <summary>
@@ -89,7 +117,6 @@ namespace BioTools
         /// </summary>
         protected override void OnFire(Ray aim, float stabilityBonus)
         {
-            Debug.Log("On Fire");
             if (_isEmptying) return;
 
             // Respect bag-full block if configured
@@ -187,8 +214,8 @@ namespace BioTools
         private void AddToBag(float amount)
         {
             if (amount <= 0f) return;
-            bagFill = Mathf.Min(bagCapacity, bagFill + amount);
-            if (bagFill < bagCapacity - 0.0001f) _bagFullAnnounced = false; // allow re-fire event if we dipped below later
+            BagFill = bagFill + amount; // calls setter (clamp + UI + event)
+            if (bagFill < bagCapacity - 0.0001f) _bagFullAnnounced = false;
         }
 
         private bool MatchesCuttableTag(GameObject go)
@@ -204,22 +231,33 @@ namespace BioTools
         /// <summary>Call this from a bin/interaction to empty the bag (with delay).</summary>
         public void TryEmptyBag()
         {
-            if (_isEmptying || bagFill <= 0f) return;
-            StartCoroutine(EmptyRoutine());
+            float bagFillPlaceHolder = BagFill;
+            Debug.Log("IS emptied " + _isEmptying + "An empty bag" + bagFillPlaceHolder);
+            if (_isEmptying || bagFillPlaceHolder <= 0f)
+            {
+                return;
+            }
+            else
+            {
+                StartCoroutine(EmptyRoutine());
+            }
         }
 
         private IEnumerator EmptyRoutine()
         {
             _isEmptying = true;
             yield return new WaitForSeconds(emptyDuration);
-            bagFill = 0f;
+            BagFill = 0f;              // calls setter
             _bagFullAnnounced = false;
+            playerInventory.AddRecyclable(weedComponent.recyclableItem.type, 20, weedComponent.recyclableItem.sprite, weedComponent.recyclableItem.ItemDescription, 0);
             _isEmptying = false;
             OnBagEmptied?.Invoke();
         }
 
         private void UpdateWeedDisplay()
         {
+            ammoSlider.gameObject.SetActive(true);
+            ammoText.gameObject.SetActive(true);
             if (ammoSlider != null)
             {
                 ammoSlider.gameObject.SetActive(true);

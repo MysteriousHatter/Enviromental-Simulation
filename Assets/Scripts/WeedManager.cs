@@ -11,6 +11,7 @@ public class WeedManager : MonoBehaviour
     public Transform player;
     [Min(0f)] public float proximityThreshold = 3f;
     [Min(0f)] public float regrowthTime = 5f;
+    [SerializeField] private Color materialChange = Color.red;
 
     [Tooltip("How many seed impacts are needed before we grow the zone.")]
     public int seedsToComplete = 1;
@@ -25,8 +26,23 @@ public class WeedManager : MonoBehaviour
 
     private readonly Dictionary<Cuttable, Coroutine> _pending = new();
 
+    // ===================== UI HOOKUP (like SeedGrowZone) =====================
+    [Header("UI (optional)")]
+    private ZoneHealthBar zoneHealthBar;      // assign in Inspector or auto-find
+    [SerializeField] private bool findHealthBarOnStart = true; // find DialogBoxController.healthUI
+    [SerializeField] private bool showUIOnSeedHit = true;
+    [SerializeField] private bool immediateOnFirstShow = true; // first tick can snap
+    [SerializeField] private float uiIdleSeconds = 60f;        // hide after no hits for N seconds
+    private bool _shownOnce;
+    private float _lastSeedTime;
+    private Coroutine _uiIdleCo;
+    // ========================================================================
+
     private void Awake()
     {
+
+        zoneHealthBar = FindObjectOfType<DialogBoxController>().healthUI;
+        zoneHealthBar.gameObject.SetActive(false);
         // Wire up listeners so we start the timer when a weed is actually cleared.
         foreach (var w in weeds)
         {
@@ -35,6 +51,12 @@ public class WeedManager : MonoBehaviour
             var weed = w;
             weed.OnCleared.AddListener(() => ScheduleRegrow(weed));
         }
+    }
+
+    private void Start()
+    {
+        // Initialize UI to 0% (it’ll be hidden by your ZoneHealthBar’s fade/active logic)
+        UpdateHealthUI(forceShow: false, immediate: true);
     }
 
     public int CountWeeds()
@@ -57,13 +79,24 @@ public class WeedManager : MonoBehaviour
         if (isSideQuest)
         {
             _seedHits++;
+            UpdateHealthUI(forceShow: showUIOnSeedHit, immediate: !_shownOnce && immediateOnFirstShow);
             if (_seedHits >= seedsToComplete)
             {
                 // Defer terrain edits until end of frame to avoid physics-phase issues
+                ChangeWeedMaterial();
                 this.gameObject.GetComponent<BoxCollider>().enabled = false;
                 TurnOffDestoryOnClear();
             }
         }
+    }
+
+    private void ChangeWeedMaterial()
+    {
+        foreach (Cuttable child in weeds)
+        {
+            child.gameObject.GetComponent<MaterialModifierChildren>().ChangeMaterialSmooth(materialChange);
+        }
+
     }
 
     private void TurnOffDestoryOnClear()
@@ -94,7 +127,10 @@ public class WeedManager : MonoBehaviour
     // Called when a weed is cleared
     private void ScheduleRegrow(Cuttable weed)
     {
+        Debug.Log("Cut Weed Before");
         if (!weed) return;
+
+        Debug.Log("Cut Weed After");
 
         // stop an existing timer for this weed (if any) and start a fresh one
         if (_pending.TryGetValue(weed, out var c) && c != null)
@@ -146,7 +182,7 @@ public class WeedManager : MonoBehaviour
     {
         int remainingWeeds = CountWeeds();
 
-        Debug.Log("Check the remaing weeds: " +  remainingWeeds);
+        Debug.Log("Check the remaing weeds: " + remainingWeeds);
 
         if (remainingWeeds == 0)
         {
@@ -160,4 +196,39 @@ public class WeedManager : MonoBehaviour
         }
     }
 
+    private void UpdateHealthUI(bool forceShow, bool immediate)
+    {
+        if (!zoneHealthBar) return;
+
+        float p = seedsToComplete <= 0 ? 1f : Mathf.Clamp01((float)_seedHits / seedsToComplete);
+        zoneHealthBar.SetProgress01(p, immediate);   // public API from earlier bar
+        if (forceShow) zoneHealthBar.KeepAlive();    // extends its own visible timer
+        _shownOnce = true;
+    }
+
+    // Show/keep-alive + start a “hide after N seconds” watcher (no extra per-frame cost)
+    private void TouchUI()
+    {
+        _lastSeedTime = Time.time;
+        if (zoneHealthBar && !zoneHealthBar.gameObject.activeSelf)
+            zoneHealthBar.gameObject.SetActive(true);
+
+        if (_uiIdleCo == null) _uiIdleCo = StartCoroutine(UiIdleWatcher());
+    }
+
+    private IEnumerator UiIdleWatcher()
+    {
+        while (true)
+        {
+            float elapsed = Time.time - _lastSeedTime;
+            float remaining = uiIdleSeconds - elapsed;
+            if (remaining <= 0f) break;
+            yield return new WaitForSeconds(Mathf.Min(remaining, 0.5f)); // coarse sleeps are fine. :contentReference[oaicite:0]{index=0}
+        }
+
+        // Hide softly (your ZoneHealthBar can fade out or you can force it)
+        if (zoneHealthBar) zoneHealthBar.HideImmediate(); // also resets fill (per your bar)
+        _uiIdleCo = null;
+
+    }
 }

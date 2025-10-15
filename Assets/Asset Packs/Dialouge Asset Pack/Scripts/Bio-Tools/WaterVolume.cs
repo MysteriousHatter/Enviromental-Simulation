@@ -39,10 +39,21 @@ namespace BioTools
         public Color dirtyColor = new Color(0.25f, 0.35f, 0.55f, 1f);
         [SerializeField] private Material waterMaterial;
         public Color cleanColor = new Color(0.35f, 0.75f, 0.95f, 1f);
-        
+
+        ZoneHealthBar zoneHealthBar;
+        [SerializeField] private bool findHealthBarOnStart = true;   // auto-find DialogBoxController.healthUI
+        [SerializeField] private bool showUIOnPurityChange = true;
+        [SerializeField] private bool immediateOnFirstShow = true;
+
+        bool _shownOnce;
 
         // fractional carry so we don't lose sub-shot yield
         float _yieldFracCarry;
+
+        private void Awake()
+        {
+            zoneHealthBar = FindObjectOfType<DialogBoxController>().healthUI;
+        }
 
         /// <summary>
         /// Convert requested "shots of water" into clean shots, based on current purity.
@@ -64,6 +75,7 @@ namespace BioTools
             // Purify the body proportional to the *requested* amount (even if some was wasted)
             purity01 = Mathf.Clamp01(purity01 + purifyPerRequestedShot * requestedShots);
             UpdateTint();
+            UpdateHealthUI(immediate: !_shownOnce && immediateOnFirstShow);
 
             // Notify the quest system if this water volume is quest-important
             if (isQuestImportant && granted > 0)
@@ -73,8 +85,9 @@ namespace BioTools
                 questList.CompleteObjectiveByReference(questObjectiveReference);
             }
 
-            if(isQuestImportant && granted > 0)
+            if(!isQuestImportant && granted > 0)
             {
+                Debug.Log("Cleaned a pond");
                 GameManager.Instance.RegisterSideObjectiveCompleted("Cleaning Ponds");
             }
 
@@ -91,6 +104,7 @@ namespace BioTools
             {
                 purity01 = Mathf.Clamp01(purity01 + impact.cleansePercent);
                 UpdateTint();
+                UpdateHealthUI(immediate: !_shownOnce && immediateOnFirstShow);
             }
             // if you want: use impact.hydrateAmount to do something else
         }
@@ -128,6 +142,24 @@ namespace BioTools
                     //    }
                     //}
                 }
+        }
+
+        // ----------------- UI helpers -----------------
+        void UpdateHealthUI(bool immediate = false)
+        {
+            if (!zoneHealthBar) return;
+
+            zoneHealthBar.gameObject.SetActive(true);
+            // normalized 0..1 using purity directly
+            zoneHealthBar.SetProgress01(Mathf.Clamp01(purity01), immediate);
+            _shownOnce = true; // next updates can be non-immediate for smoothness
+        }
+
+        public void HideHealthUI()
+        {
+            if (!zoneHealthBar) return;
+            zoneHealthBar.gameObject.SetActive(false);
+            _shownOnce = false;
         }
 
 #if UNITY_EDITOR

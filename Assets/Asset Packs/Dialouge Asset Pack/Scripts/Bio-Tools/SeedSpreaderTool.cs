@@ -90,6 +90,7 @@ namespace BioTools
                 switchSeedAction.action.performed += OnSwitchSeed;
             }
 
+            currentMagazine = ActiveSeed.ammoAmount;
             // Initialize the seed display
             UpdateSeedDisplay();
         }
@@ -116,6 +117,9 @@ namespace BioTools
 
         private void UpdateSeedDisplay()
         {
+            seedAmount.gameObject.SetActive(true);
+            seedDisplayText.gameObject.SetActive(true);
+            seedDisplayUI.gameObject.SetActive(true);
             if (seedTypes != null && seedTypes.Length > 0)
             {
                 SeedDefinition currentSeed = seedTypes[currentSeedIndex];
@@ -133,6 +137,7 @@ namespace BioTools
                 }
                 if(seedAmount != null)
                 {
+                    currentMagazine = currentSeed.ammoAmount;
                     int currentAmmo = (Definition.resources.magazine > 0) ? currentMagazine : currentReserve;
                     seedAmount.text = $"Ammo: {currentAmmo}";
                 }
@@ -150,7 +155,7 @@ namespace BioTools
             if (regen > 0f && fanEnergy < 1f)
                 fanEnergy = Mathf.Min(1f, fanEnergy + regen * dt);
 
-            if(!UIContainer.active)
+            if(!UIContainer.activeSelf)
             {
                 UIContainer.SetActive(true);
                 var SeedTextAmountGameObject = seedAmount.gameObject;
@@ -218,7 +223,11 @@ namespace BioTools
             int pellets = Mathf.Min(desiredPellets, available);
 
             // Consume ammo
-            if (Definition.resources.magazine > 0) currentMagazine -= pellets;
+            if (Definition.resources.magazine > 0)
+            {
+                ActiveSeed.ammoAmount -= pellets;
+                currentMagazine = ActiveSeed.ammoAmount;
+            }
             else currentReserve -= pellets;
 
             // Spend energy
@@ -268,9 +277,19 @@ namespace BioTools
             OnFireEvent?.Invoke();
         }
 
-        public void ReloadPellets(int amount)
+        public void ReloadPellets(int amount, string type)
         {
-            currentMagazine += amount;
+            if (type == "Flower Seed")
+            {
+                Debug.Log("Refill Seeds");
+                ActiveSeed.ammoAmount += amount;
+            }
+            else if (type == "Weed Replent")
+            {
+                ActiveSeed.ammoAmount += amount;
+            }
+
+            currentMagazine = ActiveSeed.ammoAmount;
             Debug.Log($"Reloaded {amount} pellets. Current magazine: {currentMagazine}");
         }
 

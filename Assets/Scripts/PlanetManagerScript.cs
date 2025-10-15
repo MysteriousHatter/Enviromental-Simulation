@@ -12,6 +12,7 @@ namespace RPG.Quests
         [SerializeField] private GameObject SecondSeedTrigger;
         [SerializeField] private bool isMultiSeed;
         [SerializeField] private GameObject congratsText;
+        [SerializeField] private GameObject garden;
         private int seedCount;
 
         void Start()
@@ -34,6 +35,7 @@ namespace RPG.Quests
                 congratsText.GetComponent<TextMeshProUGUI>().text = $"Seed is already submitted go back to Lab for your next assignment";
                 GameManager.Instance.RegisterMainObjectiveCompleted(objective);
                 SecondSeedTrigger.SetActive(true);
+                garden.SetActive(true);
             }
             else
             {

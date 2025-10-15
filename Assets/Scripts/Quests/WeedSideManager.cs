@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeedSideManager : MonoBehaviour
 {
     [Header("Parent Object Containing Weeds")]
     public Transform weedParent;
+    public List<Cuttable> weeds = new List<Cuttable>();
 
     private int initialWeedCount;
 
@@ -28,15 +30,25 @@ public class WeedSideManager : MonoBehaviour
     {
         int count = 0;
 
-        foreach (Transform child in weedParent)
+        foreach (Cuttable child in weeds)
         {
-            if (child.gameObject.activeSelf)
+            if (child.gameObject)
             {
                 count++;
             }
         }
 
         return count;
+    }
+
+
+    public void RemoveWeed(Cuttable weed)
+    {
+        if (weeds.Contains(weed))
+        {
+            weeds.Remove(weed);
+            Debug.Log($"Weed removed. Remaining weeds: {weeds.Count}");
+        }
     }
 
 

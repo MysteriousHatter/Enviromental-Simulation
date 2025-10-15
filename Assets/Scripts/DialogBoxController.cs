@@ -30,6 +30,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private RecyclableSpawner recyclableSpawner;
     [SerializeField] private WeaponEquipManager weaponEquipManager;
     [SerializeField] private GameObject AmmoUI;
+    public ZoneHealthBar healthUI;
 
     [Header("UI For Seed Controller")]
     [SerializeField] private Button yesButton; // "Yes" button
@@ -90,6 +91,7 @@ public class DialogBoxController : MonoBehaviour
         SeedUI.gameObject.SetActive(false);
         ToolWheel.gameObject.SetActive(false);
         AmmoUI.gameObject.SetActive(false);
+        //healthUI.gameObject.SetActive(false);   
         isDialogVisible = false;
 
         InventoryButton.action.performed += OnToggleAction;
@@ -179,6 +181,9 @@ public class DialogBoxController : MonoBehaviour
 
         AmmoUI.transform.position = basePosition;
         AmmoUI.transform.rotation = Quaternion.LookRotation(AmmoUI.transform.position - cameraTransform.position);
+
+        healthUI.transform.position = basePosition;
+        healthUI.transform.rotation = Quaternion.LookRotation(healthUI.transform.position - cameraTransform.position);
     }
 
     public bool IsPlayerNear()

@@ -31,7 +31,7 @@ MonoBehaviour:
   - reference: Place a Turbine
     description: 'Craft a wind turbine using the mini crafter and place them around
       the map '
-    usesCondition: 0
+    usesCondition: 1
     completionCondition:
       and: []
   - reference: The Awakaned Seed Spreader
@@ -39,8 +39,8 @@ MonoBehaviour:
     usesCondition: 0
     completionCondition:
       and: []
-  - reference: The Awakaned Seed Spreader
-    description: Power up the Seed Spreader and use it to aim at the lilly pads
+  - reference: Place The Seeds
+    description: Place the thrid and fourth seed
     usesCondition: 0
     completionCondition:
       and: []

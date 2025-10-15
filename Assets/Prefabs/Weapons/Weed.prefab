@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9be3ff01c7356e44b02981ea544909d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seedType: 1
   plantobj: {fileID: 793559125855521031}
   requiredTag: GrowZone
   maxSlope: 60
@@ -159,4 +160,3 @@ MonoBehaviour:
   zoneLayers:
     serializedVersion: 2
     m_Bits: 1024
-  plantType: Weed

@@ -8,6 +8,7 @@ public class SeedGrowZone : MonoBehaviour
     [Tooltip("How many seed impacts are needed before we grow the zone.")]
     public int seedsToComplete = 1;
     public bool oneShot = true;
+    public FlowerReloadZone zone;
 
     [Header("Side Objective Award")]
     public string objectiveId = "Zone_Seed_01";
@@ -28,17 +29,36 @@ public class SeedGrowZone : MonoBehaviour
     public int wetTerrainLayerIndex = 1;
     [Range(0f, 1f)] public float paintStrength = 0.6f;
 
+    // ===================== UI HOOKUP =====================
+    [Header("UI (optional)")]
+    private ZoneHealthBar zoneHealthBar;      // assign in Inspector, or auto-find
+    [SerializeField] private bool findHealthBarOnStart = true; // find DialogBoxController.healthUI
+    [SerializeField] private bool showUIOnSeedHit = true;
+    [SerializeField] private bool immediateOnFirstShow = true; // first tick can snap to value
+    bool _shownOnce;
+    // =====================================================
+
     int _seedHits;
     bool _completed;
+
+    [SerializeField] private float uiIdleSeconds = 60f;
+    private float _lastSeedTime;
+    private Coroutine _uiIdleCo;
 
     void Awake()
     {
         Debug.Log($"[SeedGrowZone] Initialized with roseDetailLayerIndex: {roseDetailLayerIndex}, wetTerrainLayerIndex: {wetTerrainLayerIndex}");
+        zoneHealthBar = FindObjectOfType<DialogBoxController>().healthUI;
+        zoneHealthBar.gameObject.SetActive(false);
         AdjustDetailPrototypeHeight();
         if (WaterArea != null) { WaterArea.SetActive(false); }
     }
+    private void Start()
+    {
 
-
+        // Initialize UI to 0% (hidden if your ZoneHealthBar fades/auto-hides)
+        UpdateHealthUI(forceShow: false, immediate: true);
+    }
     void Reset()
     {
         var col = GetComponent<BoxCollider>();
@@ -48,6 +68,9 @@ public class SeedGrowZone : MonoBehaviour
     public void BeginGrowthProcess()
     {
         _seedHits++;
+        UpdateHealthUI(forceShow: true, immediate: true);
+        TouchUI();
+
         if (_seedHits >= seedsToComplete)
         {
             _completed = true;
@@ -55,14 +78,38 @@ public class SeedGrowZone : MonoBehaviour
             if (!needsWater)
             {
                 StartCoroutine(DeferGrowZone());
+
+                // UI: hide & reset since this phase is done
+                if (zoneHealthBar) zoneHealthBar.gameObject.SetActive(false);
+                _shownOnce = false;
             }
             else
             {
                 if (WaterArea != null) { WaterArea.SetActive(true); }
+
             }
             if (oneShot) StartCoroutine(DisableColliderAfterFrame(this.gameObject.GetComponent<Collider>()));
         }
+        //else
+        //{
+        //    zoneHealthBar.gameObject.SetActive(false);
+        //}
     }
+
+    void UpdateHealthUI(bool forceShow, bool immediate)
+    {
+        if (!zoneHealthBar) return;
+
+        // progress = seed hits / required seeds (0..1)
+        float p = seedsToComplete <= 0 ? 1f : Mathf.Clamp01((float)_seedHits / seedsToComplete);
+
+        // If your ZoneHealthBar has SetHits, you can use that instead:
+        // zoneHealthBar.SetHits(_seedHits, seedsToComplete, immediate);
+        zoneHealthBar.SetProgress01(p, immediate);
+
+        _shownOnce = true;
+    }
+
 
     private IEnumerator DisableColliderAfterFrame(Collider collider)
     {
@@ -84,6 +131,35 @@ public class SeedGrowZone : MonoBehaviour
 
         if (!string.IsNullOrEmpty(objectiveId) && award01 > 0f)
             GameManager.Instance?.RegisterSideObjectiveCompleted(objectiveId, award01);
+            zone.gameObject.SetActive(true);
+            
+    }
+
+    // call this whenever you “touch” the UI (e.g., on seed hit)
+    private void TouchUI()
+    {
+        _lastSeedTime = Time.time;
+
+        if (zoneHealthBar && !zoneHealthBar.gameObject.activeSelf)
+            zoneHealthBar.gameObject.SetActive(true);
+
+        if (_uiIdleCo == null)
+            _uiIdleCo = StartCoroutine(UiIdleWatcher());
+    }
+
+    private IEnumerator UiIdleWatcher()
+    {
+        while (true)
+        {
+            // sleep until either 60s passes or next touch happens
+            float remaining = uiIdleSeconds - (Time.time - _lastSeedTime);
+            Debug.Log("Seconds remaing " +  remaining);
+            if (remaining <= 0f) break;
+            yield return new WaitForSeconds(Mathf.Min(remaining, 0.5f));
+        }
+
+        if (zoneHealthBar) zoneHealthBar.gameObject.SetActive(false);
+        _uiIdleCo = null;
     }
 
     // ---------------- Terrain ops (same behavior as your reference) ----------------

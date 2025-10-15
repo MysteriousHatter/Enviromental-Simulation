@@ -38,14 +38,14 @@ public class WeaponEquipManager : MonoBehaviour
             }
 
             // Instantiate the tool from the BioToolButtonController
-            GameObject toolInstance = Instantiate(toolButton.getBioTool());
+            GameObject toolInstance = toolButton.getBioTool();
 
             // Get the StickyGrabInteractable component from the instantiated tool
             var stickyGrab = toolInstance.GetComponent<StickyGrabInteractable>();
             if (stickyGrab == null)
             {
                 Debug.LogWarning("The instantiated tool does not have a StickyGrabInteractable component.");
-                Destroy(toolInstance); // Clean up the instantiated object if it's invalid
+                toolInstance.SetActive(false); // Clean up the instantiated object if it's invalid
                 return;
             }
             else { currentStickyTool = stickyGrab; }
@@ -58,7 +58,7 @@ public class WeaponEquipManager : MonoBehaviour
                 {
                     currentStickyGrab.ForceDrop();
                 }
-                currentTool.SetActive(false);
+                currentTool.SetActive(false);       
                 cameraProps.SetActive(false);
             }
 

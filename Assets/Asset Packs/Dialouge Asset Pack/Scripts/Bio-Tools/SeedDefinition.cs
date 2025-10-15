@@ -8,6 +8,7 @@ namespace BioTools
         [Header("Delivery")]
         public float preferredConeDeg = 18f;
         public float minRange = 0.5f, maxRange = 8f;
+        public int ammoAmount;
 
         [Header("Ecology")]
         public float germinationChance = 0.65f;

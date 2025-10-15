@@ -97,15 +97,6 @@ public class GameManager : MonoBehaviour
         }
 #endif
 
-        //if (currentScore == 6)
-        //{
-        //    DetachChild detachChild = FindAnyObjectByType<DetachChild>();
-        //    if (detachChild != null)
-        //    {
-        //        detachChild.DropItem();
-        //    }
-        //}
-        //if(currentScore == 7) { RenderSettings.fog = false; }
         //if(currentScore == 2)
         //{
         //    QuestList questList = FindAnyObjectByType<QuestList>();
@@ -204,11 +195,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleThresholds(float before, float after)
     {
-        // Example: do things at 20%, 40%, etc. (mirrors your seed milestones)
-        // if (before < 0.20f && after >= 0.20f) { /* unlock something */ }
-        // if (before < 0.40f && after >= 0.40f) { /* unlock something */ }
-        // if (before < 0.60f && after >= 0.60f) { /* unlock something */ }
-        // if (before < 0.80f && after >= 0.80f) { /* signal area can be cleared */ }
+        if (after >= 0.70f && after < 0.80f){ RenderSettings.fog = false;}
     }
 
     private void CheckWinCondition()

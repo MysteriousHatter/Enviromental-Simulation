@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Weed
   m_EditorClassIdentifier: Assembly-CSharp::BioTools.SeedDefinition
   displayName: 'Weed Replent '
-  icon: {fileID: 21300000, guid: eca4c2b86256b4043a1765dc7bed4dd4, type: 3}
+  icon: {fileID: 21300000, guid: 1297090a6368a8947bf0b6d967ed110c, type: 3}
   category: 1
   unitSize: 1
   preferredConeDeg: 20
-  minRange: 0.5
-  maxRange: 7
+  minRange: 33
+  maxRange: 99
+  ammoAmount: 154
   germinationChance: 0.65
   growthRate: 1.1
   preferredSubstrates: 03000000

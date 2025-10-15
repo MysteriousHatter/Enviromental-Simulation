@@ -8,6 +8,11 @@ public class WaterParticleZonePainter : MonoBehaviour
     public LayerMask zoneLayers;           // set to the layer your WaterGrowZone boxes live on
     public int maxEventsPerFrame = 64;     // throttle
 
+    private float timeSinceLastCollision = 0f;
+    [SerializeField] private float noCollisionTimeout = 1f; // seconds until we consider it "no collisions"
+    ZoneHealthBar zoneHealthBar; 
+
+
 
     ParticleSystem _ps;
 
@@ -22,9 +27,29 @@ public class WaterParticleZonePainter : MonoBehaviour
         _ps = GetComponent<ParticleSystem>();
         // In the ParticleSystem -> Collision module, enable "Send Collision Messages".
         // (OnParticleCollision will then be invoked.) :contentReference[oaicite:2]{index=2}
-
+        zoneHealthBar = FindObjectOfType<DialogBoxController>().healthUI;
         // Adjust the detail prototype's height range
         AdjustDetailPrototypeHeight();
+    }
+
+    private void Update()
+    {
+        // If no collisions have occurred recently
+        timeSinceLastCollision += Time.deltaTime;
+        if (timeSinceLastCollision > noCollisionTimeout)
+        {
+            OnNoCollisions();
+            timeSinceLastCollision = 0f; // optional reset
+        }
+    }
+
+    private void OnNoCollisions()
+    {
+        // Put your “idle” logic here:
+        // e.g. stop watering UI, fade particle effect, etc.
+
+        zoneHealthBar.gameObject.SetActive(false);
+        Debug.Log("No collisions detected for a while.");
     }
 
     void OnParticleCollision(GameObject other)
@@ -41,8 +66,17 @@ public class WaterParticleZonePainter : MonoBehaviour
         int count = ParticlePhysicsExtensions.GetCollisionEvents(_ps, other, _events);
         if (count <= 0) return;
 
+        int added = Mathf.Min(count, maxEventsPerFrame);
+
+        // existing local accounting (optional to keep)
         if (!_zoneHits.ContainsKey(cfg)) _zoneHits[cfg] = 0;
-        _zoneHits[cfg] += Mathf.Min(count, maxEventsPerFrame);
+        _zoneHits[cfg] = Mathf.Min(cfg.hitsToComplete, _zoneHits[cfg] + added);
+        cfg.AddHits(added);
+
+        zoneHealthBar.gameObject.SetActive(true);
+        zoneHealthBar.SetProgress01(cfg.Progress01, immediate: true);
+
+        timeSinceLastCollision = 0f;
 
         if (_zoneHits[cfg] >= cfg.hitsToComplete)
         {
@@ -51,9 +85,13 @@ public class WaterParticleZonePainter : MonoBehaviour
             _completed.Add(cfg);
             _zoneHits[cfg] = cfg.hitsToComplete;
 
-            if (cfg.growZone.needsWater) { GameManager.Instance?.RegisterSideObjectiveCompleted("Normal Gardening"); }
+            if(cfg.growZone != null)
+            {
+                if (cfg.growZone.needsWater) { GameManager.Instance?.RegisterSideObjectiveCompleted("Normal Gardening"); }
+            }
             else { GameManager.Instance?.RegisterSideObjectiveCompleted(cfg.objectiveId); }
             if (cfg.oneShot) StartCoroutine(DisableColliderAfterFrame(other.GetComponent<Collider>()));
+            cfg.zone.gameObject.SetActive(true);
         }
     }
 
