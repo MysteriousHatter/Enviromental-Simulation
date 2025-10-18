@@ -82,9 +82,10 @@ public class SeedMiniGameManager : MonoBehaviour
         }
 
         // Hook target > score manager
-        var target = prefab.GetComponent<PotTarget>();
+        var target = prefab.GetComponentInChildren<PotTarget>();
         if (target && scoreManager)
         {
+            Debug.Log("Initialize score manager");
             target.Initialize(scoreManager);
         }
     }

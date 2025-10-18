@@ -1586,15 +1586,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "SwitchSeedTypes",
-                    "type": "Button",
-                    "id": "266ce0a0-456d-45b6-87c2-1232d373705c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2004,28 +1995,6 @@
                     "action": "Thumbstick",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "53b062a2-a4b3-42b5-8fa1-f8909cbf6ad6",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchSeedTypes",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c1089b86-14df-4d6c-963e-51aaa4dd1881",
-                    "path": "<XRController>{RightHand}/{PrimaryButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SwitchSeedTypes",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -2346,17 +2315,6 @@
                 },
                 {
                     "name": "",
-                    "id": "fa59aed1-ae0b-4074-a58c-294b85f46228",
-                    "path": "<XRController>{RightHand}/{TriggerButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Activate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5006132d-54aa-4e87-8145-fc30ff8cb17a",
                     "path": "<XRController>{RightHand}/{SecondaryButton}",
                     "interactions": "",
@@ -2374,17 +2332,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Activate Value",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "92bb5b8f-bf48-4dab-af05-50a865773895",
-                    "path": "<XRController>{RightHand}/{TriggerButton}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UI Press",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -2711,7 +2658,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "eba98c2e-6268-4233-bb88-946287bc753c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

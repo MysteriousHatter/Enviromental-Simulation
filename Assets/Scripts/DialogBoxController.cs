@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using UnityEngine.SceneManagement;
 using static RecyclableItem;
+using RPG.Quests;
 
 public class DialogBoxController : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private RecyclableSpawner recyclableSpawner;
     [SerializeField] private WeaponEquipManager weaponEquipManager;
     [SerializeField] private GameObject AmmoUI;
+    [SerializeField] private GameObject mapUI;
     public ZoneHealthBar healthUI;
 
     [Header("UI For Seed Controller")]
@@ -48,7 +50,7 @@ public class DialogBoxController : MonoBehaviour
     private RecyclableType type;
 
     [SerializeField] private Transform player;
-    [SerializeField] private Transform RecycleShopTransform; // Assign the item's Transform
+    public Transform[] recycleShopTransforms;
     [SerializeField] private float proximityThreshold = 3.0f; // Distance threshold for being "near
 
     public ItemSlot[] itemSlot;
@@ -59,6 +61,7 @@ public class DialogBoxController : MonoBehaviour
     private bool isInventoryMenuOpen = false; // Tracks if Recycle Shop UI is active
     private bool isPhotoAlbumOpen = false;
     private bool isQuestsWindowOpen = false;
+    private bool isMapOpen = false;
     private readonly string[] allowedActionMaps =
     {
         "XRI Head",
@@ -91,6 +94,7 @@ public class DialogBoxController : MonoBehaviour
         SeedUI.gameObject.SetActive(false);
         ToolWheel.gameObject.SetActive(false);
         AmmoUI.gameObject.SetActive(false);
+        mapUI.gameObject.SetActive(false);
         //healthUI.gameObject.SetActive(false);   
         isDialogVisible = false;
 
@@ -184,13 +188,26 @@ public class DialogBoxController : MonoBehaviour
 
         healthUI.transform.position = basePosition;
         healthUI.transform.rotation = Quaternion.LookRotation(healthUI.transform.position - cameraTransform.position);
+
+        mapUI.transform.position = basePosition;
+        //mapUI.transform.rotation = Quaternion.LookRotation(healthUI.transform.position - cameraTransform.position);
     }
 
     public bool IsPlayerNear()
     {
-        float distance = Vector3.Distance(player.position, RecycleShopTransform.position);
-        Debug.Log("Player's Distance " + distance);
-        return distance <= proximityThreshold;
+        foreach (Transform shop in recycleShopTransforms)
+        {
+            float distance = Vector3.Distance(player.position, shop.position);
+            Debug.Log($"Distance to {shop.name}: {distance}");
+
+            if (distance <= proximityThreshold)
+            {
+                player.gameObject.GetComponent<Inventory>().SetDropOffZone(shop.GetComponent<PlanetManagerScript>());
+                return true; // Player is near at least one shop
+            }
+        }
+
+        return false; // Player is not near any shop
     }
 
     public void DisableAllExceptAllowed()
@@ -284,12 +301,13 @@ public class DialogBoxController : MonoBehaviour
     /// </summary>
     private void OnToggleAction(InputAction.CallbackContext context)
     {
-        if (isInventoryMenuOpen || isPhotoAlbumOpen || isQuestsWindowOpen)
+        if (isInventoryMenuOpen || isPhotoAlbumOpen || isQuestsWindowOpen || isMapOpen)
         {
             // If Recycle Shop is open, close it and return to Ready to Recycle
             CloseInventoryMenu();
             ClosePhotoAlbum();
             CloseQuestsWindow();
+            CloseMapWindow();
 
 
         }
@@ -322,14 +340,9 @@ public class DialogBoxController : MonoBehaviour
             isDialogVisible = false;
             isInventoryMenuOpen = false;
         }
-        else if (isSeedUIVisible)
-        {
-            Debug.Log("Close Seed Shop");
-            CloseSeedShop();
-        }
         else if (IsPlayerNear() && !GameManager.Instance.gameIsWon)
         {
-            ToggleSeedUI(!isSeedUIVisible);
+            ToggleSeedUI(true);
         }
     }
 
@@ -344,10 +357,12 @@ public class DialogBoxController : MonoBehaviour
             cameraInventory.gameObject.SetActive(false);
             AmmoUI.gameObject.SetActive(false);
             InventoryMenuUI.gameObject.SetActive(true);
+            mapUI.gameObject.SetActive(false);
             isInventoryMenuOpen = true;
             isPhotoAlbumOpen = false;
             isDialogVisible = true;
             isQuestsWindowOpen = false;
+            isMapOpen = false;
     }
 
     public void OpenPhotoAlbum()
@@ -355,23 +370,43 @@ public class DialogBoxController : MonoBehaviour
         PlayerLogUI.gameObject.SetActive(false);
         InventoryMenuUI.gameObject.SetActive(false);
         AmmoUI.gameObject.SetActive(false);
+        mapUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(true);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = true;
         isQuestsWindowOpen = false;
         isDialogVisible = true;
+        isMapOpen = false;
     }
 
     public void OpenQuestsWindow()
     {
         PlayerLogUI.gameObject.SetActive(false);
         InventoryMenuUI.gameObject.SetActive(false);
+        mapUI.gameObject.SetActive(false);
         QuestUI.gameObject.SetActive(true);
         AmmoUI.gameObject.SetActive(false);
+        cameraInventory.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
         isQuestsWindowOpen = true;
+        isMapOpen = false;
+    }
+
+    public void OpenMapWindow()
+    {
+        PlayerLogUI.gameObject.SetActive(false);
+        InventoryMenuUI.gameObject.SetActive(false);
+        mapUI.gameObject.SetActive(true);
+        cameraInventory.gameObject.SetActive(false);
+        QuestUI.gameObject.SetActive(false);
+        AmmoUI.gameObject.SetActive(false);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
+        isDialogVisible = true;
+        isQuestsWindowOpen = false;
+        isMapOpen = true;
 
     }
 
@@ -411,10 +446,12 @@ public class DialogBoxController : MonoBehaviour
     {
         InventoryMenuUI.gameObject.SetActive(false);
         PlayerLogUI.gameObject.SetActive(true);
+        mapUI.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
         isSeedUIVisible = false;
+        isMapOpen = false;
         Debug.Log("Recycle Shop Closed, Back to Ready to Recycle");
     }
 
@@ -423,8 +460,10 @@ public class DialogBoxController : MonoBehaviour
         PlayerLogUI.gameObject.SetActive(true);
         InventoryMenuUI.gameObject.SetActive(false);
         cameraInventory.gameObject .SetActive(false);
+        mapUI.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
+        isMapOpen = false;
         isDialogVisible = true;
     }
 
@@ -434,9 +473,25 @@ public class DialogBoxController : MonoBehaviour
         InventoryMenuUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(false);
         QuestUI.gameObject .SetActive(false);
+        mapUI.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
         isQuestsWindowOpen = false;
+        isMapOpen = false;
+        isDialogVisible = true;
+    }
+
+    private void CloseMapWindow()
+    {
+        PlayerLogUI.gameObject.SetActive(true);
+        InventoryMenuUI.gameObject.SetActive(false);
+        cameraInventory.gameObject.SetActive(false);
+        QuestUI.gameObject.SetActive(false);
+        mapUI.gameObject.SetActive(true);
+        isInventoryMenuOpen = false;
+        isPhotoAlbumOpen = false;
+        isQuestsWindowOpen = false;
+        isMapOpen = true;
         isDialogVisible = true;
     }
 
@@ -448,8 +503,10 @@ public class DialogBoxController : MonoBehaviour
         PlayerLogUI.gameObject.SetActive(true);
         InventoryMenuUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(false);
+        mapUI.gameObject.SetActive(false);
         AmmoUI.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
+        isMapOpen = false;
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
         ShowDialog();
@@ -515,7 +572,7 @@ public class DialogBoxController : MonoBehaviour
         InventoryMenuUI.SetActive(false);
         AmmoUI.gameObject.SetActive(false);
         weaponEquipManager.SetToolActive(!visible);
-        if (visible)
+        if (true)
         {
             isDialogVisible = visible;
             UpdateYesButtonState();

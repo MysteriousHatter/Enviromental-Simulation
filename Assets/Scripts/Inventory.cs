@@ -236,5 +236,10 @@ public class Inventory : MonoBehaviour
         return new List<GameObject>(seedInventory); // Return a copy of the inventory
     }
 
+    public void SetDropOffZone(PlanetManagerScript dropZone)
+    {
+        planetManagerScript = dropZone;
+    }
+
 
 }

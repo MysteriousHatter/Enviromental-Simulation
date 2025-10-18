@@ -23,6 +23,7 @@ public class RecyclableItemComponent : MonoBehaviour
     private Transform playerTransform;
     [SerializeField] private Inventory inventory;
     [SerializeField] private QuestCountManager _questCountManager;
+    [SerializeField] private TerrainTreeZone seedGrowth;
 
 
     void Awake()
@@ -103,6 +104,11 @@ public class RecyclableItemComponent : MonoBehaviour
         SetItemPicked(true);
         if (this.recyclableItem.type == RecyclableItem.RecyclableType.Seed) 
         {
+            if (objectiveIndex == 1)
+            {
+                Debug.Log("Grow Bushes");
+                seedGrowth.GrowNow();
+            }
             // Add the seed to the seed inventory
             FindObjectOfType<DialogBoxController>().SetHasSeed(true);
             inventory.AddSeedToInventory(this.gameObject);

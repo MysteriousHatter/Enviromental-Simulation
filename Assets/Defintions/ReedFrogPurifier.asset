@@ -29,7 +29,7 @@ MonoBehaviour:
   output:
     effectPower: 22
     minRange: 0
-    maxRange: 8.36
+    maxRange: 109.3
     falloff:
       serializedVersion: 2
       m_Curve: []
@@ -41,7 +41,7 @@ MonoBehaviour:
     canPierce: 0
     aoeRadius: 0
   resources:
-    magazine: 600
+    magazine: 105
     reserve: 0
     reloadTime: 0
     gathersFromEnvironment: 0

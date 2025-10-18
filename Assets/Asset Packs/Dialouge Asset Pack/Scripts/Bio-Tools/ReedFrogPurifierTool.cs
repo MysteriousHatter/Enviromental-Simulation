@@ -97,6 +97,7 @@ namespace BioTools
 
         private void OnDisable()
         {
+            Debug.Log("Stop Absorbing");
             HideAbsorbFx();
             if (spray) spray.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             _sprayLooping = false;
@@ -107,20 +108,20 @@ namespace BioTools
             base.Update();
 
             // Leak (evaporation) while idle (not absorbing)
-            if (!_absorbing && State == ToolState.Idle && leakShotsPerSec > 0f)
-            {
-                int maxMag = GetMaxTank();
-                if (maxMag > 0 && currentMagazine > 0)
-                {
-                    _leakAccum += leakShotsPerSec * Time.deltaTime;
-                    int leak = Mathf.FloorToInt(_leakAccum);
-                    if (leak > 0)
-                    {
-                        currentMagazine = Mathf.Max(0, currentMagazine - leak);
-                        _leakAccum -= leak;
-                    }
-                }
-            }
+            //if (!_absorbing && State == ToolState.Idle && leakShotsPerSec > 0f)
+            //{
+            //    int maxMag = GetMaxTank();
+            //    if (maxMag > 0 && currentMagazine > 0)
+            //    {
+            //        _leakAccum += leakShotsPerSec * Time.deltaTime;
+            //        int leak = Mathf.FloorToInt(_leakAccum);
+            //        if (leak > 0)
+            //        {
+            //            currentMagazine = Mathf.Max(0, currentMagazine - leak);
+            //            _leakAccum -= leak;
+            //        }
+            //    }
+            //}
 
             foreach (GameObject ui in noUIs)
             {
@@ -168,20 +169,15 @@ namespace BioTools
         // =============== Primary fire (bursts) =================
         protected override void OnFire(Ray aim, float stabilityBonus)
         {
-            // Direction with a hint of spread
-            Vector3 dir = ApplySpread(aim.direction, burstSpreadDeg);
-            Vector3 pos = TipX.position;
-            Quaternion rot = Quaternion.LookRotation(dir, Vector3.up);
 
             // Kick on the spray when auto-firing begins
             if (spray && Definition && Definition.use.mode == UseMode.Auto && !spray.isPlaying)
             {
                 var main = spray.main;
-                main.playOnAwake = true; // ensure no auto-play
                 spray.Play();
             }
             // (Your squirt impact/EcoEffect could go here if desired.)
-            OnBurst?.Invoke();
+            //OnBurst?.Invoke();
         }
 
         // =============== Absorb channel (bind to another input) =================
@@ -234,7 +230,8 @@ namespace BioTools
 
             // tank fill
             int maxMag = GetMaxTank();
-            if (maxMag > 0 && currentMagazine < maxMag)
+
+            if (maxMag > 0)
             {
                 _absorbAccum += absorbShotsPerSec * dt;
                 int requested = Mathf.Min(Mathf.FloorToInt(_absorbAccum), maxMag - currentMagazine);
@@ -242,8 +239,11 @@ namespace BioTools
                 {
                     var volume = waterHit.collider.GetComponentInParent<WaterVolume>();
                     int cleanShots = requested;
-                    Debug.Log("The requested amount " + requested);
-                    if (volume) cleanShots = Mathf.Max(0, volume.AbsorbCleanShots(requested));
+
+                    if (volume)
+                    {
+                        cleanShots = Mathf.Max(0, volume.AbsorbCleanShots(requested));
+                    }
                     currentMagazine += cleanShots;
                     _absorbAccum -= requested;
                 }
@@ -348,15 +348,6 @@ namespace BioTools
             if (_absorbGO) _absorbGO.SetActive(false);
             if (_impactGO) _impactGO.SetActive(false);
             _absorbEndSmooth = Vector3.zero;
-        }
-
-        static Vector3 ApplySpread(Vector3 dir, float degrees)
-        {
-            if (degrees <= 0.0001f) return dir.normalized;
-            float half = degrees * 0.5f;
-            float yaw = Random.Range(-half, half);
-            float pitch = Random.Range(-half, half);
-            return (Quaternion.AngleAxis(yaw, Vector3.up) * Quaternion.AngleAxis(pitch, Vector3.right) * dir).normalized;
         }
     }
 }

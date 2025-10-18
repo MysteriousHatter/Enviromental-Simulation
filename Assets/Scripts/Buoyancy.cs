@@ -28,7 +28,7 @@ public class Buoyancy : MonoBehaviour
             Debug.Log($"Water Level: {waterLevel}, Object Position Y: {transform.position.y}, Object Depth: {objectDepth}");
 
 
-            if (objectDepth > 23) // Check if the object is submerged
+            if (objectDepth > 5) // Check if the object is submerged
             {
 
                 // Apply upward buoyancy force proportional to the depth

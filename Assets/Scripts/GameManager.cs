@@ -1,6 +1,7 @@
 using RPG.Quests;
 using System.Collections.Generic;
 using UnityEngine;
+using static QuestSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -195,7 +196,13 @@ public class GameManager : MonoBehaviour
 
     private void HandleThresholds(float before, float after)
     {
-        if (after >= 0.70f && after < 0.80f){ RenderSettings.fog = false;}
+        if (after >= 0.70f && before < 0.80f){ RenderSettings.fog = false;}
+        if(after >= 0.65 && before < 0.70)
+        {
+            RPG.Quests.Quest currentQuest = QuestManager.GetCurrentQuest();
+            QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+            questList.CompleteObjective(currentQuest, "Naturlist Away");
+        }
     }
 
     private void CheckWinCondition()

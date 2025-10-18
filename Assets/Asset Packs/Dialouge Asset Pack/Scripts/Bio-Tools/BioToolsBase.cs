@@ -83,7 +83,7 @@ namespace BioTools
         {
             if (Definition == null) return;
             //currentAmmo = Definition.resources.defaultAmmo;
-            currentMagazine = Mathf.Max(0, Definition.resources.magazine);
+            //currentMagazine = Mathf.Max(0, Definition.resources.magazine);
             currentReserve = Mathf.Max(0, Definition.resources.reserve);
             currentHeat = 0f;
             chargeHeldTime = 0f;

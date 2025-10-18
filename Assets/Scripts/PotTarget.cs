@@ -31,7 +31,7 @@ public class PotTarget : MonoBehaviour
         if (correctVFX) correctVFX.SetActive(correct);
         if (wrongVFX) wrongVFX.SetActive(!correct);
 
-        _scoreManager?.ReportHit(correct);
+        _scoreManager.ReportHit(correct);
 
         // Optionally destroy on hit (or disable collider) so it can't be scored twice
         var col = GetComponent<Collider>();

@@ -86,10 +86,10 @@ public class Cuttable : MonoBehaviour
         var ps1 = vfx1.GetComponent<ParticleSystem>();
 
         var vfx2 = Instantiate(partilceVFX2, transform.position, transform.rotation);
-        var ps2 = vfx1.GetComponent<ParticleSystem>();
+        var ps2 = vfx2.GetComponent<ParticleSystem>();
 
         var vfx3 = Instantiate(partilceVFX3, transform.position, transform.rotation);
-        var ps3 = vfx1.GetComponent<ParticleSystem>();
+        var ps3 = vfx3.GetComponent<ParticleSystem>();
         if (ps1 && ps2 && ps3)
         {
             ps1.Play();

@@ -7,6 +7,7 @@ public class QuestCountManager : MonoBehaviour
 {
     private List<GameObject> activeCollectaibles = new List<GameObject>();
     [SerializeField] private string objectiveName;
+    [SerializeField] private GameObject seedObjective;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class QuestCountManager : MonoBehaviour
         if (activeCollectaibles.Count == 0)
         {
             Debug.Log("All fires extinguished! Quest complete.");
+            seedObjective.SetActive(true);
             CompleteQuest();
         }
     }

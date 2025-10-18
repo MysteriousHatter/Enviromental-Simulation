@@ -13,7 +13,7 @@ namespace RPG.Quests
         [SerializeField] private bool isMultiSeed;
         [SerializeField] private GameObject congratsText;
         [SerializeField] private GameObject garden;
-        private int seedCount;
+        private int seedCount = 0;
 
         void Start()
         {
@@ -39,7 +39,8 @@ namespace RPG.Quests
             }
             else
             {
-                if(seedCount >= 2)
+                seedCount++;
+                if (seedCount >= 2)
                 {
                     QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
                     questList.CompleteObjective(quest, objective);
@@ -50,7 +51,7 @@ namespace RPG.Quests
                 else
                 {
                     congratsText.GetComponent<TextMeshProUGUI>().text = $"You need one more seed for this conpartment";
-                    GameManager.Instance.RegisterMainObjectiveCompleted(objective);
+                    GameManager.Instance.RegisterMainObjectiveCompleted(objective);;
                 }
             }
         }

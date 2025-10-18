@@ -34,7 +34,12 @@ public class TreeManager : MonoBehaviour
             leafVFX[i] = trees[i].GetComponentInChildren<VisualEffect>(true);
             if (leafVFX[i] == null)
             {
-                Debug.LogWarning($"[TreeManager] No VisualEffect found under tree index {i} ({trees[i].name}).");
+                leafVFX[i] = trees[i].GetComponent<VisualEffect>();
+                if (leafVFX[i] != null) continue;
+                else
+                {
+                    Debug.LogWarning($"[TreeManager] No VisualEffect found under tree index {i} ({trees[i].name}).");
+                }
             }
         }
 

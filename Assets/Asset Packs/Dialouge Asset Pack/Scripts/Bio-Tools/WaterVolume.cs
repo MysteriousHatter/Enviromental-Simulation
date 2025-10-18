@@ -37,15 +37,14 @@ namespace BioTools
         public Renderer[] tintRenderers;
         public string colorProperty = "_BaseColor"; // URP Lit
         public Color dirtyColor = new Color(0.25f, 0.35f, 0.55f, 1f);
-        [SerializeField] private Material waterMaterial;
         public Color cleanColor = new Color(0.35f, 0.75f, 0.95f, 1f);
 
         ZoneHealthBar zoneHealthBar;
         [SerializeField] private bool findHealthBarOnStart = true;   // auto-find DialogBoxController.healthUI
         [SerializeField] private bool showUIOnPurityChange = true;
-        [SerializeField] private bool immediateOnFirstShow = true;
+        [SerializeField] public bool immediateOnFirstShow = true;
 
-        bool _shownOnce;
+        public bool _shownOnce;
 
         // fractional carry so we don't lose sub-shot yield
         float _yieldFracCarry;
@@ -71,11 +70,13 @@ namespace BioTools
             float exact = requestedShots * yield + _yieldFracCarry;
             int granted = Mathf.FloorToInt(exact);
             _yieldFracCarry = exact - granted;
+            Debug.Log("How much of the water is being purified? " + granted);
 
             // Purify the body proportional to the *requested* amount (even if some was wasted)
             purity01 = Mathf.Clamp01(purity01 + purifyPerRequestedShot * requestedShots);
             UpdateTint();
-            UpdateHealthUI(immediate: !_shownOnce && immediateOnFirstShow);
+            //UpdateHealthUI(immediate: !_shownOnce && immediateOnFirstShow, requestedShots);
+
 
             // Notify the quest system if this water volume is quest-important
             if (isQuestImportant && granted > 0)
@@ -104,7 +105,6 @@ namespace BioTools
             {
                 purity01 = Mathf.Clamp01(purity01 + impact.cleansePercent);
                 UpdateTint();
-                UpdateHealthUI(immediate: !_shownOnce && immediateOnFirstShow);
             }
             // if you want: use impact.hydrateAmount to do something else
         }
@@ -113,47 +113,37 @@ namespace BioTools
 
         void UpdateTint()
         {
-            //if (tintRenderers == null || tintRenderers.Length == 0) return;
+            Renderer renderer = GetComponent<Renderer>();
+            if (renderer == null) return;
 
+            // Create or reuse the unique material instance on this object
+            Material localMat = renderer.material; // clones if necessary
             Color c = Color.Lerp(dirtyColor, cleanColor, Mathf.Clamp01(purity01));
-                if (waterMaterial != null)
-                {
 
-                    Debug.Log("Set the color");
-                    waterMaterial.SetColor(colorProperty, c);
-                    Renderer renderer = GetComponent<Renderer>();
-                    if (renderer != null)
-                    {
-                        renderer.material = waterMaterial; // Reassign the material to force an update
-                    }
-                    //Debug.Log("Changing the color of the water");
-                    //if (waterMaterial.HasProperty(colorProperty))
-                    //{
-
-                    //}
-                    //else if (waterMaterial.HasProperty("_Color"))
-                    //{
-                    //    Debug.Log("Set the normal color");
-                    //    waterMaterial.SetColor("_Color", c);
-                    //    Renderer renderer = GetComponent<Renderer>();
-                    //    if (renderer != null)
-                    //    {
-                    //        renderer.material = waterMaterial; // Reassign the material to force an update
-                    //    }
-                    //}
-                }
+            if (localMat.HasProperty(colorProperty))
+                localMat.SetColor(colorProperty, c);
+            else if (localMat.HasProperty("_Color"))
+                localMat.SetColor("_Color", c);
         }
 
         // ----------------- UI helpers -----------------
-        void UpdateHealthUI(bool immediate = false)
-        {
-            if (!zoneHealthBar) return;
+        //public void UpdateHealthUI(bool immediate = false, int requestedShots = 0)
+        //{
+        //    if (!zoneHealthBar) return;
 
-            zoneHealthBar.gameObject.SetActive(true);
-            // normalized 0..1 using purity directly
-            zoneHealthBar.SetProgress01(Mathf.Clamp01(purity01), immediate);
-            _shownOnce = true; // next updates can be non-immediate for smoothness
-        }
+        //    // How much of the request can be turned into clean water now?
+        //    float t = Mathf.Clamp01(purity01);
+        //    float yield = Mathf.Lerp(minCleanYield, 1f, Mathf.Pow(t, yieldCurvePower));
+
+        //    float exact = requestedShots * yield + _yieldFracCarry;
+        //    int granted = Mathf.FloorToInt(exact);
+        //    _yieldFracCarry = exact - granted;
+
+        //    zoneHealthBar.gameObject.SetActive(true);
+        //    // normalized 0..1 using purity directly
+        //    purity01 = Mathf.Clamp01(purity01 + purifyPerRequestedShot * requestedShots);
+        //    _shownOnce = true; // next updates can be non-immediate for smoothness
+        //}
 
         public void HideHealthUI()
         {

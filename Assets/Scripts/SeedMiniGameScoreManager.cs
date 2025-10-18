@@ -1,3 +1,4 @@
+using GameDevTV.Inventories;
 using RPG.Quests;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class SeedMiniGameScoreManager : MonoBehaviour
     [SerializeField] private QuestList questList;  // your existing system
     [SerializeField] Quest quest;
     [SerializeField] private string questObjectiveId;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private GameObject[] seedCollection;
 
     private int _score;
     private int _streak;
@@ -30,12 +33,18 @@ public class SeedMiniGameScoreManager : MonoBehaviour
         {
             _score += pointsPerCorrect;
             _streak++;
-            // Debug.Log($"Correct! Score={_score}, Streak={_streak}");
+            Debug.Log($"Correct! Score={_score}, Streak={_streak}");
             if (_streak >= streakToWin)
             {
                 // Notify quest system once; safeguard against double-fire
                 if (questList)
                 {
+                    FindObjectOfType<DialogBoxController>().SetHasSeed(true);
+                    foreach (GameObject s in seedCollection)
+                    {
+                        s.GetComponent<RecyclableItemComponent>().objectiveIndex = 3;
+                        inventory.AddSeedToInventory(s);
+                    }
                     questList.CompleteObjective(quest, questObjectiveId);
                 }
                 // Optionally: freeze minigame or reset streak

@@ -428,6 +428,10 @@ MonoBehaviour:
   absorbShotsPerSec: 0.09
   absorbProbeRadius: 1.67
   leakShotsPerSec: 0.05
+  ammoSlider: {fileID: 0}
+  ammoText: {fileID: 0}
+  UIContainer: {fileID: 0}
+  noUIs: []
   absorbPrefab: {fileID: 5792629358949548623}
   absorbRoot: {fileID: 3640443209916984463}
   absorbImpactPrefab: {fileID: 0}
@@ -699,6 +703,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2619571426074681299, guid: 446e6c4ddf8853e41a9493796233a54a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841001207349114642, guid: 446e6c4ddf8853e41a9493796233a54a, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6841001207349114642, guid: 446e6c4ddf8853e41a9493796233a54a, type: 3}

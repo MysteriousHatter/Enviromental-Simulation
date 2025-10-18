@@ -11,6 +11,7 @@ namespace RPG.Quests
         [SerializeField] private GameObject questStarterPrefab;
         [SerializeField] private GameObject turnOffLevel;
         [SerializeField] private bool isQuest;
+        [SerializeField] private GameObject congratsTextTurnOFF;
 
 
         private void Start()
@@ -30,7 +31,13 @@ namespace RPG.Quests
                 if(isQuest)
                 {
                     GameManager.Instance.QuestManager.GiveNextQuest();
-                    if(turnOffLevel != null) { turnOffLevel.SetActive(false); }
+                    if (questStarterPrefab != null)
+                    {
+                        questStarterPrefab.SetActive(true);
+                    }
+                    congratsTextTurnOFF.SetActive(false);
+                    this.gameObject.SetActive(false);
+                    if (turnOffLevel != null) { turnOffLevel.SetActive(false); }
                 }
                 else
                 {
@@ -38,11 +45,6 @@ namespace RPG.Quests
                     if (turnOffLevel != null) { turnOffLevel.SetActive(false); }
                 }
 
-                if (questStarterPrefab != null)
-                {
-                    questStarterPrefab.SetActive(true);
-                }
-                this.gameObject.SetActive(false);
             }
         }
 

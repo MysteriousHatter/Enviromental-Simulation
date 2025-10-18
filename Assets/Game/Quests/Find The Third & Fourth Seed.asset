@@ -25,7 +25,7 @@ MonoBehaviour:
       and: []
   - reference: Build a Wind Turbine
     description: 'Craft a wind turbine using the mini crafter '
-    usesCondition: 0
+    usesCondition: 1
     completionCondition:
       and: []
   - reference: Place a Turbine
