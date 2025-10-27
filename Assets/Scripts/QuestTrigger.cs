@@ -14,7 +14,7 @@ public class QuestTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            QuestSystem questSystem = FindObjectOfType<QuestSystem>();
+            QuestSystem questSystem = FindFirstObjectByType<QuestSystem>();
             if (questSystem != null)
             {
                 Debug.Log($"Player entered trigger for Quest {questIndex}, Objective {objectiveIndex}");

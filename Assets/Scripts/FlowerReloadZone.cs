@@ -7,7 +7,7 @@ public class FlowerReloadZone : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        var spreader = FindObjectOfType<SeedSpreaderTool>();
+        var spreader = FindFirstObjectByType<SeedSpreaderTool>();
         if (spreader) spreader.ReloadPellets(50, "Flower Seed");
     }
 }

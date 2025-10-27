@@ -20,7 +20,7 @@ public class SeedGrowZone : MonoBehaviour
     [Tooltip("If null, the script will resolve which Terrain tile is under this zone at runtime.")]
     public Terrain terrainOverride;
     [Tooltip("Detail prototype index for your flower/rose in Terrain → Paint Details (0-based).")]
-    public int roseDetailLayerIndex = 0;
+    [SerializeField] private int[] flowerDetailLayerIndices; // multiple detail layers
     [Tooltip("How much to add per affected detail texel.")]
     public int roseInstancesPerCell = 6;
 
@@ -39,7 +39,6 @@ public class SeedGrowZone : MonoBehaviour
     // =====================================================
 
     int _seedHits;
-    bool _completed;
 
     [SerializeField] private float uiIdleSeconds = 60f;
     private float _lastSeedTime;
@@ -47,8 +46,7 @@ public class SeedGrowZone : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log($"[SeedGrowZone] Initialized with roseDetailLayerIndex: {roseDetailLayerIndex}, wetTerrainLayerIndex: {wetTerrainLayerIndex}");
-        zoneHealthBar = FindObjectOfType<DialogBoxController>().healthUI;
+        zoneHealthBar = FindFirstObjectByType<DialogBoxController>().healthUI;
         zoneHealthBar.gameObject.SetActive(false);
         AdjustDetailPrototypeHeight();
         if (WaterArea != null) { WaterArea.SetActive(false); }
@@ -73,7 +71,6 @@ public class SeedGrowZone : MonoBehaviour
 
         if (_seedHits >= seedsToComplete)
         {
-            _completed = true;
             // Defer terrain edits until end of frame to avoid physics-phase issues
             if (!needsWater)
             {
@@ -129,8 +126,8 @@ public class SeedGrowZone : MonoBehaviour
         var t = ResolveTerrainUnderZone();
         if (t) t.Flush();
 
-        if (!string.IsNullOrEmpty(objectiveId) && award01 > 0f)
-            GameManager.Instance?.RegisterSideObjectiveCompleted(objectiveId, award01);
+        if (!string.IsNullOrEmpty(objectiveId))
+            GameManager.Instance?.RegisterSideObjectiveCompleted(objectiveId);
             zone.gameObject.SetActive(true);
             
     }
@@ -173,8 +170,8 @@ public class SeedGrowZone : MonoBehaviour
         if (!col) return;
 
         Bounds b = col.bounds;
-
-        GrowRosesInBounds(terrain, b, roseDetailLayerIndex, roseInstancesPerCell);
+        int randomLayer = flowerDetailLayerIndices[Random.Range(0, flowerDetailLayerIndices.Length)];
+        GrowRosesInBounds(terrain, b, randomLayer, roseInstancesPerCell);
 
         if (alsoPaintWetSoil)
             PaintWetRect(terrain, b, wetTerrainLayerIndex, paintStrength);

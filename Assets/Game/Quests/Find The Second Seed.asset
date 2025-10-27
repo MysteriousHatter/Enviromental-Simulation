@@ -13,19 +13,13 @@ MonoBehaviour:
   m_Name: Find The Second Seed
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Quests.Quest
   objectives:
-  - reference: 'Create a Reed Frog Pruifier '
-    description: Find the parts for a reed frog pruifer and craft it back in the
-      lab
-    usesCondition: 1
-    completionCondition:
-      and: []
   - reference: Find Water
-    description: Absorb Dirty Water from a bathroom
+    description: Find a bathroom
     usesCondition: 0
     completionCondition:
       and: []
   - reference: Put Out The Fire
-    description: Put out the fire at the aquarium
+    description: 'Find the Aquarium '
     usesCondition: 0
     completionCondition:
       and: []

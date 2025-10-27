@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Find The First Seed
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Quests.Quest
   objectives:
-  - reference: Cut The Grass
-    description: 'Use the Grass Cutter to clear a path through overgrown weeds. '
+  - reference: Cut The Weed
+    description: Get Through The Maze
     usesCondition: 0
     completionCondition:
       and: []

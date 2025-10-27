@@ -32,7 +32,7 @@ namespace BioTools
         [Header("Leak (evaporation)")]
         public float leakShotsPerSec = 0.05f;
 
-        [Header("Weed Cutter UI")]
+        [Header("UI")]
         [SerializeField] private Slider ammoSlider;
         [SerializeField] private TextMeshProUGUI ammoText;
         [SerializeField] private GameObject UIContainer;
@@ -56,10 +56,6 @@ namespace BioTools
         bool _absorbing;
         float _absorbAccum;
         float _leakAccum;
-
-        // spray control
-        bool _sprayLooping;                 // tracks if we've asked the VFX to loop
-        float _fireIntervalCached = 0.1f;   // seconds between shots from RPM
 
         // absorb visuals
         GameObject _absorbGO, _impactGO;
@@ -97,10 +93,17 @@ namespace BioTools
 
         private void OnDisable()
         {
+            ammoSlider.gameObject.SetActive(false);
+            ammoText.gameObject.SetActive(false);
+
+            foreach (GameObject ui in noUIs)
+            {
+                ui.SetActive(false);
+            }
+
             Debug.Log("Stop Absorbing");
             HideAbsorbFx();
             if (spray) spray.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-            _sprayLooping = false;
         }
 
         protected override void Update()
@@ -128,7 +131,7 @@ namespace BioTools
                 ui.SetActive(false);
             }
 
-            if (!UIContainer.active)
+            if (!UIContainer.activeSelf)
             {
                 UIContainer.SetActive(true);
                 var ReedTextAmountGameObject = ammoText.gameObject;
@@ -144,7 +147,7 @@ namespace BioTools
             if (_absorbing) TickAbsorb(Time.deltaTime);
             else
             {
-                FindObjectOfType<WaterVolume>().HideHealthUI();
+                FindFirstObjectByType<WaterVolume>().HideHealthUI();
             }
             // Update the UI
             UpdateReedAbsorptionDisplay();
@@ -185,8 +188,6 @@ namespace BioTools
         {
             if (_absorbing) return;
             _absorbing = true;
-
-            _sprayLooping = false;
 
             EnsureAbsorbFx();
             ShowAbsorbFx(true);
@@ -234,7 +235,7 @@ namespace BioTools
             if (maxMag > 0)
             {
                 _absorbAccum += absorbShotsPerSec * dt;
-                int requested = Mathf.Min(Mathf.FloorToInt(_absorbAccum), maxMag - currentMagazine);
+                int requested = Mathf.Min(Mathf.FloorToInt(_absorbAccum), maxMag);
                 if (requested > 0)
                 {
                     var volume = waterHit.collider.GetComponentInParent<WaterVolume>();

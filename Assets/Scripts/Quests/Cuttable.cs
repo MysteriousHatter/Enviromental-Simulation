@@ -32,7 +32,7 @@ public class Cuttable : MonoBehaviour
         return true;
     }
 
-    private void Clear()
+    public void Clear()
     {
         OnCleared?.Invoke();
 

@@ -11,6 +11,7 @@ public class BagEmptyingController : MonoBehaviour
     [SerializeField] private Transform player; // Reference to the player's Transform
     [SerializeField] private Transform grassBagTransform; // Reference to the Grass Bag's Transform
     [SerializeField] private float proximityThreshold = 5f; // Distance threshold for proximity
+    [SerializeField] private SeedDefinition reloadSeed;
 
 
     private void OnEnable()
@@ -34,6 +35,8 @@ public class BagEmptyingController : MonoBehaviour
         {
             Debug.Log("Check out bag is empty"); 
             grassCutter.TryEmptyBag();
+            reloadSeed.ammoAmount += 40;
+
             
         }
     }

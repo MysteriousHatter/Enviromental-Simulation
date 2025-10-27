@@ -792,6 +792,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -598770719566166811, guid: d6fffa7f867f7cb4aac84daf6f0519df, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 17cc7ac6d8315d8429e31c5d4dae1154, type: 2}
     - target: {fileID: 919132149155446097, guid: d6fffa7f867f7cb4aac84daf6f0519df, type: 3}
       propertyPath: m_Name
       value: Visibomb

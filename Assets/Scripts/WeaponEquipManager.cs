@@ -1,7 +1,6 @@
 using BioTools;
 using System;
 using UnityEditor;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -16,6 +15,7 @@ public class WeaponEquipManager : MonoBehaviour
     [SerializeField] private GameObject cameraProps;
     [SerializeField] private GameObject cameraUI;
     [SerializeField] private DialogBoxController dialog;
+    [SerializeField] private GameObject[] ammoUI;
     /// <summary>
     /// Equip a tool by instantiating it from the BioToolButtonController and attaching it to the player's hand.
     /// </summary>
@@ -111,16 +111,13 @@ public class WeaponEquipManager : MonoBehaviour
         currentTool = stickyGrab.gameObject;
         currentTool.SetActive(true);
 
-        // Attach the tool to the player's hand
-        stickyGrab.stickyHold = true; // Ensure sticky hold is enabled
-                                      // using UnityEngine.XR.Interaction.Toolkit;
-                                      // using UnityEngine.XR.Interaction.Toolkit.Interactors;
-                                      // using UnityEngine.XR.Interaction.Toolkit.Interactables;
+        // Make sure sticky hold is enabled
+        stickyGrab.stickyHold = true;
 
-        // Snap to the hand attach point for clean alignment
+        // Snap to hand
         stickyGrab.transform.SetPositionAndRotation(handAttachPoint.position, handAttachPoint.rotation);
 
-        // Programmatically "grab" using the interface-based API (no obsolete warnings)
+        // Programmatic grab
         var handInteractor = handAttachPoint.GetComponentInParent<XRBaseInteractor>();
         var selectInteractor = handInteractor as IXRSelectInteractor;
         var selectInteractable = stickyGrab as IXRSelectInteractable;
@@ -128,19 +125,32 @@ public class WeaponEquipManager : MonoBehaviour
         if (selectInteractor != null && selectInteractable != null && stickyGrab.interactionManager != null)
         {
             Debug.Log("Select Interactor");
-            // Ensure no lingering selectors
-            foreach (var inter in stickyGrab.interactorsSelecting)
+
+            // --- FIX: clear existing selectors safely ---
+            // Option A: snapshot (uncomment to use)
+            var selectingSnapshot = new System.Collections.Generic.List<IXRInteractor>(stickyGrab.interactorsSelecting);
+            foreach (var inter in selectingSnapshot)
             {
                 var interAsSelect = inter as IXRSelectInteractor;
                 if (interAsSelect != null)
                     stickyGrab.interactionManager.SelectExit(interAsSelect, selectInteractable);
             }
 
+            // Option B: backwards-by-index (recommended to avoid allocs)
+            //  for (int i = stickyGrab.interactorsSelecting.Count - 1; i >= 0; i--)
+            //  {
+            //       var inter = stickyGrab.interactorsSelecting[i];
+            //       var interAsSelect = inter as IXRSelectInteractor;
+            //       if (interAsSelect != null)
+            //           stickyGrab.interactionManager.SelectExit(interAsSelect, selectInteractable);
+            //   }
+            // --- end FIX ---
+
             stickyGrab.interactionManager.SelectEnter(selectInteractor, selectInteractable);
         }
         else
         {
-            // Fallback: parent if no interactor found (still works, just not a "true" select)
+            // Fallback parenting if no proper interactor
             stickyGrab.transform.SetParent(handAttachPoint, worldPositionStays: true);
         }
 
@@ -148,6 +158,11 @@ public class WeaponEquipManager : MonoBehaviour
 
     public void SetToolActive(bool isActive)
     {
+        foreach (GameObject ui in ammoUI)
+        {
+            ui.SetActive(false);
+        }
+
         if (currentTool != null)
         {
             currentTool.SetActive(isActive);

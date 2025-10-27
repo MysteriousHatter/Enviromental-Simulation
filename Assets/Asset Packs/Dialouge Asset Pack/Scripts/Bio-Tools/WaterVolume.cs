@@ -51,7 +51,7 @@ namespace BioTools
 
         private void Awake()
         {
-            zoneHealthBar = FindObjectOfType<DialogBoxController>().healthUI;
+            zoneHealthBar = FindFirstObjectByType<DialogBoxController>().healthUI;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace BioTools
                 GameManager.Instance.RegisterSideObjectiveCompleted("Cleaning Ponds");
             }
 
-                return granted * 400;
+                return granted * 120;
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace BioTools
             if (renderer == null) return;
 
             // Create or reuse the unique material instance on this object
-            Material localMat = renderer.material; // clones if necessary
+            Material localMat = renderer.sharedMaterial; // clones if necessary
             Color c = Color.Lerp(dirtyColor, cleanColor, Mathf.Clamp01(purity01));
 
             if (localMat.HasProperty(colorProperty))

@@ -20,7 +20,7 @@ namespace BioTools
         public int maxCutsPerFire = 6;
         public LayerMask cuttableLayers = ~0;
         [Tooltip("Fallback tags if object has no Cuttable component.")]
-        public string[] cuttableTags = { "Grass", "Reed", "Vine", "Wood", "Obstacle" };
+        public string[] cuttableTags = { "Grass","Obstacle" };
 
         [Header("Cut Effect")]
         [Tooltip("How hard a single cut tick hits Cuttable.hp; tune with UseData.rpm.")]
@@ -69,10 +69,24 @@ namespace BioTools
             UpdateWeedDisplay();
         }
 
+        private void OnDisable()
+        {
+            ammoSlider.gameObject.SetActive(false);
+            ammoText.gameObject.SetActive(false);
+
+            foreach (GameObject ui in noUIs)
+            {
+                ui.SetActive(false);
+            }
+
+
+        }
+
+
         protected override void Update()
         {
             base.Update();
-            if (!UIContainer.active)
+            if (!UIContainer.activeSelf)
             {
                 UIContainer.SetActive(true);
                 var SeedTextAmountGameObject = ammoText.gameObject;
@@ -81,6 +95,10 @@ namespace BioTools
 
                 SeedTextAmountGameObject.SetActive(true);
                 SeedDisplayAmountGameObject.SetActive(true);
+            }
+            foreach (GameObject ui in noUIs)
+            {
+                ui.SetActive(false);
             }
             // Update the UI
             UpdateWeedDisplay();

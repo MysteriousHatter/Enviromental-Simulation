@@ -436,6 +436,13 @@ MonoBehaviour:
       m_Calls: []
   visualEveryN: 3
   useProjectileSpeed: 1
+  seedTypes: []
+  seedDisplayText: {fileID: 0}
+  seedDisplayUI: {fileID: 0}
+  seedAmount: {fileID: 0}
+  UIContainer: {fileID: 0}
+  noUIs: []
+  switchSeedAction: {fileID: 0}
 --- !u!1 &4598905937044491806
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +570,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -598770719566166811, guid: d6fffa7f867f7cb4aac84daf6f0519df, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 84d538291692f514ab13421bce05b6df, type: 2}
     - target: {fileID: 919132149155446097, guid: d6fffa7f867f7cb4aac84daf6f0519df, type: 3}
       propertyPath: m_Name
       value: Visibomb

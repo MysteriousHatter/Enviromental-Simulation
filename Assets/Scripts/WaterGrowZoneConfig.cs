@@ -16,7 +16,7 @@ public class WaterGrowZoneConfig : MonoBehaviour
     public Terrain terrainOverride; // ← this is what your error was about
 
     [Header("Detail Growth")]
-    public int roseDetailLayerIndex = 0;
+    public int[] flowerDetailLayerIndices; // multiple detail layers
     public int roseInstancesPerCell = 4;
 
     [Header("Optional: paint wet soil")]

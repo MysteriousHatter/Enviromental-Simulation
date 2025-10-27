@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -25,12 +26,17 @@ public class WeaponWheelManager : MonoBehaviour
 
     private void ToggleWeaponWheel(InputAction.CallbackContext context)
     {
-        isWeaponWheelActive = !isWeaponWheelActive;
-        weaponWheelUI.SetActive(isWeaponWheelActive);
+        var activeDialog = FindFirstObjectByType<DialogBoxController>().GetDialogIsVisible();
 
-        if (weaponEquipManager != null)
+        if (!activeDialog)
         {
-            weaponEquipManager.SetToolActive(!isWeaponWheelActive);
+            isWeaponWheelActive = !isWeaponWheelActive;
+            weaponWheelUI.SetActive(isWeaponWheelActive);
+
+            if (weaponEquipManager != null)
+            {
+                weaponEquipManager.SetToolActive(!isWeaponWheelActive);
+            }
         }
     }
 }

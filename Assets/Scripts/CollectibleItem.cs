@@ -14,7 +14,7 @@ public class CollectibleItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            QuestSystem questSystem = FindObjectOfType<QuestSystem>();
+            QuestSystem questSystem = FindFirstObjectByType<QuestSystem>();
             if (questSystem != null)
             {
                 Debug.Log($"Player collected item for Quest {questIndex}, Objective {objectiveIndex}");

@@ -7,6 +7,10 @@ namespace RPG.Quests
     public class QuestManager : MonoBehaviour
     {
         [SerializeField] List<Quest> quest;
+        [SerializeField] private GameObject[] questPrefabs;
+        public IReadOnlyList<Quest> AllQuests => quest;
+        [HideInInspector]
+        public bool HasNextQuest => currentIndex + 1 < quest.Count;
         private int currentIndex = 0;
         private Quest currentQuest;
 
@@ -16,6 +20,7 @@ namespace RPG.Quests
             QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
             SetCurrentQuest(quest[0]);
             questList.AddQuest(quest[0]);
+            questPrefabs[0].SetActive(true);
 
             
         }
@@ -29,6 +34,7 @@ namespace RPG.Quests
 
                 SetCurrentQuest(quest[currentIndex]);
                 questList.AddQuest(quest[currentIndex]);
+                questPrefabs[currentIndex].SetActive(true);
             }
             else
             {

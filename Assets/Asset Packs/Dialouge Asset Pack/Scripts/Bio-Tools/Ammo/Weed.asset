@@ -19,7 +19,7 @@ MonoBehaviour:
   preferredConeDeg: 20
   minRange: 33
   maxRange: 99
-  ammoAmount: 154
+  ammoAmount: 50
   germinationChance: 0.65
   growthRate: 1.1
   preferredSubstrates: 03000000

@@ -95,6 +95,21 @@ namespace BioTools
             UpdateSeedDisplay();
         }
 
+        private void OnDisable()
+        {
+            seedAmount.gameObject.SetActive(false);
+            seedDisplayText.gameObject.SetActive(false);
+            seedDisplayUI.gameObject.SetActive(false);
+
+
+            foreach (GameObject ui in noUIs)
+            {
+                ui.SetActive(false);
+            }
+
+
+        }
+
 
         void OnDestroy()
         {

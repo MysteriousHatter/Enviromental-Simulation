@@ -13,7 +13,10 @@ public class SeedMiniGameScoreManager : MonoBehaviour
     [SerializeField] Quest quest;
     [SerializeField] private string questObjectiveId;
     [SerializeField] private Inventory inventory;
-    [SerializeField] private GameObject[] seedCollection;
+    [SerializeField] private GameObject seedCollection;
+    [SerializeField] private GameObject turnOffSpawner;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip JingleSFX;
 
     private int _score;
     private int _streak;
@@ -39,13 +42,14 @@ public class SeedMiniGameScoreManager : MonoBehaviour
                 // Notify quest system once; safeguard against double-fire
                 if (questList)
                 {
-                    FindObjectOfType<DialogBoxController>().SetHasSeed(true);
-                    foreach (GameObject s in seedCollection)
-                    {
-                        s.GetComponent<RecyclableItemComponent>().objectiveIndex = 3;
-                        inventory.AddSeedToInventory(s);
-                    }
+                    FindFirstObjectByType<DialogBoxController>().SetHasSeed(true);
+                    seedCollection.GetComponent<RecyclableItemComponent>().objectiveIndex = 2;
+                    inventory.AddSeedToInventory(seedCollection);
                     questList.CompleteObjective(quest, questObjectiveId);
+                    turnOffSpawner.SetActive(false);
+                    audioSource.PlayOneShot(JingleSFX);
+                    FindFirstObjectByType<DialogBoxController>().OpenPotSuccessWindow();
+
                 }
                 // Optionally: freeze minigame or reset streak
                 // _streak = 0;

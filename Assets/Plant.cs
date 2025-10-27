@@ -72,10 +72,12 @@ public class Plant : MonoBehaviour
         // Route to the right system based on seed type
         if (seedType == SeedType.Flower)
         {
+            Debug.Log("Flower Type");
             if (collision.collider.TryGetComponent<SeedGrowZone>(out var grow))
             {
                 grow.BeginGrowthProcess();
             }
+            Destroy(gameObject);
         }
         else if(seedType == SeedType.Weed)
         {

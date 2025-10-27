@@ -18,6 +18,7 @@ TagManager:
   - Creature
   - Grass
   - GrowZone
+  - TutorialBoard
   layers:
   - Default
   - TransparentFX

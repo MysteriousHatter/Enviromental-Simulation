@@ -30,7 +30,7 @@ public class QuestCountManager : MonoBehaviour
         if (activeCollectaibles.Count == 0)
         {
             Debug.Log("All fires extinguished! Quest complete.");
-            seedObjective.SetActive(true);
+            if(seedObjective != null) seedObjective.SetActive(true);
             CompleteQuest();
         }
     }

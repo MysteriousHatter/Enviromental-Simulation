@@ -476,7 +476,6 @@ MonoBehaviour:
   objectiveContainer: {fileID: 2205141103878322443}
   objectivePrefab: {fileID: 3692492006573108353}
   objectiveIncompletePrefab: {fileID: 3095720142162638742, guid: dae9c38986e545744ae773d48fe2310c, type: 3}
-  rewardText: {fileID: 0}
 --- !u!1 &7919513622656205441
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +804,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3089985788643122433, guid: b3d70286d4e697f4cbd514cc4692050d, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089985788643122433, guid: b3d70286d4e697f4cbd514cc4692050d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3095720142162638742, guid: b3d70286d4e697f4cbd514cc4692050d, type: 3}
       propertyPath: m_Name
       value: Objective
@@ -1020,6 +1027,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7961593275825817662, guid: cd4642bc38d101243ad3ed5f73db857e, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7961593275825817662, guid: cd4642bc38d101243ad3ed5f73db857e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8051012856182867602, guid: cd4642bc38d101243ad3ed5f73db857e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1193,6 +1208,14 @@ PrefabInstance:
     - target: {fileID: 3451815293299041835, guid: 865158eccea11414e8b98308d183b726, type: 3}
       propertyPath: m_Name
       value: Objective (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5859557581265278027, guid: 865158eccea11414e8b98308d183b726, type: 3}
+      propertyPath: m_fontSize
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5859557581265278027, guid: 865158eccea11414e8b98308d183b726, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

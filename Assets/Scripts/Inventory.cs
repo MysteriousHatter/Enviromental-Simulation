@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private DialogBoxController dialogBoxController;
     [SerializeField] private RecyclableSpawner recyclableSpawner;
     [SerializeField] private PlanetManagerScript planetManagerScript;
+    [SerializeField] private TutorialBoard tutorialBoard;
 
     [SerializeField] private List<GameObject> seedInventory = new List<GameObject>(); // Exclusive inventory for seeds
 
@@ -139,7 +140,7 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Current recycable type " + recyclableSpawner.currentRecyclableType);
             // Check if the selected recyclable type matches the current recyclable type
-            if (recyclableSpawner.currentRecyclableType == type)
+            if (recyclableSpawner.currentRecyclableType == type && planetManagerScript.GetSeedObjective() == currentObjectiveIndex)
             {
                 Debug.Log($"Correct Item: {type}. Score Updated!");
                 // Correct selection
@@ -160,7 +161,7 @@ public class Inventory : MonoBehaviour
                 // Incorrect selection
                 Debug.Log($"Incorrect selection! Expected: {recyclableSpawner.currentRecyclableType}, but selected: {type}");
                 //GameManager.Instance.currentScore++;
-                useRecycable(type); // Attempt to use the item, even if incorrect
+                //useRecycable(type); // Attempt to use the item, even if incorrect
             }
         }
         else
@@ -220,7 +221,7 @@ public class Inventory : MonoBehaviour
 
             if(GetSeedCount() == 0)
             {
-                FindObjectOfType<DialogBoxController>().SetHasSeed(false);
+                FindFirstObjectByType<DialogBoxController>().SetHasSeed(false);
             }
 
             Debug.Log($"Seed '{seedToRemove.name}' removed from the seed inventory. Remaining seeds: {seedInventory.Count}");
@@ -241,5 +242,14 @@ public class Inventory : MonoBehaviour
         planetManagerScript = dropZone;
     }
 
+    public void SetTuroitalBoard(TutorialBoard board)
+    {
+        tutorialBoard = board;
+    }
+
+    public string GetTutorialText()
+    {
+       return tutorialBoard.tutorialInformation;
+    }
 
 }

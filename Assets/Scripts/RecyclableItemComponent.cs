@@ -1,3 +1,4 @@
+using RPG.Quests;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -23,7 +24,11 @@ public class RecyclableItemComponent : MonoBehaviour
     private Transform playerTransform;
     [SerializeField] private Inventory inventory;
     [SerializeField] private QuestCountManager _questCountManager;
-    [SerializeField] private TerrainTreeZone seedGrowth;
+
+    [Header("Quest System")]
+    [SerializeField] Quest quest;
+    [SerializeField] string objective;
+    [SerializeField] private bool isQuest;
 
 
     void Awake()
@@ -98,6 +103,12 @@ public class RecyclableItemComponent : MonoBehaviour
             itemAudioSource.Stop();
         }
     }
+    public void CompleteObjective()
+    {
+        QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+        questList.CompleteObjective(quest, objective);
+    }
+
 
     void OnGrabbed(SelectEnterEventArgs args)
     {
@@ -107,10 +118,15 @@ public class RecyclableItemComponent : MonoBehaviour
             if (objectiveIndex == 1)
             {
                 Debug.Log("Grow Bushes");
-                seedGrowth.GrowNow();
+
+                if (isQuest) { GameManager.Instance.QuestManager.GiveNextQuest();}
+                else { CompleteObjective(); }
+
+                FindFirstObjectByType<SubmergeRocks>().StartSubmergeAll();
+                FindFirstObjectByType<WeedManager>().ClearAllWeeds();
             }
             // Add the seed to the seed inventory
-            FindObjectOfType<DialogBoxController>().SetHasSeed(true);
+            FindFirstObjectByType<DialogBoxController>().SetHasSeed(true);
             inventory.AddSeedToInventory(this.gameObject);
             this.gameObject.SetActive(false);
         }

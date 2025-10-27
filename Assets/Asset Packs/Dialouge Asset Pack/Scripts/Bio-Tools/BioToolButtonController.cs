@@ -25,11 +25,11 @@ public class BioToolButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(selected)
-        //{
-        //    selectedItem.sprite = icon;
-        //    itemText.text = itemName;
-        //}
+        if (selected)
+        {
+            selectedItem.sprite = icon;
+            itemText.text = itemName;
+        }
     }
 
     public int getToolID()

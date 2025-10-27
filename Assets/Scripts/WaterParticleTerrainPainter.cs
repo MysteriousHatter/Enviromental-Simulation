@@ -27,7 +27,7 @@ public class WaterParticleZonePainter : MonoBehaviour
         _ps = GetComponent<ParticleSystem>();
         // In the ParticleSystem -> Collision module, enable "Send Collision Messages".
         // (OnParticleCollision will then be invoked.) :contentReference[oaicite:2]{index=2}
-        zoneHealthBar = FindObjectOfType<DialogBoxController>().healthUI;
+        zoneHealthBar = FindFirstObjectByType<DialogBoxController>().healthUI;
         // Adjust the detail prototype's height range
         AdjustDetailPrototypeHeight();
     }
@@ -87,7 +87,7 @@ public class WaterParticleZonePainter : MonoBehaviour
 
             if(cfg.growZone != null)
             {
-                if (cfg.growZone.needsWater) { GameManager.Instance?.RegisterSideObjectiveCompleted("Normal Gardening"); }
+                if (cfg.growZone.needsWater) { GameManager.Instance?.RegisterSideObjectiveCompleted(cfg.objectiveId); }
             }
             else { GameManager.Instance?.RegisterSideObjectiveCompleted(cfg.objectiveId); }
             if (cfg.oneShot) StartCoroutine(DisableColliderAfterFrame(other.GetComponent<Collider>()));
@@ -149,7 +149,8 @@ public class WaterParticleZonePainter : MonoBehaviour
         Bounds b = col.bounds;
 
         // 1) grow flowers across bounds (detail layer)
-        GrowRosesInBounds(terrain, b, cfg.roseDetailLayerIndex, cfg.roseInstancesPerCell);
+        int randomLayer = cfg.flowerDetailLayerIndices[Random.Range(0, cfg.flowerDetailLayerIndices.Length)];
+        GrowRosesInBounds(terrain, b, randomLayer, cfg.roseInstancesPerCell);
 
         // 2) optional wet soil pass (alphamaps)
         if (cfg.alsoPaintWetSoil)
