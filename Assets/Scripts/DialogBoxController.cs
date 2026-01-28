@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using RPG.Quests;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,10 +15,13 @@ using static RecyclableItem;
 
 public class DialogBoxController : MonoBehaviour
 {
+    public static DialogBoxController Instance { get; set; }
+
     [SerializeField] private GameObject PlayerLogUI; // Assign your World Space Canvas here
     [SerializeField] private GameObject InventoryMenuUI;
     [SerializeField] private GameObject SeedUI;
     [SerializeField] private GameObject QuestUI;
+    [SerializeField] private GameObject playersEye;
     [SerializeField] private GameObject cameraInventory;
     [SerializeField] private GameObject ToolWheel;
     [SerializeField] private GameObject ShowPhotoUI;
@@ -36,6 +40,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private GameObject AmmoUI;
     [SerializeField] private GameObject EcoRestorationHUD;
     [SerializeField] private GameObject seedCongratulationsUI;
+    [SerializeField] private GameObject MapImage;
     public ZoneHealthBar healthUI;
 
     [Header("UI For Seed Controller")]
@@ -56,6 +61,7 @@ public class DialogBoxController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI tutorialText;
     [SerializeField] private string tutorialBoardTag = "TutorialBoard";
     [SerializeField] private InputActionReference toggleTutorialUIAction;
+    public GameObject liveTutorialText;
 
 
     private Transform cameraTransform;
@@ -79,7 +85,7 @@ public class DialogBoxController : MonoBehaviour
     private bool isPhotoAlbumOpen = false;
     private bool isQuestsWindowOpen = false;
     private bool isMapOpen = false;
-    private readonly string[] allowedActionMaps =
+    private HashSet<string> allowedActionMaps = new HashSet<string>
     {
         "XRI Head",
         "XRI Left Interaction",
@@ -92,8 +98,7 @@ public class DialogBoxController : MonoBehaviour
 
     private void Awake()
     {
-
-
+         Instance = this;
     }
     void Start()
     {
@@ -114,6 +119,7 @@ public class DialogBoxController : MonoBehaviour
         EcoRestorationHUD.gameObject.SetActive(false);
         tutorialPanel.gameObject.SetActive(false);
         seedCongratulationsUI.gameObject.SetActive(false);
+        playersEye.gameObject.SetActive(true);
         //healthUI.gameObject.SetActive(false);   
         isDialogVisible = false;
 
@@ -147,15 +153,15 @@ public class DialogBoxController : MonoBehaviour
         PositionCanvas();
         IsPlayerNear();
 
-        if (isDialogVisible)
-        {
+        ////if (isDialogVisible)
+        ////{
 
-            DisableAllExceptAllowed();
-        }
-        else
-        {
-            EnableAllActionMaps();
-        }
+        ////    DisableAllExceptAllowed();
+        ////}
+        ////else
+        ////{
+        ////    EnableAllActionMaps();
+        ////}
 
         //REDO Will refactor later with with Inventory panel fro panel switching.
         if (Input.GetKeyDown(KeyCode.P))
@@ -230,6 +236,17 @@ public class DialogBoxController : MonoBehaviour
 
         seedCongratulationsUI.transform.position = basePosition;
         seedCongratulationsUI.transform.rotation = Quaternion.LookRotation(seedCongratulationsUI.transform.position - cameraTransform.position);
+
+        //Postion Player Eyes
+        playersEye.transform.position = basePosition;
+        playersEye.transform.rotation = Quaternion.LookRotation(playersEye.transform.position - cameraTransform.position);
+
+        //Live Tutorial Text
+        liveTutorialText.transform.position = basePosition;
+        liveTutorialText.transform.rotation = Quaternion.LookRotation(liveTutorialText.transform.position - cameraTransform.position);
+
+        MapImage.transform.position = basePosition;
+        MapImage.transform.rotation = Quaternion.LookRotation(MapImage.transform.position - cameraTransform.position);
     }
 
     public bool IsPlayerNear()
@@ -321,7 +338,7 @@ public class DialogBoxController : MonoBehaviour
         Debug.Log("All action maps have been enabled.");
     }
 
-    private bool IsActionMapAllowed(string actionMapName)
+    private bool IsActionMapAllowed(string actionMapName = "")
     {
         foreach (var allowedMap in allowedActionMaps)
         {
@@ -539,7 +556,7 @@ public class DialogBoxController : MonoBehaviour
     {
         PlayerLogUI.gameObject.SetActive(false);
         InventoryMenuUI.gameObject.SetActive(false);
-        EcoRestorationHUD.gameObject.SetActive(false);
+        MapImage.gameObject.SetActive(false);
         QuestUI.gameObject.SetActive(true);
         AmmoUI.gameObject.SetActive(false);
         cameraInventory.gameObject.SetActive(false);
@@ -554,7 +571,7 @@ public class DialogBoxController : MonoBehaviour
     {
         PlayerLogUI.gameObject.SetActive(false);
         InventoryMenuUI.gameObject.SetActive(false);
-        EcoRestorationHUD.gameObject.SetActive(true);
+        MapImage.gameObject.SetActive(true);
         cameraInventory.gameObject.SetActive(false);
         QuestUI.gameObject.SetActive(false);
         AmmoUI.gameObject.SetActive(false);
@@ -562,6 +579,7 @@ public class DialogBoxController : MonoBehaviour
         isPhotoAlbumOpen = false;
         isDialogVisible = true;
         isQuestsWindowOpen = false;
+        GameManager.Instance.enviroment.TurnOnAndFogOff(false);
         isMapOpen = true;
 
     }
@@ -646,8 +664,10 @@ public class DialogBoxController : MonoBehaviour
         cameraInventory.gameObject.SetActive(false);
         QuestUI.gameObject.SetActive(false);
         EcoRestorationHUD.gameObject.SetActive(true);
+        MapImage.gameObject.SetActive(false);
         isInventoryMenuOpen = false;
         isPhotoAlbumOpen = false;
+        GameManager.Instance.enviroment.TurnOnAndFogOff(true);
         isQuestsWindowOpen = false;
         isMapOpen = true;
         isDialogVisible = true;

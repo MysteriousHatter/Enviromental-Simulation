@@ -168,6 +168,11 @@ public class SkyboxManager : MonoBehaviour
         terrainData.SetAlphamaps(0, 0, splatmap);
     }
 
+    public void TurnOnAndFogOff(bool fogEnabled)
+    {
+        RenderSettings.fog = fogEnabled;
+    }
+
 
 }
 

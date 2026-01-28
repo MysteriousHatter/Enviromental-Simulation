@@ -1,8 +1,11 @@
 ﻿using RPG.Quests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static QuestSystem;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
+using static UnityEngine.InputSystem.DefaultInputActions;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,7 +51,7 @@ public class GameManager : MonoBehaviour
     // Track what’s been awarded so we don’t double count
     private readonly HashSet<string> completedMainIds = new HashSet<string>();
     private readonly HashSet<string> completedSideIds = new HashSet<string>();
-    private SkyboxManager enviroment => FindAnyObjectByType<SkyboxManager>();
+    public SkyboxManager enviroment => FindAnyObjectByType<SkyboxManager>();
     //private GrassComponent grass => FindAnyObjectByType<GrassComponent>();
     private GrassGrowthManager grass => FindAnyObjectByType<GrassGrowthManager>();
     private TreeManager tree => FindAnyObjectByType<TreeManager>();
@@ -56,12 +59,24 @@ public class GameManager : MonoBehaviour
 
     private MusicManager music => FindAnyObjectByType<MusicManager>();
     public QuestManager QuestManager => FindAnyObjectByType<QuestManager>();
+    public TutorialManager tutorialManager => FindAnyObjectByType<TutorialManager>();
     public bool gameIsWon { get;  set; }
     private bool alreadyHit = false;
+
+
+    /// <summary>
+    /// For VR Controller
+    /// </summary>
+    [SerializeField] private InputActionAsset playerActions;
+    [SerializeField] private GameObject[] BasicControlsObject;
+    public InputAction playerInput;
+
+    public bool canEnable = false;
 
     //[SerializeField] RecyclableSpawner spawner;
     void Awake()
     {
+        playerInput = playerActions.FindAction("OpenWeaponWheel");
         // Singleton Pattern: Ensure only one GameManager exists
         if (Instance == null)
         {
@@ -76,13 +91,13 @@ public class GameManager : MonoBehaviour
         //currentScore = 0;
         gameIsWon = false;
         QuestManager.GiveFirstQuest();
-      
 
     }
 
+
     private void Start()
     {
-       // goalScore = spawner.getRecycableCount();
+        playerInput.Disable();
     }
 
     void Update()
@@ -109,12 +124,12 @@ public class GameManager : MonoBehaviour
         }
 #endif
 
-
         //if(currentScore == 2)
         //{
         //    QuestList questList = FindAnyObjectByType<QuestList>();
         //    questList.CompleteObjectiveByReference("Naturlist Away");
         //}
+
     }
 
     /// Call this from the UI “Next Quest” button
@@ -327,18 +342,8 @@ public class GameManager : MonoBehaviour
         return currentProgress01;
     }
 
-
-    //public void CheckProgress()
-    //{
-    //   // goalScore = spawner.getRecycableCount();
-    //    float percentage = (float)currentScore / goalScore * 100f;
-
-    //    Debug.Log($"Current Count: {currentScore}, Percentage: {percentage}%");
-
-    //    // Update Terrain and Skybox based on progress
-    //    enviroment.SetProgress(percentage / 100f); // Normalize percentage (0-1 range)
-    //    music.SetProgress(percentage / 100f);
-    //    grass.AddProgress(); // Updates grass growth
-    //    //water.SetProgress();
-    //}
+    public void EnableAction()
+    {
+        BasicControlsObject[0].SetActive(true);        
+    }
 }

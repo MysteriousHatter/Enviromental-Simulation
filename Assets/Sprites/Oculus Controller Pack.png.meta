@@ -1,0 +1,997 @@
+fileFormatVersion: 2
+guid: b6740161e9e5c3e46aeac662237e0473
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Oculus Controller Pack_0
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 994
+        width: 110
+        height: 110
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b12f86457dbbb7459a5f9b29dbc06d6
+      internalID: -2031782962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_1
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 992
+        width: 121
+        height: 126
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f4e5380ccfda1449b42467ee3884e7a
+      internalID: 2072958914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_2
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 984
+        width: 109
+        height: 129
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c338db93129a64c4e9708528b047425c
+      internalID: 455217120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_3
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 986
+        width: 107
+        height: 134
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9893e8dd41f2a45b3baca4ef3cc270
+      internalID: 677335752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_4
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 992
+        width: 96
+        height: 108
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78061e324df589b4282c7836ed2e552b
+      internalID: 2123727635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_5
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 992
+        width: 115
+        height: 130
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bee0648f9b5bf048ac768548169cbbc
+      internalID: -1772774413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_6
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 988
+        width: 107
+        height: 123
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b6e3161c22f9d644ba562f398d92a1f
+      internalID: -271561831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_7
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 992
+        width: 117
+        height: 126
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7369af2f7118f444aba04cf40f05329e
+      internalID: -1532093202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_8
+      rect:
+        serializedVersion: 2
+        x: 1765
+        y: 994
+        width: 118
+        height: 111
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2874908afee277f42aba4f0e12086c71
+      internalID: 780301078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_9
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 770
+        width: 163
+        height: 164
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 032c16b2ab26cec44a1c1da84044c141
+      internalID: -1553926486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_10
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 784
+        width: 144
+        height: 130
+      alignment: 9
+      pivot: {x: 0.011393441, y: 0.0045110136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad09f08e3205894428a49f0f4995252c
+      internalID: -128987545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_11
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 804
+        width: 140
+        height: 90
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ce5193f8877654e881a2b97e5732ca
+      internalID: -201078152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_12
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 806
+        width: 133
+        height: 96
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0885d2f78527e164e8cccf994dfe6d14
+      internalID: 18778922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_13
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 800
+        width: 108
+        height: 114
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f17d7cebc26ba5408585a84bc7b7584
+      internalID: -518132938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_14
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 808
+        width: 145
+        height: 88
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f195ca959d2bd4a90c0caa01e8936c
+      internalID: -470371736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_15
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 802
+        width: 143
+        height: 103
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 019a0e345a443c84990c6edbdc0fd2d2
+      internalID: -1891378939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_16
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 768
+        width: 155
+        height: 162
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb5442a307701e94d97bd0a77f947422
+      internalID: -629253616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_17
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 754
+        width: 182
+        height: 171
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea0fb2c428d0984293c7be250b94d39
+      internalID: 613360212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_18
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 595
+        width: 188
+        height: 122
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a232fb6cc4a304f910299649687d9e
+      internalID: -1992468166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_19
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 580
+        width: 148
+        height: 143
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7381f78d358860428a5648663f3c245
+      internalID: 1097073234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_20
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 588
+        width: 114
+        height: 120
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a0dd4f24a4cab4582dc527069b394a
+      internalID: -1878970265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_21
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 597
+        width: 110
+        height: 119
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e3adeb87d8dc2438dcfeb013e830de
+      internalID: 477942604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_22
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 593
+        width: 101
+        height: 112
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53669d85a857b95489630862f67e42b3
+      internalID: -886205228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_23
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 593
+        width: 93
+        height: 123
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 008c012cc93e33749acb58444677d6b8
+      internalID: -881278875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_24
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 597
+        width: 103
+        height: 106
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da874b76775e8742a2d9c83b0adf07c
+      internalID: -1982145129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_25
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 584
+        width: 119
+        height: 132
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b64f511475bbd12499c439b252174858
+      internalID: 1695574888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_26
+      rect:
+        serializedVersion: 2
+        x: 1735
+        y: 588
+        width: 175
+        height: 124
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940050939032e9f46b5c86ef70ba643e
+      internalID: 396349813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_27
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 375
+        width: 121
+        height: 155
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7805bdcdefbc7245a247d0ec2049c84
+      internalID: 1337831787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_28
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 373
+        width: 143
+        height: 155
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43af8d71c2f0538408d8b6cec9d48c57
+      internalID: -1128672556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_29
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 387
+        width: 105
+        height: 125
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aac0372a4b90e74d9e8654247f9b11d
+      internalID: 311293466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_30
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 395
+        width: 94
+        height: 124
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5516dfea477e29f41b7aa1c3fbfa7d42
+      internalID: 77073071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_31
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 393
+        width: 94
+        height: 124
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20823c209234a634588c18f35c288206
+      internalID: -65988689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_32
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 395
+        width: 122
+        height: 124
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 619bacec2dc3cf048a0d5ee35f893007
+      internalID: 873787793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_33
+      rect:
+        serializedVersion: 2
+        x: 1374
+        y: 391
+        width: 99
+        height: 124
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25a6479ded66610419817ce32dfd057b
+      internalID: 839039779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_34
+      rect:
+        serializedVersion: 2
+        x: 1551
+        y: 378
+        width: 146
+        height: 154
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c46d078696f5e643a0570f69c4acde7
+      internalID: -509106922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oculus Controller Pack_35
+      rect:
+        serializedVersion: 2
+        x: 1762
+        y: 367
+        width: 124
+        height: 186
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba672a974a54a7c4684895834c952452
+      internalID: 192210737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6b8e29b6f0bf9d248bdb6c11e3944304
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Oculus Controller Pack_0: -2031782962
+      Oculus Controller Pack_1: 2072958914
+      Oculus Controller Pack_10: -128987545
+      Oculus Controller Pack_11: -201078152
+      Oculus Controller Pack_12: 18778922
+      Oculus Controller Pack_13: -518132938
+      Oculus Controller Pack_14: -470371736
+      Oculus Controller Pack_15: -1891378939
+      Oculus Controller Pack_16: -629253616
+      Oculus Controller Pack_17: 613360212
+      Oculus Controller Pack_18: -1992468166
+      Oculus Controller Pack_19: 1097073234
+      Oculus Controller Pack_2: 455217120
+      Oculus Controller Pack_20: -1878970265
+      Oculus Controller Pack_21: 477942604
+      Oculus Controller Pack_22: -886205228
+      Oculus Controller Pack_23: -881278875
+      Oculus Controller Pack_24: -1982145129
+      Oculus Controller Pack_25: 1695574888
+      Oculus Controller Pack_26: 396349813
+      Oculus Controller Pack_27: 1337831787
+      Oculus Controller Pack_28: -1128672556
+      Oculus Controller Pack_29: 311293466
+      Oculus Controller Pack_3: 677335752
+      Oculus Controller Pack_30: 77073071
+      Oculus Controller Pack_31: -65988689
+      Oculus Controller Pack_32: 873787793
+      Oculus Controller Pack_33: 839039779
+      Oculus Controller Pack_34: -509106922
+      Oculus Controller Pack_35: 192210737
+      Oculus Controller Pack_4: 2123727635
+      Oculus Controller Pack_5: -1772774413
+      Oculus Controller Pack_6: -271561831
+      Oculus Controller Pack_7: -1532093202
+      Oculus Controller Pack_8: 780301078
+      Oculus Controller Pack_9: -1553926486
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
