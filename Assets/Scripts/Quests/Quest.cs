@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameDevTV.Inventories;
 using GameDevTV.Utils;
+using UnityEngine.UI;
 using UnityEngine;
 
 namespace RPG.Quests
@@ -26,6 +27,9 @@ namespace RPG.Quests
             public string reference;
             public string description;
             public bool usesCondition = false;
+            public GameObject mapMarkerPrefab;
+            public Transform markerWorldLocation;
+            [HideInInspector] public GameObject spawnedMarker;
             public Condition completionCondition;
         }
 
@@ -67,5 +71,6 @@ namespace RPG.Quests
             }
             return null;
         }
+
     }
 }

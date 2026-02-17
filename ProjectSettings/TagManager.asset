@@ -19,6 +19,7 @@ TagManager:
   - Grass
   - GrowZone
   - TutorialBoard
+  - Collectiable
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - Seed
   - Tutorial
   - Minimap
-  - 
+  - Land
   - 
   - 
   - 

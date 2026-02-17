@@ -32,6 +32,8 @@ namespace BioTools
         public bool isQuestImportant = false;
         public string questObjectiveReference; // Optional: Reference to the specific quest objective
         [SerializeField] private bool isSidequest;
+        [SerializeField] private GameObject miniMapQuestComplete;
+        [SerializeField] private GameObject miniMapQuestActive;
 
         [Header("Visuals (optional)")]
         public Renderer[] tintRenderers;
@@ -82,6 +84,8 @@ namespace BioTools
             if (isQuestImportant && granted > 0)
             {
                 Debug.Log("Go to the next objective");
+                miniMapQuestComplete.gameObject.SetActive(false);
+                miniMapQuestActive.gameObject.SetActive(true);
                 QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
                 questList.CompleteObjectiveByReference(questObjectiveReference);
             }

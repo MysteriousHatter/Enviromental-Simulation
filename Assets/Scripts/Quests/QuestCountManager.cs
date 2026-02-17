@@ -8,12 +8,16 @@ public class QuestCountManager : MonoBehaviour
     private List<GameObject> activeCollectaibles = new List<GameObject>();
     [SerializeField] private string objectiveName;
     [SerializeField] private GameObject seedObjective;
+    [SerializeField] private GameObject MiniMapUI;
 
     private void Awake()
     {
         foreach (Transform child in this.transform)
         {
-            activeCollectaibles.Add(child.gameObject);
+            if (child.gameObject.tag.Equals("Collectiable"))
+            {
+                activeCollectaibles.Add(child.gameObject);
+            }
         }
     }
     public void UnregisterCollectiable(GameObject mcGuffin)
@@ -30,6 +34,7 @@ public class QuestCountManager : MonoBehaviour
         if (activeCollectaibles.Count == 0)
         {
             Debug.Log("All fires extinguished! Quest complete.");
+            MiniMapUI.SetActive(false);
             if(seedObjective != null) seedObjective.SetActive(true);
             CompleteQuest();
         }

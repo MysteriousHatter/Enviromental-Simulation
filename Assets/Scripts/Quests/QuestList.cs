@@ -12,6 +12,7 @@ namespace RPG.Quests
     {
         List<QuestStatus> statuses = new List<QuestStatus>();
         [SerializeField] private List<GameObject> seedInventory = new List<GameObject>();
+        public Transform markerParent;
 
         public event Action onUpdate;
 

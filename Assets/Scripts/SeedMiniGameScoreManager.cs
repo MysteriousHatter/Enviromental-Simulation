@@ -17,6 +17,8 @@ public class SeedMiniGameScoreManager : MonoBehaviour
     [SerializeField] private GameObject turnOffSpawner;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip JingleSFX;
+    [SerializeField] private GameObject miniMapComplete;
+    [SerializeField] private GameObject miniMapNew;
 
     private int _score;
     private int _streak;
@@ -48,6 +50,8 @@ public class SeedMiniGameScoreManager : MonoBehaviour
                     questList.CompleteObjective(quest, questObjectiveId);
                     turnOffSpawner.SetActive(false);
                     audioSource.PlayOneShot(JingleSFX);
+                    miniMapComplete.SetActive(false);
+                    miniMapNew.SetActive(true);
                     FindFirstObjectByType<DialogBoxController>().OpenPotSuccessWindow();
 
                 }

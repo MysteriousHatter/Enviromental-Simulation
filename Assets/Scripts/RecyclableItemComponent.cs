@@ -29,6 +29,7 @@ public class RecyclableItemComponent : MonoBehaviour
     [SerializeField] Quest quest;
     [SerializeField] string objective;
     [SerializeField] private bool isQuest;
+    [SerializeField] private GameObject recycleMapKey;
 
 
     void Awake()
@@ -107,6 +108,8 @@ public class RecyclableItemComponent : MonoBehaviour
     {
         QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
         questList.CompleteObjective(quest, objective);
+        recycleMapKey.SetActive(true);
+
     }
 
 

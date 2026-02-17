@@ -13,6 +13,7 @@ namespace RPG.Quests
         [SerializeField] private GameObject congratsText;
         [SerializeField] private GameObject garden;
         [SerializeField] private int seedObjective = 0;
+        [SerializeField] private GameObject MiniMapKey;
         private bool isSeedCompleted;
 
         void Start()
@@ -32,6 +33,7 @@ namespace RPG.Quests
                 QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
                 questList.CompleteObjective(quest, objective);
                 congratsText.GetComponent<TextMeshProUGUI>().text = $"Seed is already submitted go back to Lab for your next assignment";
+                MiniMapKey.gameObject.SetActive(false);
                 GameManager.Instance.RegisterMainObjectiveCompleted(objective);
                 playerInventory.RemoveSeedFromInventory();
                 isSeedCompleted = true;

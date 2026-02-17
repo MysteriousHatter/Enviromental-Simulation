@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("Progress Targets")]
     [Tooltip("Minimum progress to clear the area (excluding Extra Objective). 0.80 = 80%")]
     [Range(0f, 1f)] public float goalTarget01 = 0.80f;
+    [SerializeField] private GameObject miniMapKey;
 
     [Tooltip("Each main section/seed is worth 12% (5 sections ? 60% total).")]
     [Range(0f, 1f)] public float mainSectionValue01 = 0.12f; // 12%
@@ -148,7 +149,11 @@ public class GameManager : MonoBehaviour
 
         if (IsCurrentQuestComplete())
         {
-            if (HasNextQuest()) qm.GiveNextQuest();
+            if (HasNextQuest())
+            {
+                miniMapKey.SetActive(false);
+                qm.GiveNextQuest();
+            }
             else Debug.Log("All quests are complete.");
         }
         else
@@ -234,6 +239,7 @@ public class GameManager : MonoBehaviour
         completedMainIds.Add(objectiveId);
         mainCompletedCount++;
         AddProgress(mainSectionValue01);
+        miniMapKey.gameObject.SetActive(true);
         Debug.Log($"[Progress] Main complete: {objectiveId} (+{mainSectionValue01:P0})");
         //CheckWinCondition();
     }
